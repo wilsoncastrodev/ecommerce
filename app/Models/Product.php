@@ -18,4 +18,14 @@ class Product extends Model
     {
         return $this->belongsTo(Manufacturer::class);
     }
+
+    public function category()
+    {
+        return $this->belongsTo(Category::class);
+    }
+
+    public function productcategory()
+    {
+        return $this->belongsTo(ProductCategory:class)
+    }
 }
