@@ -13,4 +13,9 @@ class Product extends Model
     {
         return $this->belongsTo(Customer::class, 'vendor_id');
     }
+
+    public function manufacturer()
+    {
+        return $this->belongsTo(Manufacturer::class);
+    }
 }
