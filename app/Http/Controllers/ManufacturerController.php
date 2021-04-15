@@ -14,7 +14,8 @@ class ManufacturerController extends Controller
      */
     public function index()
     {
-        //
+        $manufacturers = Manufacturer::all()->toArray();
+        return view('admin.manufacturers.index', ['pageSlug' => 'Manufacturer', 'manufacturers' => $manufacturers]);
     }
 
     /**
