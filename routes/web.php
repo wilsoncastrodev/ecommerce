@@ -12,7 +12,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::resource('produto', ProductController::class);
+Route::resource('produtos', ProductController::class);
 Route::resource('categorias', CategoryController::class);
 Route::resource('categorias-produtos', ProductCategoryController::class);
 Route::resource('fabricantes', ManufacturerController::class);
