@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ProductCategoryController;
 
 Route::get('/', function () {
@@ -10,6 +11,7 @@ Route::get('/', function () {
 });
 
 Route::resource('produto', ProductController::class);
+Route::resource('categorias', CategoryController::class);
 Route::resource('categorias-produtos', ProductCategoryController::class);
 
 Auth::routes();
