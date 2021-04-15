@@ -14,7 +14,8 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        //
+        $Categories = Category::all()->toArray();
+        return view('admin.Categories.index', ['pageSlug' => 'Category', 'categories' => $Categories]);
     }
 
     /**
