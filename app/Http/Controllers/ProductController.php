@@ -14,7 +14,8 @@ class ProductController extends Controller
      */
     public function index()
     {
-        //
+        $products = Product::all()->toArray();
+        return view('admin.products.index', ['pageSlug' => 'Product', 'products' => $products]);
     }
 
     /**
