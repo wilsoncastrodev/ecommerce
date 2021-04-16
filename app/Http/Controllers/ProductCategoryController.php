@@ -2,8 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\ProductCategory;
+use Illuminate\Support\Str;
 use Illuminate\Http\Request;
+use App\Models\ProductCategory;
 
 class ProductCategoryController extends Controller
 {
@@ -25,7 +26,7 @@ class ProductCategoryController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.product-categories.create');
     }
 
     /**
@@ -36,7 +37,23 @@ class ProductCategoryController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'product_category_title' => 'required|unique:products_categories|max:255',
+            'product_category_top' => 'required',
+            'product_category_image' => 'required|image|mimes:jpg,png,jpeg,gif,svg|max:2048'
+        ]);
+
+        $image = $request->file('product_category_image');
+        $file_name = Str::slug($request->product_category_title) . '_' . time() . '.' . $image->getClientOriginalExtension();
+        $path = $image->storeAs('public/imagens/categorias', $file_name);
+
+        $product_category = new ProductCategory;
+        $product_category->product_category_title = $request->product_category_title;
+        $product_category->product_category_top = $request->product_category_top;
+        $product_category->product_category_image = $path;
+        $product_category->save();
+        
+        return redirect()->back()->with('success', 'Categoria do Produto cadastrada com sucesso!');
     }
 
     /**
