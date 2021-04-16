@@ -4,7 +4,7 @@
 <div class="container">
     <div class="row">
         <div class="col">
-            @include('partials.contents.page-title.title-button', ['title' => 'Categorias dos Produtos'])
+            @include('partials.contents.page-title.title-button', ['title' => 'Categorias dos Produtos', 'route' => 'categorias-produtos.create'])
         </div>
     </div>
     <div class="row">
@@ -16,8 +16,8 @@
                     )
                 </thead>
                 <tbody>
-                    @foreach($productCategories as $productCategory)
-                        @php(extract($productCategory))
+                    @foreach($product_categories as $product_category)
+                        @php(extract($product_category))
                         <tr>
                             <th scope="row">{{ $id }}</th>
                             <th scope="row">{{ $product_category_title }}</th>
