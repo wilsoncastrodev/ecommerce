@@ -4,7 +4,7 @@
 <div class="container">
     <div class="row">
         <div class="col">
-            @include('partials.contents.page-title.title', ['title' => 'Fabricantes'])
+            @include('partials.contents.page-title.title-button', ['title' => 'Fabricantes'])
         </div>
     </div>
     <div class="row">
