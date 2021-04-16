@@ -2,5 +2,5 @@
     {{ $title }}
 </div>
 <div class="float-end">
-    <a type="button" class="btn btn-primary btn-lg">Adicionar {{ $title }}</a>
+    <a href="{{ route($route) }}"  class="btn btn-primary btn-lg">Adicionar {{ $title }}</a>
 </div>
