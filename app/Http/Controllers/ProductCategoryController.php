@@ -15,7 +15,7 @@ class ProductCategoryController extends Controller
     public function index()
     {
         $productCategories = ProductCategory::all()->toArray();
-        return view('admin.product-categories.index', ['pageSlug' => 'ProductCategory', 'productCategories' => $productCategories]);
+        return view('admin.product-categories.index', compact('productCategories'));
     }
 
     /**

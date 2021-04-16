@@ -15,7 +15,7 @@ class CustomerController extends Controller
     public function index()
     {
         $customers = Customer::all()->toArray();
-        return view('admin.customers.index', ['pageSlug' => 'Customer', 'customers' => $customers]);
+        return view('admin.customers.index', compact('customers'));
     }
 
     /**
