@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Support\Str;
 use App\Models\Manufacturer;
 use Illuminate\Http\Request;
 
@@ -25,7 +26,7 @@ class ManufacturerController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.manufacturers.create');
     }
 
     /**
