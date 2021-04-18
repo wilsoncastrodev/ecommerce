@@ -37,7 +37,23 @@ class ManufacturerController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'manufacturer_title' => 'required|unique:manufacturers|max:255',
+            'manufacturer_top' => 'required',
+            'manufacturer_image' => 'required|image|mimes:jpg,png,jpeg,gif,svg|max:2048'
+        ]);
+
+        $image = $request->file('manufacturer_image');
+        $file_name = Str::slug($request->manufacturer_title) . '_' . time() . '.' . $image->getClientOriginalExtension();
+        $path = $image->storeAs('public/imagens/fabricantes', $file_name);
+
+        $manufacturer = new Manufacturer;
+        $manufacturer->manufacturer_title = $request->manufacturer_title;
+        $manufacturer->manufacturer_top = $request->manufacturer_top;
+        $manufacturer->manufacturer_image = $path;
+        $manufacturer->save();
+        
+        return redirect()->back()->with('success', 'Fabricante cadastrado com sucesso!');
     }
 
     /**
