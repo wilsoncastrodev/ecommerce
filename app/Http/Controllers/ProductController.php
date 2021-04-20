@@ -43,7 +43,90 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'product_title' => 'required',
+            'product_url' => 'required',
+            'product_description' => 'required',
+            'product_features' => 'required',
+            'product_weight' => 'required',
+            'product_price' => 'required',
+            'product_sale_price' => 'required',
+            'product_image' => 'required',
+            'product_image.*' => 'image|mimes:jpg,png,jpeg,gif,svg|max:2048',
+            'product_category_id' => 'required',
+            'manufacturer_id' => 'required',
+            'category_id' => 'required',
+            'product_seo_description' => 'required',
+            'product_keywords' => 'required',
+            'product_label' => 'required',
+            'stock_enabled' => 'required',
+            /* 'stock_quantity	' => 'required', */
+            'stock_status' => 'required',
+            'allow_backorders' => 'required'
+        ]);
+
+        if ($request->hasFile('product_image')) {
+            $product_images_path = storeImages($request->file('product_image'), 'produtos', $request->product_title);
+        }
+
+        $product = new Product;
+        $product->vendor_id = 1;
+        $product->product_category_id = $request->product_category_id;
+        $product->category_id = $request->category_id;
+        $product->manufacturer_id = $request->manufacturer_id;
+        $product->product_title = $request->product_title;
+        $product->product_seo_description = $request->product_seo_description;
+        $product->product_url = $request->product_url;
+        $product->product_image1 = $product_images_path[0];
+        $product->product_image2 = $product_images_path[1];
+        $product->product_image3 = $product_images_path[2];
+        $product->product_price = $request->product_price;
+        $product->product_sale_price = $request->product_sale_price;
+        $product->product_description = $request->product_description;
+        $product->product_features = $request->product_features;
+        $product->product_keywords = $request->product_keywords;
+        $product->product_label = $request->product_label;
+        $product->product_weight = $request->product_weight;
+        $product->product_video = 'asdfasdfasdf';
+        $product->product_views = '1';
+        $product->product_vendor_status = 'active';
+        $product->product_status = 'active';
+        $product->save();
+
+        $productStock = new ProductStock;
+        $productStock->product_id = $product->id;
+
+        if ($request->stock_enabled == 'yes') {
+            if ($request->stock_quantity > 0) {
+                $stock_status = 'in_stock';
+            }
+
+            if ($request->stock_quantity < 1) {
+                if ($request->allow_backorders == 'no') {
+                    $stock_status = 'out_stock';
+                }
+
+                if (($request->allow_backorders == 'yes' || $request->allow_backorders == 'notify')) {
+                    $stock_status = 'on_backorder';
+                }
+            }
+
+            $productStock->stock_status = $stock_status;
+            $productStock->stock_enabled = $request->stock_enabled;
+            $productStock->stock_quantity = $request->stock_quantity;
+            $productStock->allow_backorders = $request->allow_backorders;
+            $productStock->save();
+        }
+
+        if ($request->stock_enabled == 'no') {
+            $productStock->stock_status = $request->stock_status;
+            $productStock->stock_enabled = $request->stock_enabled;
+            $productStock->stock_quantity = 0;
+            $productStock->allow_backorders = 'no';
+            $productStock->save();
+        }
+        
+        return redirect()->back()->with('success', 'Produto cadastrado com sucesso!');
     }
 
     /**
