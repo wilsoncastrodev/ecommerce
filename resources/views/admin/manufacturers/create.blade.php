@@ -11,7 +11,7 @@
     </div>
     <div class="row pt-5">
         <div class="col">
-            <form method="POST" action="{{ route('fabricantes.store') }}" enctype="multipart/form-data">
+            <form method="POST" action="{{ route('admin.fabricantes.store') }}" enctype="multipart/form-data">
                 @csrf
                 <div class="form-group mb-3">
                     <label for="manufacturer-title" class="mb-2">Nome do Fabricante</label>

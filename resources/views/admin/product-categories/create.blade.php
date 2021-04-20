@@ -11,7 +11,7 @@
     </div>
     <div class="row pt-5">
         <div class="col">
-            <form method="POST" action="{{ route('categorias-produtos.store') }}" enctype="multipart/form-data">
+            <form method="POST" action="{{ route('admin.categorias-produtos.store') }}" enctype="multipart/form-data">
                 @csrf
                 <div class="form-group mb-3">
                     <label for="product-category-title" class="mb-2">Título da Categoria do Produto</label>

@@ -15,26 +15,26 @@
             </a>
         </li>
         <li>
-            <a href="{{ route('clientes.index') }}" class="nav-link text-white {{ request()->is('clientes*') ? 'active' : '' }}">
+            <a href="{{ route('admin.clientes.index') }}" class="nav-link text-white {{ request()->is('admin/clientes*') ? 'active' : '' }}">
                 Clientes
             </a>
         </li><li>
-            <a href="{{ route('produtos.index') }}" class="nav-link text-white {{ request()->is('produtos*') ? 'active' : '' }}">
+            <a href="{{ route('admin.produtos.index') }}" class="nav-link text-white {{ request()->is('admin/produtos*') ? 'active' : '' }}">
                 Produtos
             </a>
         </li>
         <li>
-            <a href="{{ route('fabricantes.index') }}" class="nav-link text-white {{ request()->is('fabricantes*') ? 'active' : '' }}">
+            <a href="{{ route('admin.fabricantes.index') }}" class="nav-link text-white {{ request()->is('admin/fabricantes*') ? 'active' : '' }}">
                 Fabricantes
             </a>
         </li>
         <li>
-            <a href="{{ route('categorias.index') }}" class="nav-link text-white {{ request()->is('categorias-produtos*') ? '' : (request()->is('categorias*') ? 'active' : '') }}">
+            <a href="{{ route('admin.categorias.index') }}" class="nav-link text-white {{ request()->is('admin/categorias-produtos*') ? '' : (request()->is('admin/categorias*') ? 'active' : '') }}">
                 Categorias
             </a>
         </li>
         <li>
-            <a href="{{ route('categorias-produtos.index') }}" class="nav-link text-white {{ request()->is('categorias-produtos*') ? 'active' : '' }}">
+            <a href="{{ route('admin.categorias-produtos.index') }}" class="nav-link text-white {{ request()->is('admin/categorias-produtos*') ? 'active' : '' }}">
                 Categorias do Produto
             </a>
         </li>

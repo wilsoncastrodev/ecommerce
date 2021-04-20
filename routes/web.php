@@ -12,11 +12,14 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::resource('produtos', ProductController::class);
-Route::resource('categorias', CategoryController::class);
-Route::resource('categorias-produtos', ProductCategoryController::class);
-Route::resource('fabricantes', ManufacturerController::class);
-Route::resource('clientes', CustomerController::class);
+Route::name('admin.')->prefix('admin')->group(function () {
+    Route::resource('produtos', ProductController::class);
+    Route::resource('categorias', CategoryController::class);
+    Route::resource('categorias-produtos', ProductCategoryController::class);
+    Route::resource('fabricantes', ManufacturerController::class);
+    Route::resource('clientes', CustomerController::class);
+});
+
 
 Auth::routes();
 

@@ -11,7 +11,7 @@
     </div>
     <div class="row pt-5 mb-5">
         <div class="col">
-            <form method="POST" action="{{ route('produtos.store') }}" enctype="multipart/form-data">
+            <form method="POST" action="{{ route('admin.produtos.store') }}" enctype="multipart/form-data">
                 @csrf
                 <div class="row">
                     <div class="col-8">

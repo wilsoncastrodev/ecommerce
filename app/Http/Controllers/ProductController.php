@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Product;
 use App\Models\Category;
+use Illuminate\Support\Str;
 use App\Models\Manufacturer;
 use App\Models\ProductStock;
 use Illuminate\Http\Request;
@@ -76,7 +77,7 @@ class ProductController extends Controller
         $product->manufacturer_id = $request->manufacturer_id;
         $product->product_title = $request->product_title;
         $product->product_seo_description = $request->product_seo_description;
-        $product->product_url = $request->product_url;
+        $product->product_url = Str::slug($request->product_url);
         $product->product_image1 = $product_images_path[0];
         $product->product_image2 = $product_images_path[1];
         $product->product_image3 = $product_images_path[2];
