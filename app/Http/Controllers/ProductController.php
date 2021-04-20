@@ -3,7 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Models\Product;
+use App\Models\Category;
+use App\Models\Manufacturer;
+use App\Models\ProductStock;
 use Illuminate\Http\Request;
+use App\Models\ProductCategory;
 
 class ProductController extends Controller
 {
@@ -25,7 +29,10 @@ class ProductController extends Controller
      */
     public function create()
     {
-        //
+        $categories = Category::orderBy('category_title')->get()->toArray();
+        $products_categories = ProductCategory::orderBy('product_category_title')->get()->toArray();
+        $manufacturers = Manufacturer::orderBy('manufacturer_title')->get()->toArray();
+        return view('admin.products.create', compact('categories', 'products_categories', 'manufacturers'));
     }
 
     /**

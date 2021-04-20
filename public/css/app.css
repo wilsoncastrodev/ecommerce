@@ -10831,7 +10831,6 @@ textarea.form-control-lg {
 body {
   display: flex;
   flex-wrap: nowrap;
-  height: 100vh;
+  height: 100%;
   overflow-x: auto;
-  overflow-y: hidden;
 }
