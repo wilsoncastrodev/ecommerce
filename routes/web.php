@@ -20,6 +20,7 @@ Route::name('admin.')->prefix('admin')->group(function () {
     Route::resource('clientes', CustomerController::class);
 });
 
+Route::get('produto/{slug}', [App\Http\Controllers\WebController::class, 'productDetails'])->name('product');
 
 Auth::routes();
 
