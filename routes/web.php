@@ -22,6 +22,7 @@ Route::name('admin.')->prefix('admin')->group(function () {
 
 Route::get('produto/{slug}', [App\Http\Controllers\WebController::class, 'productDetails'])->name('product');
 Route::post('produto/adicionar-carrinho', [App\Http\Controllers\WebController::class, 'addCart'])->name('add-cart');
+Route::get('carrinho', [App\Http\Controllers\WebController::class, 'cart'])->name('cart');
 
 Auth::routes();
 

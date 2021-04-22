@@ -50,4 +50,22 @@ class WebController extends Controller
 
         return redirect()->back();
     }
+
+    public function cart()
+    {
+        $cart_customer_ip = getRealCustomerIp();
+        
+        $cart = Cart::where('cart_customer_ip', $cart_customer_ip)->first();
+
+        $cart->products = $cart->products->map(function ($item) {
+            $item->subtotal = $item->product_sale_price * $item->pivot->quantity;
+            $item->subtotal_format = number_format($item->subtotal, 2, ',', '');
+            $item->product_sale_price = number_format($item->product_sale_price, 2, ',', '');
+            return $item;
+        });
+
+        $cart->order_subtotal = number_format($cart->products->sum('subtotal'), 2, ',', '');
+
+        return view('web.cart', compact('cart'));
+    }
 }
