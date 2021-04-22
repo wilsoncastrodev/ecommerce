@@ -33,4 +33,9 @@ class Product extends Model
     {
         return $this->hasOne(ProductStock::class);
     }
+
+    public function carts()
+    {
+        return $this->belongsToMany(Cart::class, 'cart_items')->using(CartItem::class);
+    }
 }
