@@ -5,13 +5,8 @@
     <hr>
     <ul class="nav nav-pills flex-column mb-auto">
         <li class="nav-item">
-            <a href="#" class="nav-link text-white">
+            <a href="{{ route('admin.dashboard') }}" class="nav-link text-white {{ request()->is('admin') ? 'active' : '' }}">
                 Home
-            </a>
-        </li>
-        <li>
-            <a href="#" class="nav-link text-white">
-                Dashboard
             </a>
         </li>
         <li>

@@ -9,6 +9,11 @@ use Illuminate\Http\Request;
 
 class WebController extends Controller
 {
+    public function home()
+    {
+        return view('home');
+    }
+
     public function productDetails($slug)
     {
         $product = Product::with('productStock')->where('product_url', $slug)->first();
