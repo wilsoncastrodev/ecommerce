@@ -21,7 +21,7 @@ Route::prefix('/')->group(function () {
     Route::post('produto/adicionar-carrinho', [WebController::class, 'addCart'])->name('add-cart');
 });
 
-Route::name('admin.')->prefix('admin')->group(function () {
+Route::middleware('auth')->name('admin.')->prefix('admin')->group(function () {
     Route::get('/', [AdminController::class, 'index'])->name('dashboard');
     Route::resource('produtos', ProductController::class);
     Route::resource('categorias', CategoryController::class);
@@ -31,12 +31,21 @@ Route::name('admin.')->prefix('admin')->group(function () {
 });
 
 Route::prefix('admin')->group(function () {
-    Route::get('/login', [LoginController::class, 'login'])->name('login');
-    Route::get('/logout', [LoginController::class, 'logout']);
+    Route::get('/login', [LoginController::class, 'showLoginForm'])->name('login');
+    Route::post('/login', [LoginController::class, 'login']);
+    Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
     Route::get('/register', [RegisterController::class, 'showRegistrationForm'])->name('register');
-    Route::get('/register', [RegisterController::class, 'register']);
+    Route::post('/register', [RegisterController::class, 'register']);
     Route::get('/password/reset', [ForgotPasswordController::class, 'showLinkRequestForm'])->name('password.request');
-    Route::get('/password/email', [ForgotPasswordController::class, 'sendResetLinkEmail'])->name('password.email');
+    Route::post('/password/email', [ForgotPasswordController::class, 'sendResetLinkEmail'])->name('password.email');
     Route::get('/password/reset/{token}', [ResetPasswordController::class, 'showResetForm'])->name('password.reset');
-    Route::get('/password/reset', [ResetPasswordController::class, 'reset']);
+    Route::post('/password/reset', [ResetPasswordController::class, 'reset']);
+});
+
+Route::prefix('/')->group(function () {
+    Route::get('login', [LoginController::class, 'showCustomerLoginForm'])->name('form.customer.login');
+    Route::post('logout', [LoginController::class, 'logout'])->name('customer.logout');
+    Route::get('register', [RegisterController::class, 'showCustomerRegisterForm'])->name('form.customer.register');
+    Route::post('login', [LoginController::class, 'customerLogin'])->name('customer.login');
+    Route::post('register', [RegisterController::class, 'createCustomer'])->name('customer.register');
 });
