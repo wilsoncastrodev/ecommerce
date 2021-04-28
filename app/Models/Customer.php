@@ -18,17 +18,23 @@ class Customer extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'customer_name',
-        'customer_username',
-        'customer_contact',
-        'customer_ip',
+        'name',
         'email',
+        'birthday',
+        'cpf',
+        'phone',
+        'ip',
         'password',
     ];
 
     public function products()
     {
         return $this->hasMany(Product::class, 'vendor_id');
+    }
+
+    public function customerAddress()
+    {
+        return $this->hasOne(CustomerAddress::class);
     }
 
     /**

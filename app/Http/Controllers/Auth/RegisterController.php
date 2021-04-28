@@ -6,6 +6,7 @@ use App\Models\User;
 use App\Models\Customer;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Models\CustomerAddress;
 use Illuminate\Support\Facades\Hash;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Support\Facades\Validator;
@@ -57,6 +58,23 @@ class RegisterController extends Controller
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
         ]);
+
+        
+    }
+    
+    /**
+     * Get a validator for an incoming registration request.
+     *
+     * @param  array  $data
+     * @return \Illuminate\Contracts\Validation\Validator
+     */
+    protected function validatorCustomer(array $data)
+    {
+        return Validator::make($data, [
+            'name' => ['required', 'string', 'max:255'],
+            'email' => ['required', 'string', 'email', 'max:255', 'unique:customers'],
+            'password' => ['required', 'string', 'min:8', 'confirmed'],
+        ]);
     }
 
     /**
@@ -81,17 +99,30 @@ class RegisterController extends Controller
 
     protected function createCustomer(Request $request)
     {
-        $this->validator($request->all())->validate();
+        $this->validatorCustomer($request->all())->validate();
 
-        Customer::create([
-            'customer_name' => $request->name,
+        $customer_id = Customer::create([
+            'name' => $request->name,
             'email' => $request->email,
-            'customer_username' => $request->customer_username,
-            'customer_contact' => $request->customer_contact,
-            'customer_ip' => getRealCustomerIp(),
+            'cpf' => $request->cpf,
+            'phone' => $request->phone,
+            'birthday' => $request->birthday,
             'password' => Hash::make($request->password),
-        ]);
+            'ip' => getRealCustomerIp(),
+        ])->id;
 
+        CustomerAddress::create([
+            'customer_id' => $customer_id,
+            'zipcode' => $request->zipcode,
+            'address' => $request->address,
+            'number' => $request->number,
+            'complement' => $request->complement,
+            'neighbourhood' => $request->neighbourhood,
+            'city' => $request->city,
+            'state' => $request->state,
+            'reference' => $request->reference,
+        ]);
+        
         return redirect()->intended('/login');
     }
 }

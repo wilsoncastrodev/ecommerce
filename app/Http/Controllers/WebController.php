@@ -94,4 +94,9 @@ class WebController extends Controller
 
         return $correios->calculate();
     }
+
+    public function checkout()
+    {
+        return view('web.checkout');
+    }
 }

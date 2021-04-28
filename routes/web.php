@@ -17,6 +17,7 @@ use App\Http\Controllers\Auth\ForgotPasswordController;
 Route::prefix('/')->group(function () {
     Route::get('', [WebController::class, 'home'])->name('home');
     Route::get('carrinho', [WebController::class, 'cart'])->name('cart');
+    Route::get('checkout', [WebController::class, 'checkout'])->name('checkout')->middleware('auth:customer');
     Route::get('produto/{slug}', [WebController::class, 'productDetails'])->name('product');
     Route::post('produto/frete', [WebController::class, 'checkShipping'])->name('check-shipping');
     Route::post('produto/adicionar-carrinho', [WebController::class, 'addCart'])->name('add-cart');

@@ -76,7 +76,7 @@
                                 <li class="nav-item dropdown">
 
                                     <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                        {{ Auth::guard('customer')->user()->customer_name }}
+                                        {{ Auth::guard('customer')->user()->name }}
                                     </a>
 
                                     <a class="dropdown-item" href="{{ route('customer.logout') }}" onclick="event.preventDefault();
