@@ -6,6 +6,8 @@ use App\Models\Cart;
 use App\Models\Product;
 use App\Models\CartItem;
 use Illuminate\Http\Request;
+use FlyingLuscas\Correios\Client;
+use FlyingLuscas\Correios\Service;
 
 class WebController extends Controller
 {
@@ -72,5 +74,24 @@ class WebController extends Controller
         $cart->order_subtotal = number_format($cart->products->sum('subtotal'), 2, ',', '');
 
         return view('web.cart', compact('cart'));
+    }
+
+    public function checkShipping(Request $request)
+    {
+        $items = CartItem::where('cart_id', $request->cart_id)->get();
+
+        $correios = new Client;
+
+        $correios = $correios->freight()
+            ->origin('01001-000')
+            ->destination($request->cep)
+            ->services(Service::SEDEX, Service::PAC);
+
+        foreach ($items as $item) {
+            $product = Product::find($item->product_id);
+            $correios->item($product->product_width, $product->product_height, $product->product_lenght, $product->product_weight, $item->quantity);
+        }
+
+        return $correios->calculate();
     }
 }

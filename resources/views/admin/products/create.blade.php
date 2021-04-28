@@ -44,13 +44,6 @@
                             @enderror
                         </div>
                         <div class="mb-3">
-                            <label for="product-weight">Peso do Produto</label>
-                            <input type="number" id="product-weight" name="product_weight" class="form-control" />
-                            @error('product_weight')
-                            <span class="text-danger">{{ $message }}</span>
-                            @enderror
-                        </div>
-                        <div class="mb-3">
                             <label for="product-price">Preço do Produto</label>
                             <input type="currency" id="product-price" name="product_price" class="form-control" />
                             @error('product_price')
@@ -64,83 +57,125 @@
                             <span class="text-danger">{{ $message }}</span>
                             @enderror
                         </div>
-                        <h5>Gestão de Estoque de Produto</h5>
-                        <div class="card">
-                            <div class="card-header">
-                                Opções de estoque
-                            </div>
-                            <div class="row px-3">
-                                <div class="col-12 mb-3">
-                                    <div>
-                                        <label class="form-check-label mt-3" for="stock-enabled">Habilitar gerenciamento de estoque no nível do produto?</label>
-                                    </div>
-                                    <div class="form-check form-check-inline">
-                                        <input id="stock-enabled-yes" name="stock_enabled" type="radio" class="form-check-input" value="yes" />
-                                        <label class="form-check-label" for="stock-enabled-yes">Sim</label>
-                                    </div>
-                                    <div class="form-check form-check-inline ">
-                                        <input id="stock-enabled-no" name="stock_enabled" type="radio" class="form-check-input" value="no" />
-                                        <label class="form-check-label" for="stock-enabled-no">Não</label>
-                                    </div>
-                                    <div>
-                                        @error('stock_enabled')
-                                        <span class="text-danger">{{ $message }}</span>
-                                        @enderror
-                                    </div>
+                        <div class="mb-3">
+                            <div class="card">
+                                <div class="card-header">
+                                    Peso e dimensões
                                 </div>
-                                <div class="col-12">
-                                    <div id="hidden-stock-yes">
-                                        <div class="row">
-                                            <div class="col-12 col-md-6">
-                                                <div class="select">
-                                                    <label for="stock-status">Status de Estoque</label>
-                                                    <div class="mb-3">
-                                                        <select id="stock-status" name="stock_status" class="form-control form-select" aria-label="Status de Estoque">
-                                                            <option value="in_stock">Em Estoque</option>
-                                                            <option value="out_stock">Fora de Estoque</option>
-                                                            <option value="on_backorder">Em Espera</option>
-                                                        </select>
-                                                        @error('stock_status')
-                                                        <span class="text-danger">{{ $message }}</span>
-                                                        @enderror
-                                                    </div>
-                                                </div>
-                                            </div>
+                                <div class="row px-3">
+                                    <div class="col-6 mb-3">
+                                        <div class="mb-3">
+                                            <label for="product-weight">Peso do Produto</label>
+                                            <input type="number" id="product-weight" name="product_weight" class="form-control" />
+                                            @error('product_weight')
+                                            <span class="text-danger">{{ $message }}</span>
+                                            @enderror
+                                        </div>
+                                        <div class="mb-3">
+                                            <label for="product-height">Altura do Produto</label>
+                                            <input type="number" id="product-height" name="product_height" class="form-control" />
+                                            @error('product_height')
+                                            <span class="text-danger">{{ $message }}</span>
+                                            @enderror
                                         </div>
                                     </div>
-                                    <div id="hidden-stock-no" class="d-none">
-                                        <div class="row">
-                                            <div class="col-12 col-md-6">
-                                                <div class="mb-3">
-                                                    <label for="stock-quantity">Quantidade em estoque</label>
-                                                    <input type="number" id="stock-quantity" name="stock_quantity" class="form-control" />
-                                                    @error('stock_quantity')
-                                                    <span class="text-danger">{{ $message }}</span>
-                                                    @enderror
-                                                </div>
-                                            </div>
-                                            <div class="col-12 col-md-6">
-                                                <div class="select">
-                                                    <label for="allow-backorders">Permitir pedidos em espera?</label>
-                                                    <div class="mb-3">
-                                                        <select id="allow-backorders" name="allow_backorders" class="form-control form-select" aria-label="Permitir pedidos em espera?">
-                                                            <option value="no" selected>Não Permitir</option>
-                                                            <option value="notify">Permitir, mas notificar o cliente</option>
-                                                            <option value="yes">Permitir</option>
-                                                        </select>
-                                                        @error('allow_backorders')
-                                                        <span class="text-danger">{{ $message }}</span>
-                                                        @enderror
-                                                    </div>
-                                                </div>
-                                            </div>
+                                    <div class="col-6">
+                                        <div class="mb-3">
+                                            <label for="product-width">Largura do Produto</label>
+                                            <input type="number" id="product-width" name="product_width" class="form-control" />
+                                            @error('product_width')
+                                            <span class="text-danger">{{ $message }}</span>
+                                            @enderror
+                                        </div>
+                                        <div class="mb-3">
+                                            <label for="product-lenght">Comprimento do Produto</label>
+                                            <input type="number" id="product-lenght" name="product_lenght" class="form-control" />
+                                            @error('product_lenght')
+                                            <span class="text-danger">{{ $message }}</span>
+                                            @enderror
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        <div class="mt-4">
-                            <button type="submit" class="btn btn-primary">Cadastrar Produto</button>
+                        <div class="mb-3">
+                            <div class="card">
+                                <div class="card-header">
+                                    Gestão de Estoque
+                                </div>
+                                <div class="row px-3">
+                                    <div class="col-12 mb-3">
+                                        <div>
+                                            <label class="form-check-label mt-3" for="stock-enabled">Habilitar gerenciamento de estoque no nível do produto?</label>
+                                        </div>
+                                        <div class="form-check form-check-inline">
+                                            <input id="stock-enabled-yes" name="stock_enabled" type="radio" class="form-check-input" value="yes" />
+                                            <label class="form-check-label" for="stock-enabled-yes">Sim</label>
+                                        </div>
+                                        <div class="form-check form-check-inline ">
+                                            <input id="stock-enabled-no" name="stock_enabled" type="radio" class="form-check-input" value="no" />
+                                            <label class="form-check-label" for="stock-enabled-no">Não</label>
+                                        </div>
+                                        <div>
+                                            @error('stock_enabled')
+                                            <span class="text-danger">{{ $message }}</span>
+                                            @enderror
+                                        </div>
+                                    </div>
+                                    <div class="col-12">
+                                        <div id="hidden-stock-yes">
+                                            <div class="row">
+                                                <div class="col-12 col-md-6">
+                                                    <div class="select">
+                                                        <label for="stock-status">Status de Estoque</label>
+                                                        <div class="mb-3">
+                                                            <select id="stock-status" name="stock_status" class="form-control form-select" aria-label="Status de Estoque">
+                                                                <option value="in_stock">Em Estoque</option>
+                                                                <option value="out_stock">Fora de Estoque</option>
+                                                                <option value="on_backorder">Em Espera</option>
+                                                            </select>
+                                                            @error('stock_status')
+                                                            <span class="text-danger">{{ $message }}</span>
+                                                            @enderror
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div id="hidden-stock-no" class="d-none">
+                                            <div class="row">
+                                                <div class="col-12 col-md-6">
+                                                    <div class="mb-3">
+                                                        <label for="stock-quantity">Quantidade em estoque</label>
+                                                        <input type="number" id="stock-quantity" name="stock_quantity" class="form-control" />
+                                                        @error('stock_quantity')
+                                                        <span class="text-danger">{{ $message }}</span>
+                                                        @enderror
+                                                    </div>
+                                                </div>
+                                                <div class="col-12 col-md-6">
+                                                    <div class="select">
+                                                        <label for="allow-backorders">Permitir pedidos em espera?</label>
+                                                        <div class="mb-3">
+                                                            <select id="allow-backorders" name="allow_backorders" class="form-control form-select" aria-label="Permitir pedidos em espera?">
+                                                                <option value="no" selected>Não Permitir</option>
+                                                                <option value="notify">Permitir, mas notificar o cliente</option>
+                                                                <option value="yes">Permitir</option>
+                                                            </select>
+                                                            @error('allow_backorders')
+                                                            <span class="text-danger">{{ $message }}</span>
+                                                            @enderror
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="mt-4">
+                                <button type="submit" class="btn btn-primary">Cadastrar Produto</button>
+                            </div>
                         </div>
                     </div>
                     <div class="col-4">
@@ -250,4 +285,3 @@
     </div>
 </div>
 @endsection
-

@@ -50,6 +50,9 @@ class ProductController extends Controller
             'product_description' => 'required',
             'product_features' => 'required',
             'product_weight' => 'required',
+            'product_height' => 'required',
+            'product_width' => 'required',
+            'product_lenght' => 'required',
             'product_price' => 'required',
             'product_sale_price' => 'required',
             'product_image' => 'required',
@@ -88,6 +91,9 @@ class ProductController extends Controller
         $product->product_keywords = $request->product_keywords;
         $product->product_label = $request->product_label;
         $product->product_weight = $request->product_weight;
+        $product->product_height = $request->product_height;
+        $product->product_width = $request->product_width;
+        $product->product_lenght = $request->product_lenght;
         $product->product_video = 'asdfasdfasdf';
         $product->product_views = '1';
         $product->product_vendor_status = 'active';

@@ -18,10 +18,11 @@ Route::prefix('/')->group(function () {
     Route::get('', [WebController::class, 'home'])->name('home');
     Route::get('carrinho', [WebController::class, 'cart'])->name('cart');
     Route::get('produto/{slug}', [WebController::class, 'productDetails'])->name('product');
+    Route::post('produto/frete', [WebController::class, 'checkShipping'])->name('check-shipping');
     Route::post('produto/adicionar-carrinho', [WebController::class, 'addCart'])->name('add-cart');
 });
 
-Route::middleware('auth')->name('admin.')->prefix('admin')->group(function () {
+Route::name('admin.')->prefix('admin')->group(function () {
     Route::get('/', [AdminController::class, 'index'])->name('dashboard');
     Route::resource('produtos', ProductController::class);
     Route::resource('categorias', CategoryController::class);
