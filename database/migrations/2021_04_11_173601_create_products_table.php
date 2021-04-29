@@ -10,8 +10,8 @@ class CreateProductsTable extends Migration
     {
         Schema::create('products', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('vendor_id')->constrained('customers');
-            $table->foreignId('product_category_id')->constrained('product_categories');
+            $table->foreignId('customer_id')->constrained('customers');
+            $table->foreignId('product_category_id')->constrained('products_categories');
             $table->foreignId('category_id')->constrained('categories');
             $table->foreignId('manufacturer_id')->constrained(('manufacturers'));
             $table->text('product_title');
