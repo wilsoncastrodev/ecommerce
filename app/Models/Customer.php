@@ -37,6 +37,11 @@ class Customer extends Authenticatable
         return $this->hasOne(CustomerAddress::class);
     }
 
+    public function cart()
+    {
+        return $this->hasOne(Customer::class);
+    }
+
     /**
      * The attributes that should be hidden for arrays.
      *

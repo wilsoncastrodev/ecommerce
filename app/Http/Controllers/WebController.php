@@ -3,11 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Models\Cart;
+use App\Models\Order;
 use App\Models\Product;
 use App\Models\CartItem;
+use App\Models\Shipping;
 use Illuminate\Http\Request;
-use FlyingLuscas\Correios\Client;
-use FlyingLuscas\Correios\Service;
 
 class WebController extends Controller
 {
@@ -25,9 +25,9 @@ class WebController extends Controller
 
     public function addCart(Request $request)
     {
-        $cart_customer_ip = getRealCustomerIp();
+        $customer_ip = getRealCustomerIp();
 
-        $cart = Cart::where('cart_customer_ip', $cart_customer_ip)->first();
+        $cart = Cart::where('customer_ip', $customer_ip)->first();
 
         if (isset($cart)) {
             $cart_item = CartItem::where('cart_id', $cart->id)
@@ -46,7 +46,7 @@ class WebController extends Controller
         }
 
         $cart = new Cart;
-        $cart->cart_customer_ip = $cart_customer_ip;
+        $cart->customer_ip = $customer_ip;
         $cart_id = $cart->save();
 
         $cart_item =  new CartItem;
@@ -60,43 +60,39 @@ class WebController extends Controller
 
     public function cart()
     {
-        $cart_customer_ip = getRealCustomerIp();
+        $customer_ip = getRealCustomerIp();
         
-        $cart = Cart::where('cart_customer_ip', $cart_customer_ip)->first();
+        $cart = Cart::where('customer_ip', $customer_ip)->first();
 
-        $cart->products = $cart->products->map(function ($item) {
-            $item->subtotal = $item->product_sale_price * $item->pivot->quantity;
-            $item->subtotal_format = number_format($item->subtotal, 2, ',', '');
-            $item->product_sale_price = number_format($item->product_sale_price, 2, ',', '');
-            return $item;
-        });
+        $products = $cart->products;
 
-        $cart->order_subtotal = number_format($cart->products->sum('subtotal'), 2, ',', '');
+        $cart->products = Cart::subtotalCart($products);
+        $cart->order_subtotal = Order::subtotalOrder($products);
 
         return view('web.cart', compact('cart'));
+    }
+    
+    public function checkout()
+    {
+        $customer_ip = getRealCustomerIp();
+        
+        $cart = Cart::where('customer_ip', $customer_ip)->first();
+
+        $products = $cart->products;
+        $customer = $cart->customer;
+        $customer_address = $cart->customer->customerAddress;
+        
+        $shipping = Shipping::calculateShipping($cart->id, $customer_address->zipcode);
+
+        $cart->products = Cart::subtotalCart($products);
+        $cart->order_subtotal = Order::subtotalOrder($products);
+        $cart->order_total = Order::totalOrder($cart->order_subtotal, $shipping[0]['price']);
+
+        return view('web.checkout', compact('cart', 'customer', 'customer_address', 'shipping'));
     }
 
     public function checkShipping(Request $request)
     {
-        $items = CartItem::where('cart_id', $request->cart_id)->get();
-
-        $correios = new Client;
-
-        $correios = $correios->freight()
-            ->origin('01001-000')
-            ->destination($request->cep)
-            ->services(Service::SEDEX, Service::PAC);
-
-        foreach ($items as $item) {
-            $product = Product::find($item->product_id);
-            $correios->item($product->product_width, $product->product_height, $product->product_lenght, $product->product_weight, $item->quantity);
-        }
-
-        return $correios->calculate();
-    }
-
-    public function checkout()
-    {
-        return view('web.checkout');
+        return Shipping::calculateShipping($request->cart_id, $request->zipcode);
     }
 }

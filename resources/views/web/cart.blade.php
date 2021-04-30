@@ -28,9 +28,9 @@
                     <h3>Resumo do Pedido</h3>
                 </div>
                 <div class="card-body">
-                    Subtotal: {{ $cart->order_subtotal }}
+                    Subtotal: {{ formatCurrency($cart->order_subtotal) }}
                     <div>
-                        <button class="btn btn-lg btn-primary">Fechar Pedido</button>      
+                        <a href="{{ route('checkout') }}" class="btn btn-lg btn-primary">Fechar Pedido</a>
                     </div>
                 </div>
             </div>
@@ -40,12 +40,11 @@
         <div class="col-6">
             <div class="mb-3">
                 <form id="shippingForm">
-                    <label for="cep">CEP</label>
-                    <input type="text" id="cep" class="form-control" name="cep" value="{{ old('cep') }}">
-                    <input type="hidden" id="cart" class="form-control" value="{{ json_encode($cart->id) }}" />
-                    <input type="hidden" id="route" class="form-control" value="{{ route('check-shipping') }}" />
                     <div>
-                        <span class="d-none" id="message-pac"></span>
+                        <label for="zipcode">CEP</label>
+                        <input type="text" id="zipcode" class="form-control" name="zipcode" value="{{ old('zipcode') }}">
+                        <input type="hidden" id="cart" class="form-control" value="{{ json_encode($cart->id) }}" />
+                        <input type="hidden" id="route" class="form-control" value="{{ route('check-shipping') }}" />
                     </div>
                     <div>
                         <span class="d-none" id="message-sedex"></span>
