@@ -19,6 +19,11 @@ class Order extends Model
         return $this->belongsTo(Payment::class);
     }
 
+    public function customer()
+    {
+        return $this->belongsTo(Customer::class);
+    }
+
     public static function subtotalOrder($products)
     {
         return $products->sum('subtotal');
