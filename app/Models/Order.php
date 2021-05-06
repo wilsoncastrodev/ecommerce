@@ -9,6 +9,16 @@ class Order extends Model
 {
     use HasFactory;
 
+    public function products()
+    {
+        return $this->belongsToMany(Product::class, 'orders_items')->using(OrderItem::class)->withPivot('price', 'quantity');
+    }
+
+    public function payment()
+    {
+        return $this->belongsTo(Payment::class);
+    }
+
     public static function subtotalOrder($products)
     {
         return $products->sum('subtotal');
