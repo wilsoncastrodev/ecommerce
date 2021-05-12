@@ -1,10 +1,12 @@
-// Fonts
-@import url('https://fonts.googleapis.com/css?family=Nunito');
-
 // Bootstrap
 @import '~bootstrap/scss/bootstrap';
 
-// Variables
-@import 'variables';
-@import 'card';
-@import 'pages';
+// Common
+@import 'common/variables';
+
+// Web
+@import 'web/card';
+@import 'web/pages';
+@import 'web/navbar';
+@import 'web/type';
+@import 'web/carousel';

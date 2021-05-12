@@ -14,14 +14,18 @@
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.13.0/css/all.css">
+    <link href="https://fonts.googleapis.com/css2?family=Rubik|Work+Sans:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 </head>
 <body>
     <div id="app" class="w-100">
-        <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
+        @include('web.layout.header')
+
+
+        {{-- <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
             <div class="container">
                 <a class="navbar-brand" href="{{ url('/') }}">
                     {{ config('app.name', 'Laravel') }}
@@ -57,13 +61,13 @@
                         </li>
                         @else
                             @guest('customer')
-                                @if (Route::has('login'))
+                                @if (Route::has('form.customer.login'))
                                 <li class="nav-item">
                                     <a class="nav-link" href="{{ route('form.customer.login') }}">{{ __('Login') }}</a>
                                 </li>
                                 @endif
 
-                                @if (Route::has('register'))
+                                @if (Route::has('form.customer.register'))
                                 <li class="nav-item">
                                     <a class="nav-link" href="{{ route('form.customer.register') }}">{{ __('Register') }}</a>
                                 </li>
@@ -93,11 +97,12 @@
                     </ul>
                 </div>
             </div>
-        </nav>
+        </nav> --}}
 
         <main class="py-4">
             @yield('content')
         </main>
     </div>
+    
 </body>
 </html>

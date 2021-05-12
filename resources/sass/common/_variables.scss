@@ -1,0 +1,53 @@
+// Typography
+$font-family-root: 'Rubik', sans-serif;
+$font-family-base: 'Work Sans', sans-serif;
+
+$font-size-base: 1rem;
+$font-size-xs: ($font-size-base * .75);
+$font-size-sm: ($font-size-base * .875);
+$font-size-md: ($font-size-base * 1);
+$font-size-lg: ($font-size-base * 1.25);
+$font-size-xl: ($font-size-base * 1.5);
+$font-size-xxl: ($font-size-base * 2);
+
+// Colors
+$blue: #3490dc;
+$indigo: #6574cd;
+$purple: #9561e2;
+$pink: #f66d9b;
+$red: #e3342f;
+$orange: #ffb22b;
+$yellow: #ffe259;
+$green: #17bf87;
+$teal: #4dc0b5;
+$cyan: #6cb2eb;
+$primary: #292e40;
+$secundary: #292e40;
+
+//Grays
+$gray-100: #f4f5f8;
+$gray-200: #e3e7ed;
+$gray-300: #cdd4e0;
+$gray-400: #b4bdce;
+$gray-500: #97a3b9;
+$gray-600: #dcdcdc;
+$gray-700: #d8d8d8;
+$gray-800: #3b4863;
+$gray-900: #1c273c;
+
+$colors: (
+    "blue": $blue,
+    "indigo": $indigo,
+    "purple": $purple,
+    "pink": $pink,
+    "red": $red,
+    "orange": $orange,
+    "yellow": $yellow,
+    "green": $green,
+    "teal": $teal,
+    "cyan": $cyan,
+    "gray": $gray-600,
+    "gray-dark": $gray-800,
+    "primary": $primary,
+    "secondary": $secondary,
+);
