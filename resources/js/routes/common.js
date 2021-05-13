@@ -1,47 +1,49 @@
 var scrollingCards = () => {
-  const $slider = document.querySelector('.scrolling-wrapper');
+  document.querySelectorAll(".scrolling-wrapper").forEach((e) => {
+    const $slider = e;
 
-  let isDown = false,
+    let isDown = false,
       startX,
       scrollLeft;
 
-  $slider.addEventListener('mousedown', (e) => {
-    let rect = $slider.getBoundingClientRect();
+    $slider.addEventListener('mousedown', (e) => {
+      let rect = $slider.getBoundingClientRect();
 
-    isDown = true;
+      isDown = true;
 
-    $slider.classList.add('active');
+      $slider.classList.add('active');
 
-    startX = e.pageX - rect.left;
-    scrollLeft = $slider.scrollLeft;
-  });
+      startX = e.pageX - rect.left;
+      scrollLeft = $slider.scrollLeft;
+    });
 
-  $slider.addEventListener('mouseleave', () => {
-    isDown = false;
-    $slider.classList.remove('active');
-    $slider.dataset.dragging = false;
-  });
-  
-  $slider.addEventListener('mouseup', () => {
-    isDown = false;
-    $slider.classList.remove('active');
-    $slider.dataset.dragging = false;
-  });
+    $slider.addEventListener('mouseleave', () => {
+      isDown = false;
+      $slider.classList.remove('active');
+      $slider.dataset.dragging = false;
+    });
 
-  $slider.addEventListener('mousemove', (e) => {
-    if (!isDown) return;
+    $slider.addEventListener('mouseup', () => {
+      isDown = false;
+      $slider.classList.remove('active');
+      $slider.dataset.dragging = false;
+    });
 
-    let rect = $slider.getBoundingClientRect(),
+    $slider.addEventListener('mousemove', (e) => {
+      if (!isDown) return;
+
+      let rect = $slider.getBoundingClientRect(),
         x,
         walk;
 
-    e.preventDefault();
+      e.preventDefault();
 
-    $slider.dataset.dragging = true;
-    x = e.pageX - rect.left;
-    walk = (x - startX);
-    
-    $slider.scrollLeft = scrollLeft - walk;
+      $slider.dataset.dragging = true;
+      x = e.pageX - rect.left;
+      walk = (x - startX);
+
+      $slider.scrollLeft = scrollLeft - walk;
+    });
   });
 }
 

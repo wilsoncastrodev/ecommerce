@@ -16,7 +16,7 @@
         <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     </head>
     <body>
-        <div class="vertical-menu">
+        <div class="vertical-menu position-fixed">
             @include('layouts.navbars.sidebar')
         </div>
         

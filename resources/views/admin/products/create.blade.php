@@ -270,6 +270,17 @@
                                 </div>
                             </div>
                         </div>
+                        <div class="file-upload">
+                            <label for="product-image4">Imagem do Produto 4</label>
+                            <div class="custom-file">
+                                <div class="mb-4">
+                                    <input id="product-image4" name="product_image[]" type="file" class="custom-file-input form-control" aria-label="Imagem do Produto 4" />
+                                    @error('product_image')
+                                    <span class="text-danger">{{ $message }}</span>
+                                    @enderror
+                                </div>
+                            </div>
+                        </div>
                         <div class="mb-3">
                             <label for="product-seo-description" class="required">Descrição de SEO do Produto</label>
                             <textarea id="product-seo-description" name="product_seo_description" rows="5" class="form-control"></textarea>
