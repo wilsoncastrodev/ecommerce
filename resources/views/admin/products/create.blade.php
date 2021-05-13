@@ -180,6 +180,19 @@
                     </div>
                     <div class="col-4">
                         <div class="select">
+                            <label for="product-featured">Produto em Destaque?</label>
+                            <div class="mb-3">
+                                <select feature="product-featured" name="product_featured" class="form-control form-select" aria-label="Selecione uma Opção">
+                                    <option selected="true" disabled>Selecione uma Opção</option>
+                                    <option value="yes">Sim</option>
+                                    <option value="no">Não</option>
+                                </select>
+                                @error('product_featured')
+                                    <span class="text-danger">{{ $message }}</span>
+                                @enderror
+                            </div>
+                        </div>
+                        <div class="select">
                             <label for="manufacturer-id">Selecione um Fabricante</label>
                             <div class="mb-3">
                                 <select id="manufacturer-id" name="manufacturer_id" class="form-control form-select" aria-label="Selecione um Fabricante">

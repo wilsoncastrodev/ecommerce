@@ -49,6 +49,7 @@ class ProductController extends Controller
             'product_url' => 'required',
             'product_description' => 'required',
             'product_features' => 'required',
+            'product_featured' => 'required',
             'product_weight' => 'required',
             'product_height' => 'required',
             'product_width' => 'required',
@@ -74,7 +75,7 @@ class ProductController extends Controller
         }
 
         $product = new Product;
-        $product->vendor_id = 1;
+        $product->customer_id = 1;
         $product->product_category_id = $request->product_category_id;
         $product->category_id = $request->category_id;
         $product->manufacturer_id = $request->manufacturer_id;
@@ -88,6 +89,7 @@ class ProductController extends Controller
         $product->product_sale_price = $request->product_sale_price;
         $product->product_description = $request->product_description;
         $product->product_features = $request->product_features;
+        $product->product_featured = $request->product_featured;
         $product->product_keywords = $request->product_keywords;
         $product->product_label = $request->product_label;
         $product->product_weight = $request->product_weight;

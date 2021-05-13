@@ -7,19 +7,22 @@ use App\Models\Order;
 use App\Models\Product;
 use App\Models\CartItem;
 use App\Models\Shipping;
+use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 
 class WebController extends Controller
 {
     public function home()
     {
-        return view('home');
+        $products = Product::all();
+        $products_featured = Product::productsFeatured($products);
+
+        return view('home', compact('products', 'products_featured'));
     }
 
     public function productDetails($slug)
     {
         $product = Product::with('productStock')->where('product_url', $slug)->first();
-
         return view('web.product-details', compact('product'));
     }
 

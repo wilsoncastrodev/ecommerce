@@ -24,6 +24,7 @@ class CreateProductsTable extends Migration
             $table->decimal('product_sale_price', 10, 2);
             $table->text('product_description');
             $table->text('product_features');
+            $table->text('product_featured');
             $table->text('product_video');
             $table->text('product_keywords');
             $table->text('product_label');

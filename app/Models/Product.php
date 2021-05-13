@@ -43,4 +43,11 @@ class Product extends Model
     {
         return $this->belongsToMany(Order::class, 'orders_items')->using(OrderItem::class);
     }
+
+    public static function productsFeatured($products)
+    {
+        return $products->filter(function ($item) {
+            return $item->product_featured === "yes";
+        });
+    }
 }
