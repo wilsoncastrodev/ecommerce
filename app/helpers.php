@@ -8,7 +8,8 @@ if (!function_exists('storeImages')) {
         $i = 0;
         foreach ($images as $image) {
             $file_name = Str::slug($name) . $i . '_' . time() . '.' . $image->getClientOriginalExtension();
-            $path[] = $image->storeAs('public/imagens/' . $type, $file_name);
+            $image->storeAs('public/imagens/' . $type, $file_name);
+            $path[] = 'storage/imagens/' . $type . '/' . $file_name;
             $i++;
         }
 

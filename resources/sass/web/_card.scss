@@ -1,0 +1,39 @@
+.card-simple {
+    border: none;
+    border-radius: 7px;
+    box-shadow: -1px 3px 10px 0 rgb(0 0 0 / 13%);
+    max-width: 245px;
+    color: $secondary;
+
+    .card-img-top {
+        border-top-left-radius: 7px;
+        border-top-right-radius: 7px;
+        object-fit: cover;
+        height: 154px;
+    }
+
+    .card-body {
+        position: relative;
+        height: 175px;
+        padding: 0.8rem 0.9rem;
+        font-size: 0.875rem;
+
+        .card-stars {
+            margin-bottom: 8px;
+
+            i {
+                margin-right: 5px;
+            }
+        }
+
+        .card-content-price {
+            position: absolute;
+            bottom: 12px;
+
+            .card-sale-price {
+                font-size: 1.2rem;
+                font-weight: 500;
+            }
+        }
+    }
+}
