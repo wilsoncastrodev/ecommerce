@@ -3,7 +3,7 @@
         <div class="container d-block">
             <div class="row mb-4">
                 <div class="col-3 mt-2">
-                    <a class="navbar-brand text-white" href="/">wCastro</a>
+                    <a class="navbar-brand text-white" href="{{ url('/') }}">wCastro</a>
                 </div>
                 <div class="col-6">
                     <form class="d-flex">

@@ -10827,6 +10827,41 @@ textarea.form-control-lg {
     display: none !important;
   }
 }
+.card-simple {
+  border: none;
+  border-radius: 7px;
+  box-shadow: -1px 3px 10px 0 rgba(0, 0, 0, 0.13);
+  max-width: 245px;
+  color: #172B4D;
+}
+.card-simple .card-img-top {
+  border-top-left-radius: 7px;
+  border-top-right-radius: 7px;
+  -o-object-fit: cover;
+     object-fit: cover;
+  height: 154px;
+}
+.card-simple .card-body {
+  position: relative;
+  height: 175px;
+  padding: 0.8rem 0.9rem;
+  font-size: 0.875rem;
+}
+.card-simple .card-body .card-stars {
+  margin-bottom: 8px;
+}
+.card-simple .card-body .card-stars i {
+  margin-right: 5px;
+}
+.card-simple .card-body .card-content-price {
+  position: absolute;
+  bottom: 12px;
+}
+.card-simple .card-body .card-content-price .card-sale-price {
+  font-size: 1.2rem;
+  font-weight: 500;
+}
+
 *:focus {
   box-shadow: none !important;
 }
@@ -10843,9 +10878,13 @@ body {
   font-family: "Work Sans", sans-serif;
 }
 
+a {
+  text-decoration: none !important;
+}
+
 .navbar {
-  background-color: #292e40;
-  background-image: linear-gradient(to right, #5189e0, #567ee0, #5f72de, #6c64da, #7b54d3);
+  background-color: #292e40 !important;
+  /* background-image: linear-gradient(to right, #5189e0, #567ee0, #5f72de, #6c64da, #7b54d3); */
   background-image: linear-gradient(to left, #2e579b, #2e60b3, #3069cb, #3572e4, #3c7bfd);
 }
 .navbar .navbar-brand {
@@ -10858,6 +10897,7 @@ body {
   margin-top: 17px;
   padding: 16px 15px 12px;
   border-radius: 1rem;
+  height: 60px;
 }
 .navbar .navbox i {
   font-size: 26px;
@@ -11056,41 +11096,40 @@ body {
 }
 
 .text-secondary {
-  color: #6c757d !important;
+  color: #172B4D !important;
 }
 
 .bg-secondary {
-  background-color: #6c757d !important;
+  background-color: #172B4D !important;
+}
+
+h2, .h2 {
+  font-size: 1.8rem;
+  color: #323136;
 }
 
 .scrolling-wrapper {
   display: flex;
   flex-wrap: no-wrap;
   overflow: hidden;
-  cursor: -webkit-grab;
-  cursor: grab;
+  cursor: pointer;
+  padding: 10px;
 }
-
 .scrolling-wrapper.active {
-  cursor: -webkit-grabbing;
-  cursor: grabbing;
+  cursor: pointer;
 }
-
-.scrolling-wrapper[data-dragging=true] a {
-  pointer-events: none;
-}
-
-.card {
-  color: white;
-  background-color: tomato;
-  font-family: monospace;
-  width: 200px;
-  height: 200px;
-  margin-right: 1rem;
+.scrolling-wrapper .card {
+  margin-right: 2rem;
   flex: 0 0 auto;
-  /* Centering text only */
   display: flex;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
+}
+.scrolling-wrapper .card:focus {
+  box-shadow: 0 0.5px 14px rgba(0, 0, 0, 0.24) !important;
+}
+.scrolling-wrapper[data-dragging=true] a {
+  pointer-events: none !important;
+}
+.scrolling-wrapper[data-dragging=true]:focus {
+  pointer-events: none !important;
+  box-shadow: 0 0.5px 14px rgba(0, 0, 0, 0.24) !important;
 }

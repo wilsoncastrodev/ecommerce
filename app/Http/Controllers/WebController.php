@@ -16,8 +16,9 @@ class WebController extends Controller
     {
         $products = Product::all();
         $products_featured = Product::productsFeatured($products);
+        $products_top = Product::productsTop($products);
 
-        return view('home', compact('products', 'products_featured'));
+        return view('home', compact('products', 'products_featured', 'products_top'));
     }
 
     public function productDetails($slug)

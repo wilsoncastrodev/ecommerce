@@ -29,6 +29,7 @@ class CreateProductsTable extends Migration
             $table->text('product_keywords');
             $table->text('product_label');
             $table->decimal('product_weight', 10, 2);
+            $table->integer('product_top')->default(0);
             $table->text('product_views');
             $table->text('product_vendor_status');
             $table->text('product_status');

@@ -50,4 +50,15 @@ class Product extends Model
             return $item->product_featured === "yes";
         });
     }
+
+    public static function productsTop($products)
+    {
+        $collection = $products->sortBy([
+            fn ($b, $a) => $a['product_top'] <=> $b['product_top'],
+        ]);
+
+        $collection->splice(3);
+
+        return $collection->all();
+    }
 }
