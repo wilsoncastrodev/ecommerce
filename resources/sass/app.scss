@@ -3,6 +3,7 @@
 
 // Common
 @import 'common/variables';
+@import 'common/global';
 
 // Web
 @import 'web/card';
@@ -11,6 +12,7 @@
 @import 'web/type';
 @import 'web/typography';
 @import 'web/carousel';
+@import 'web/media';
 
 //Admin
 @import 'admin/global'

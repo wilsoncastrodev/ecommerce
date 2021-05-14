@@ -1,0 +1,19 @@
+*:focus {
+    box-shadow: none !important;
+}
+
+html {
+    height: 100% !important;
+}
+
+body {
+    display: flex;
+    flex-wrap: nowrap;
+    height: 100%;
+    overflow-x: auto;
+    font-family: $font-family-base;
+}
+
+a {
+    text-decoration: none !important;
+}
