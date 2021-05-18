@@ -1,0 +1,76 @@
+.quantity-form {
+    position: relative;
+    top: 3.5px;
+    
+    .quantity {
+        border: none;
+        background: $gray-300;
+        padding: 0.5rem;
+        text-align: center;
+        width: 44px;
+        font-size: 1.375rem;
+        color: $gray-400;
+    }
+
+    .box-minus,
+    .box-plus {
+        border: none;
+        background: $gray-300;
+        color: $gray-400;
+        padding: 0.5rem;
+        font-size: 1.375rem;
+        position: relative;
+    }
+
+    .box-minus {
+        left: 6px;
+        top: 0px;
+        border-bottom-left-radius: 6px;
+        border-top-left-radius: 6px;
+        padding-left: 0.875rem;
+    }
+
+    .box-plus {
+        right: 6px;
+        top: 0px;
+        border-bottom-right-radius: 6px;
+        border-top-right-radius: 6px;
+        padding-right: 0.875rem;
+    }
+}
+
+.shipping-form {
+    i {
+        position: absolute;
+        left: 20px;
+        top: 20px;
+        color: $gray-400;
+    }
+
+    input {
+        padding: 0.95rem 0;
+        padding-left: 54px;
+        display: inline-block;
+        width: 100%;
+        border: 1px solid $gray-300;
+
+        &:focus {
+            border-color: $blue;
+        }
+    }
+
+    label {
+        position: absolute;
+        font-size: 0.9375rem;
+        top: 5.9px;
+        right: 6px;
+        background-color: transparent;
+        padding: 0.6875rem;
+        color: $gray-400;
+        border-color: $gray-100;
+
+        &:hover {
+            color: $gray-400;
+        }
+    }
+}

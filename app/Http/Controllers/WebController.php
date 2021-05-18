@@ -23,8 +23,19 @@ class WebController extends Controller
 
     public function productDetails($slug)
     {
+        $customer_ip = getRealCustomerIp();
+
+        $cart = Cart::where('customer_ip', $customer_ip)->first();
+
         $product = Product::with('productStock')->where('product_url', $slug)->first();
-        return view('web.product-details', compact('product'));
+
+        foreach ($cart->products as $cart_product) {
+            if ($cart_product->product_url == $slug) {
+                $product->quantity = $cart_product->pivot->quantity;
+            }
+        }
+
+        return view('web.product-details', compact('product', 'cart'));
     }
 
     public function addCart(Request $request)
@@ -36,7 +47,7 @@ class WebController extends Controller
         if (isset($cart)) {
             $cart_item = CartItem::where('cart_id', $cart->id)
                 ->where('product_id', $request->product_id)
-                ->increment('quantity', $request->quantity);
+                ->update(['quantity' => $request->quantity]);
 
             if (empty($cart_item)) {
                 $cart_item =  new CartItem;
@@ -46,7 +57,7 @@ class WebController extends Controller
                 $cart_item->save();
             }
 
-            return redirect()->back();
+            return redirect()->route('cart');
         }
 
         $cart = new Cart;
@@ -59,13 +70,13 @@ class WebController extends Controller
         $cart_item->quantity = $request->quantity;
         $cart_item->save();
 
-        return redirect()->back();
+        return redirect()->route('cart');
     }
 
     public function cart()
     {
         $customer_ip = getRealCustomerIp();
-        
+
         $cart = Cart::where('customer_ip', $customer_ip)->first();
 
         $products = $cart->products;
@@ -97,6 +108,6 @@ class WebController extends Controller
 
     public function checkShipping(Request $request)
     {
-        return Shipping::calculateShipping($request->cart_id, $request->zipcode);
+        return Shipping::calculateShipping($request->zipcode, $request->cart_id, $request->product);
     }
 }

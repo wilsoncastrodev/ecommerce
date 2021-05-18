@@ -1,6 +1,6 @@
 require('./bootstrap');
+require('./routes/common');
 
-//Routes
-require('./routes/products')
-require('./routes/products')
-require('./routes/common')
+require('./routes/cart');
+require('./routes/product-details');
+require('./routes/products');

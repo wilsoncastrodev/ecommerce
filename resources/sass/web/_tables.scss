@@ -1,0 +1,25 @@
+.shipping-table {
+    background-color: $gray-300;
+    border-radius: 5px;
+    padding: 2px 14px 6px;
+    font-size: 14px;
+    color: $gray-400;
+
+    .shipping-table-header {
+        font-weight: 600;
+
+        span {
+            padding: 10px 0;
+            display: inline-block;
+            min-width: 140px;
+        }
+    }
+    
+    .shipping-table-item {
+        div {
+            padding: 4px 0;
+            display: inline-block;
+            min-width: 140px;
+        }
+    }
+}

@@ -5,3 +5,17 @@
         margin-right: 5px;
     }
 }
+
+.product-price {
+    line-height: 1.4;
+
+    .price {
+        font-size: 1.125rem;
+    }
+    
+    .sale-price {
+        font-size: 28px;
+        font-weight: 600;
+        color: $blue; 
+    }
+}

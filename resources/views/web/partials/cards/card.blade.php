@@ -2,7 +2,7 @@
     <img class="card-img-top" src="{{ asset($product->product_image1) }}" alt="Card image cap">
     <div class="card-body">
         <p class="card-text mb-2">{{ $product->product_title }}</p>
-        <div class="card-stars">
+        <div class="stars">
             <i class="fa fa-star text-yellow"></i>
             <i class="fa fa-star text-yellow"></i>
             <i class="fa fa-star text-yellow"></i>

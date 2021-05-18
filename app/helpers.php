@@ -36,6 +36,6 @@ if (!function_exists('getRealCustomerIp')) {
 if (!function_exists('formatCurrency')) {
     function formatCurrency($value)
     {
-        return number_format($value, 2, ',', '');
+        return number_format($value, 2, ',', '.');
     }
 }

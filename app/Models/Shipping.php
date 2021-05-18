@@ -13,9 +13,9 @@ class Shipping extends Model
 {
     use HasFactory;
 
-    public static function calculateShipping($cart_id, $cep)
+    public static function calculateShipping($cep, $cart_id = null, $product = null)
     {
-        $items = CartItem::where('cart_id', $cart_id)->get();
+        $cart_items = CartItem::where('cart_id', $cart_id)->get();
 
         $correios = new Client;
 
@@ -24,9 +24,16 @@ class Shipping extends Model
             ->destination($cep)
             ->services(Service::SEDEX, Service::PAC);
 
-        foreach ($items as $item) {
-            $product = Product::find($item->product_id);
-            $correios->item($product->product_width, $product->product_height, $product->product_lenght, $product->product_weight, $item->quantity);
+        if (!empty($cart_items)) {
+            foreach ($cart_items as $cart_item) {
+                $item = Product::find($cart_item->product_id);
+                $correios->item($item->product_width, $item->product_height, $item->product_lenght, $item->product_weight, $item->quantity);
+            }
+        }
+
+        if (!empty($product)) {
+            $item = Product::find($product['product_id']);
+            $correios->item($item->product_width, $item->product_height, $item->product_lenght, $item->product_weight, $product['product_quantity']);
         }
 
         return $correios->calculate();

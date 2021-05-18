@@ -1,50 +1,55 @@
 var scrollingCards = () => {
-  document.querySelectorAll(".scrolling-wrapper").forEach((e) => {
-    const $slider = e;
+    const $scrolling_wrapper = document.querySelectorAll(".scrolling-wrapper");
 
-    let isDown = false,
-      startX,
-      scrollLeft;
+    if ($scrolling_wrapper) {
+        $scrolling_wrapper.forEach((e) => {
+            const $slider = e;
 
-    $slider.addEventListener('mousedown', (e) => {
-      let rect = $slider.getBoundingClientRect();
+            let isDown = false,
+                startX,
+                scrollLeft;
 
-      isDown = true;
+            $slider.addEventListener('mousedown', (e) => {
+                let rect = $slider.getBoundingClientRect();
 
-      $slider.classList.add('active');
+                isDown = true;
 
-      startX = e.pageX - rect.left;
-      scrollLeft = $slider.scrollLeft;
-    });
+                $slider.classList.add('active');
 
-    $slider.addEventListener('mouseleave', () => {
-      isDown = false;
-      $slider.classList.remove('active');
-      $slider.dataset.dragging = false;
-    });
+                startX = e.pageX - rect.left;
+                scrollLeft = $slider.scrollLeft;
+            });
 
-    $slider.addEventListener('mouseup', () => {
-      isDown = false;
-      $slider.classList.remove('active');
-      $slider.dataset.dragging = false;
-    });
+            $slider.addEventListener('mouseleave', () => {
+                isDown = false;
+                $slider.classList.remove('active');
+                $slider.dataset.dragging = false;
+            });
 
-    $slider.addEventListener('mousemove', (e) => {
-      if (!isDown) return;
+            $slider.addEventListener('mouseup', () => {
+                isDown = false;
+                $slider.classList.remove('active');
+                $slider.dataset.dragging = false;
+            });
 
-      let rect = $slider.getBoundingClientRect(),
-        x,
-        walk;
+            $slider.addEventListener('mousemove', (e) => {
+                if (!isDown) return;
 
-      e.preventDefault();
+                let rect = $slider.getBoundingClientRect(),
+                    x,
+                    walk;
 
-      $slider.dataset.dragging = true;
-      x = e.pageX - rect.left;
-      walk = (x - startX);
+                e.preventDefault();
 
-      $slider.scrollLeft = scrollLeft - walk;
-    });
-  });
+                $slider.dataset.dragging = true;
+                x = e.pageX - rect.left;
+                walk = (x - startX);
+
+                $slider.scrollLeft = scrollLeft - walk;
+            });
+        });
+    }
+
 }
 
 scrollingCards();
