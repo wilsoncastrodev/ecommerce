@@ -23,6 +23,7 @@
         "webpack-cli": "^4.6.0"
     },
     "dependencies": {
-        "@popperjs/core": "^2.9.2"
+        "@popperjs/core": "^2.9.2",
+        "social-media-links": "^1.0.2"
     }
 }

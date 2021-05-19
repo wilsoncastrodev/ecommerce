@@ -36,9 +36,9 @@
                 </div>
             </div>
             <div class="row pt-1">
-                <div class="col-2 px-0">
+                <div class="col-auto px-0 me-2">
                     <div class="btn-group">
-                        <button class="btn btn-menu btn-menu-dropdown btn-secondary btn-lg px-4" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        <button class="btn btn-menu btn-menu-dropdown btn-secondary btn-lg" type="button" data-bs-toggle="dropdown" aria-expanded="false">
                             <i class="fas fa-bars me-2"></i>
                             <span class="me-2">Departamentos</span>
                         </button>
@@ -47,7 +47,7 @@
                         </ul>
                     </div>
                 </div>
-                <div class="col-6">
+                <div class="col-5">
                     <div class="collapse navbar-collapse" id="navbarSupportedContent">
                         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                             <li class="nav-item">

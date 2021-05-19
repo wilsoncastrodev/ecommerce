@@ -39,3 +39,21 @@ if (!function_exists('formatCurrency')) {
         return number_format($value, 2, ',', '.');
     }
 }
+
+if (!function_exists('formatLeadingZero')) {
+    function formatLeadingZero($value)
+    {
+        return str_pad($value, 2, '0', STR_PAD_LEFT);
+    }
+}
+
+if (!function_exists('limitText')) {
+    function limitText($value)
+    {
+        if (strlen($value) > 80) {
+            return substr_replace($value, "...", 80);
+        }
+
+        return $value;
+    }
+}

@@ -19,18 +19,57 @@
     &.btn-success {
         border: none;
         background-color: $green;
-        
+
         &:hover {
             background: darken($green, 5%);
         }
     }
-    
+
+    &.btn-base {
+        border: none;
+        background-color: $base;
+
+        &:hover {
+            background: darken($base, 5%);
+        }
+    }
+
     &.btn-purple {
         border: none;
         background-color: $purple;
-        
+
         &:hover {
             background: darken($purple, 5%);
+        }
+    }
+
+    &.btn-danger {
+        border: none;
+        background-color: $red;
+
+        &:hover {
+            background: darken($red, 5%);
+        }
+    }
+
+    &.btn-outline-secondary {
+        color: #1c5c80 !important;
+        border: 1px solid #1c5c80;
+        border-radius: 5px;
+        margin-top: 8px;
+        font-family: "Work Sans";
+        font-size: 18px;
+        font-weight: 400;
+        padding: 12px 22px;
+
+        &:hover {
+            background: $white;
+        }
+
+        i {
+            font-size: 22px;
+            position: relative;
+            top: 2px;
         }
     }
 
@@ -39,3 +78,23 @@
     }
 }
 
+.btn-back-cart {
+    i {
+        width: 60px;
+        height: 60px;
+        background: #19779a;
+        margin-top: 10px;
+        padding: 16px 13px;
+        font-size: 28px;
+        color: #ffff;
+        border-radius: 6px;
+    }
+
+    a {
+        margin-left: 1rem;
+        border-bottom: 1px solid;
+        color: #19779a;
+        position: relative;
+        top: -10px;
+    }
+}
