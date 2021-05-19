@@ -1,53 +1,184 @@
 const checkShipping = () => {
-    const $check_shipping = document.getElementById('check-shipping'),
-          $product_quantity = document.getElementById('quantity');
+    const $check_shipping = document.getElementById('shippingCartForm'),
+          $zipcode = document.getElementById('zipcode');
 
     if ($check_shipping) {
-        $check_shipping.addEventListener("click", (e) => {
-            e.preventDefault();
-            
-            const $shippingForm = document.forms.shippingForm;
+        $zipcode.addEventListener('keyup', (e) => {
+            let zipcode_lenth = e.target.value.length;
 
-            let route = $shippingForm.route.value,
-                cart = $shippingForm.product_id.value,
-                product_id = $shippingForm.product_id.value,
-                zipcode = $shippingForm.zipcode.value,
-                product_quantity = $product_quantity.value,
-                product = null;
+            if (zipcode_lenth > 8) {
+                const $shippingForm = document.forms.shippingCartForm;
 
-            if ($product_quantity) {
-                product = {
-                    'product_id': product_id,
-                    'product_quantity': product_quantity
-                }
+                let route = $shippingForm.route.value,
+                    cart = $shippingForm.cart ? $shippingForm.cart.value : null,
+                    zipcode = $shippingForm.zipcode.value;
+
+                axios.post(route, {
+                    zipcode: zipcode,
+                    cart_id: cart,
+                    cart_page: true,
+                })
+                .then((response) => {
+                    const $shipping_message = document.getElementById('shipping-message'),
+                          $shipping = document.getElementById('shipping'),
+                          $sedex_price = document.getElementById('sedex-price'),
+                          $sedex_deadline = document.getElementById('sedex-deadline'),
+                          $sedex_shipping = document.getElementById('sedex-shipping');
+                    
+                    const $subtotal = document.getElementById('subtotal'),
+                          $total = document.getElementById('total');
+                    
+                    $subtotal.innerText = 'R$ ' + response.data.order_subtotal.toLocaleString('pt-br', { minimumFractionDigits: 2 });
+                    $total.innerText = 'R$ ' + response.data.order_total.toLocaleString('pt-br', { minimumFractionDigits: 2 });
+
+                    if (response.data.shipping[0].name == 'Sedex') {
+                        $shipping.classList.remove('d-none');
+                        $shipping.classList.add('d-flex');
+                        $shipping_message.classList.remove('d-none');
+                        $sedex_price.innerText = 'R$ ' + response.data.shipping[0].price.toLocaleString('pt-br', { minimumFractionDigits: 2 });
+                        $sedex_deadline.innerText = response.data.shipping[0].deadline;
+                        $sedex_shipping.innerText = 'R$ ' + response.data.shipping[0].price.toLocaleString('pt-br', { minimumFractionDigits: 2 });
+                    }
+                });
             }
-    
-            axios.post(route, {
-                zipcode: zipcode,
-                cart_id: cart,
-                product: product
-            })
-            .then((response) => {
-                const $shipping_message = document.getElementById('shipping-message'),
-                      $sedex_price = document.getElementById('sedex-price'),
-                      $sedex_deadline = document.getElementById('sedex-deadline'),
-                      $pac_price = document.getElementById('pac-price'),
-                      $pac_deadline = document.getElementById('pac-deadline');
-
-                if (response.data[0].name == 'Sedex') {
-                    $shipping_message.classList.remove('d-none');
-                    $sedex_price.innerText = "R$ " + response.data[0].price.toLocaleString('pt-br', { minimumFractionDigits: 2 });
-                    $sedex_deadline.innerText = response.data[0].deadline;
-                }
-                
-                if (response.data[1].name == 'PAC') {
-                    $shipping_message.classList.remove('d-none');
-                    $pac_price.innerText = "R$ " + response.data[1].price.toLocaleString('pt-br', { minimumFractionDigits: 2 });
-                    $pac_deadline.innerText = response.data[1].deadline;
-                }
-            });
         });
     }
 }
 
+const buttonsQuantity = () => {
+    const $quantity_cart_form = document.getElementById('quantity-cart-form'),
+          $shippingForm = document.forms.shippingCartForm;
+
+    let i = 1;
+
+    if ($quantity_cart_form) {
+        Array.from(document.getElementsByClassName('quantity-form')).forEach(() => {
+            const $btn_minus = document.getElementById('btn-minus-' + i),
+                  $btn_plus = document.getElementById('btn-plus-' + i),
+                  $field_quantity = document.getElementById('quantity-' + i);
+
+            let max = $field_quantity.getAttribute('data-max'),
+                data = {
+                    'route' : $field_quantity.getAttribute('data-route'),
+                    'cart' : $field_quantity.getAttribute('data-cart'),
+                    'product' : $field_quantity.getAttribute('data-product'),
+                    'zipcode' : '',
+                    'quantity' : ''
+            };
+
+            $btn_minus.addEventListener('click', () => {
+                data.quantity = parseInt($field_quantity.value) - 1;
+                data.zipcode = $shippingForm.zipcode.value;
+
+                if (data.quantity >= 1) {
+                    $field_quantity.value = data.quantity;
+                    updateQuantity(data);
+                }     
+            });
+
+            $btn_plus.addEventListener('click', () => {
+                data.quantity = parseInt($field_quantity.value) + 1,
+                data.zipcode = $shippingForm.zipcode.value;
+
+                updateQuantity(data);
+
+                if (max >= 99) max = 99;
+                if (data.quantity <= max) $field_quantity.value = data.quantity;
+            });
+
+            $field_quantity.addEventListener('change', (e) => {
+                data.quantity = e.target.value;
+
+                if (data.quantity < 1) $field_quantity.value = 0;
+                if (data.quantity > max) $field_quantity.value = max;
+            });
+
+            i++;
+        });
+    }
+
+    const updateQuantity = (data) => {
+        axios.post(data.route, {
+            cart_id: data.cart,
+            product_id: data.product,
+            quantity: data.quantity,
+            zipcode: data.zipcode,
+            cart_page: true,
+        })
+        .then((response) => {
+            const $subtotal = document.getElementById('subtotal'),
+                  $total = document.getElementById('total');
+            
+            const $shipping_message = document.getElementById('shipping-message'),
+                  $sedex_price = document.getElementById('sedex-price'),
+                  $sedex_deadline = document.getElementById('sedex-deadline'),
+                  $sedex_shipping = document.getElementById('sedex-shipping');
+
+            $subtotal.innerText = 'R$ ' + response.data.order_subtotal.toLocaleString('pt-br', { minimumFractionDigits: 2 });
+            $total.innerText = 'R$ ' + response.data.order_total.toLocaleString('pt-br', { minimumFractionDigits: 2 });
+
+            if(response.data.shipping) {
+                if (response.data.shipping[0].name == 'Sedex') {
+                    $shipping_message.classList.remove('d-none');
+                    $sedex_price.innerText = 'R$ ' + response.data.shipping[0].price.toLocaleString('pt-br', { minimumFractionDigits: 2 });
+                    $sedex_deadline.innerText = response.data.shipping[0].deadline;
+                    $sedex_shipping.innerText = 'R$ ' + response.data.shipping[0].price.toLocaleString('pt-br', { minimumFractionDigits: 2 });
+                }
+            }
+        });
+    }
+}
+
+const deleteProduct = () => {
+    const $deleteProduct = document.getElementById('delete-product');
+
+    if($deleteProduct) {
+        Array.from(document.getElementsByClassName('delete-product')).forEach((e) => {
+            e.addEventListener('click', (e) => {
+                e.preventDefault();
+
+                const $zipcode = document.getElementById('zipcode');
+
+                let route = e.target.getAttribute('data-route'),
+                    product = e.target.getAttribute('data-product'),
+                    cart = e.target.getAttribute('data-cart')
+                    zipcode = $zipcode.value;
+        
+                axios.post(route, {
+                    product_id: product,
+                    cart_id: cart,
+                    zipcode: zipcode,
+                    cart_page: true,
+                })
+                .then((response) => {
+                    const $subtotal = document.getElementById('subtotal'),
+                          $total = document.getElementById('total'),
+                          $product = document.getElementById('product-' + product);
+
+                    const $shipping_message = document.getElementById('shipping-message'),
+                          $sedex_price = document.getElementById('sedex-price'),
+                          $sedex_deadline = document.getElementById('sedex-deadline'),
+                          $sedex_shipping = document.getElementById('sedex-shipping');
+                    
+                    $subtotal.innerText = 'R$ ' + response.data.order_subtotal.toLocaleString('pt-br', { minimumFractionDigits: 2 });
+                    $total.innerText = 'R$ ' + response.data.order_total.toLocaleString('pt-br', { minimumFractionDigits: 2 });
+
+                    if(response.data.shipping) {
+                        if (response.data.shipping[0].name == 'Sedex') {
+                            $shipping_message.classList.remove('d-none');
+                            $sedex_price.innerText = 'R$ ' + response.data.shipping[0].price.toLocaleString('pt-br', { minimumFractionDigits: 2 });
+                            $sedex_deadline.innerText = response.data.shipping[0].deadline;
+                            $sedex_shipping.innerText = 'R$ ' + response.data.shipping[0].price.toLocaleString('pt-br', { minimumFractionDigits: 2 });
+                        }
+                    }
+
+                    $product.remove();
+                });
+            });
+        });
+    }
+};
+
+deleteProduct();
 checkShipping();
+buttonsQuantity();

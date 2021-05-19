@@ -1,5 +1,5 @@
 .shipping-table {
-    background-color: $gray-300;
+    background-color: $gray-200;
     border-radius: 5px;
     padding: 2px 14px 6px;
     font-size: 14px;
@@ -11,15 +11,77 @@
         span {
             padding: 10px 0;
             display: inline-block;
-            min-width: 140px;
+            min-width: 132px;
         }
     }
-    
+
     .shipping-table-item {
         div {
             padding: 4px 0;
             display: inline-block;
-            min-width: 140px;
+            min-width: 132px;
         }
+    }
+}
+
+.cart-table {
+    border-collapse: separate;
+    border-spacing: 0 1rem;
+    margin-top: 1rem * -1;
+    margin-bottom: 1rem * -1;
+    color: $gray-400;
+
+    thead {
+        tr {
+            box-shadow: none;
+            border-radius: 0;
+        }
+    }
+
+    tbody {
+        tr {
+            box-shadow: 0px 1px 4px 0px rgb(29 70 102 / 22%);
+            border-radius: 8px;
+            height: 166px;
+            
+            img {
+                border-radius: 5px;
+                width: 150px;
+                height: 120px;
+                object-fit: cover;
+                object-position: center;
+            }
+
+            .td-product-image {
+                vertical-align: top;
+            }
+
+            .td-product-title {
+                vertical-align: top;
+                text-align: left;
+            }
+            
+            .td-product-quantity {
+                width: 156px;
+            }
+
+            .td-product-price {
+                width: 152px;
+                font-size: 20px;
+            }
+        }
+    }
+
+    th {
+        padding: 0;
+    }
+
+    td {
+        text-align: center;
+        padding: 1rem;
+    }
+
+    tr {
+        text-align: center;
     }
 }

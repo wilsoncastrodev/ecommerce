@@ -86,28 +86,68 @@ class WebController extends Controller
 
         return view('web.cart', compact('cart'));
     }
-    
+
     public function checkout()
     {
         $customer_ip = getRealCustomerIp();
-        
+        $shippingRequest = collect();
+
         $cart = Cart::where('customer_ip', $customer_ip)->first();
 
         $products = $cart->products;
         $customer = $cart->customer;
         $customer_address = $cart->customer->customerAddress;
-        
-        $shipping = Shipping::calculateShipping($cart->id, $customer_address->zipcode);
+
+        $shippingRequest->cart_id = $cart->id;
+        $shippingRequest->zipcode = $customer_address->zipcode;
+
+        $cart->shipping_price = Shipping::calculateShipping($shippingRequest)[0]['price'];
 
         $cart->products = Cart::subtotalCart($products);
         $cart->order_subtotal = Order::subtotalOrder($products);
-        $cart->order_total = Order::totalOrder($cart->order_subtotal, $shipping[0]['price']);
 
-        return view('web.checkout', compact('cart', 'customer', 'customer_address', 'shipping'));
+        $cart->order_total = Order::totalOrder($cart->order_subtotal, $cart->shipping_price);
+
+        return view('web.checkout', compact('cart', 'customer', 'customer_address'));
     }
 
     public function checkShipping(Request $request)
     {
-        return Shipping::calculateShipping($request->zipcode, $request->cart_id, $request->product);
+        if (!empty($request->cart_page)) {
+            $cart = Cart::find($request->cart_id);
+
+            $products = $cart->products;
+
+            $cart->products = Cart::subtotalCart($products);
+            $cart->order_subtotal = Order::subtotalOrder($products);
+            $cart->order_total = $cart->order_subtotal;
+
+            if ($request->zipcode) {
+                $cart->shipping = Shipping::calculateShipping($request);
+                $cart->order_total = Order::totalOrder($cart->order_subtotal, $cart->shipping[0]['price']);
+            }
+
+            return $cart;
+        }
+
+        return Shipping::calculateShipping($request);
+    }
+
+    public function updateQuantity(Request $request)
+    {
+        CartItem::where('cart_id', $request->cart_id)
+                ->where('product_id', $request->product_id)
+                ->update(['quantity' => $request->quantity]);
+
+        return $this->checkShipping($request);
+    }
+
+    public function deleteProduct(Request $request)
+    {
+        CartItem::where('cart_id', $request->cart_id)
+                ->where('product_id', $request->product_id)
+                ->delete();
+
+        return $this->checkShipping($request);
     }
 }

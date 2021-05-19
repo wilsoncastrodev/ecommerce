@@ -20,7 +20,9 @@ Route::prefix('/')->group(function () {
     Route::get('pagamento', [WebController::class, 'checkout'])->name('checkout')->middleware('auth:customer');
     Route::get('produto/{slug}', [WebController::class, 'productDetails'])->name('product');
     Route::post('produto/frete', [WebController::class, 'checkShipping'])->name('check-shipping');
+    Route::post('produto/atualizar-quantidade', [WebController::class, 'updateQuantity'])->name('update-quantity');
     Route::post('produto/adicionar-carrinho', [WebController::class, 'addCart'])->name('add-cart');
+    Route::post('produto/remover-produto', [WebController::class, 'deleteProduct'])->name('delete-product');
 });
 
 Route::name('admin.')->prefix('admin')->group(function () {

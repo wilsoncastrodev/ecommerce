@@ -1,58 +1,54 @@
 @extends('web.layout.app')
 
 @section('content')
-<div class="container">
-    <div class="row">
-        <div class="col-8">
-            <table class="table">
-                <thead>
-                    @include('partials.tables.head',
-                    ['heads' => ['Produto', 'Quantidade', 'Preço Unitário', 'Subtotal']]
-                    )
-                </thead>
-                <tbody>
-                    @foreach($cart->products as $product)
-                    <tr>
-                        <th scope="row">{{ $product->product_title }}</th>
-                        <th scope="row">{{ $product->pivot->quantity }}</th>
-                        <th scope="row">{{ $product->product_sale_price }}</th>
-                        <th scope="row">{{ $product->subtotal_format }}</th>
-                    </tr>
-                    @endforeach
-                </tbody>
-            </table>
-        </div>
-        <div class="col-4">
-            <div class="card bg-light">
-                <div class="card-header">
-                    <h3>Resumo do Pedido</h3>
-                </div>
-                <div class="card-body">
-                    Subtotal: {{ formatCurrency($cart->order_subtotal) }}
-                    <div>
-                        <a href="{{ route('checkout') }}" class="btn btn-lg btn-primary">Fechar Pedido</a>
-                    </div>
-                </div>
+<section class="cart">
+    <div class="container">
+        <h2 class="h2">Meu Carrinho</h2>
+        <div class="row">
+            <div class="col-8 pe-5">
+                <table class="cart-table">
+                    <thead>
+                        @include('partials.tables.head',
+                        ['heads' => ['', '', 'Quantidade', 'Preço']]
+                        )
+                    </thead>
+                    <tbody>
+                        @php($i = 1)
+                         @foreach($cart->products as $product)
+                        <tr id="product-{{ $product->id }}">
+                            <td class="td-product-image"><img src="{{ asset($product->product_image1) }}" /></td>
+                            <td class="td-product-title px-2">{{ $product->product_title }}</td>
+                            <td class="td-product-quantity">
+                                <div class="quantity-form d-inline-block position-static" id="quantity-cart-form">
+                                    <input type="button" value="-" id="btn-minus-{{ $i }}" class="box-minus" />
+                                    <input id="quantity-{{ $i }}" class="quantity" name="quantity" type="text" onfocus="this.blur()" 
+                                    data-max="{{ $product->productStock->stock_quantity }}" 
+                                    data-product="{{ $product->id }}" 
+                                    data-cart="{{ $cart->id }}"
+                                    data-route="{{ route('update-quantity') }}"
+                                    value="{{ $product->pivot->quantity }}" readonly="readonly"  />
+                                    <input type="button" value="+" id="btn-plus-{{ $i }}" class="box-plus" />
+                                </div>
+                                <div class="mt-2">
+                                    <a href="#" id="delete-product" class="delete-product text-base" 
+                                        data-route="{{ route('delete-product') }}"
+                                        data-product="{{ $product->id }}"
+                                        data-cart="{{ $cart->id }}">
+                                        Remover
+                                    </a>
+                                </div>
+                            </td>
+                            <td class="td-product-price">R$ {{ formatCurrency($product->product_sale_price) }}</td>
+                        </tr>
+                        @php($i++)
+                        @endforeach
+                    </tbody>
+                </table>
+            </div>
+            <div class="col-4">
+                @include('web.partials.cards.card-resume')
             </div>
         </div>
     </div>
-    <div class="row">
-        <div class="col-6">
-            <div class="mb-3">
-                <form id="shippingForm">
-                    <div>
-                        <label for="zipcode">CEP</label>
-                        <input type="text" id="zipcode" class="form-control" name="zipcode" value="{{ old('zipcode') }}">
-                        <input type="hidden" id="cart" class="form-control" value="{{ json_encode($cart->id) }}" />
-                        <input type="hidden" id="route" class="form-control" value="{{ route('check-shipping') }}" />
-                    </div>
-                    <div>
-                        <span class="d-none" id="message-sedex"></span>
-                    </div>
-                </form>
-            </div>
-            <button class="btn btn-primary" id="check-shipping">Verificar</button>
-        </div>
-    </div>
-</div>
+</section>
 @endsection
