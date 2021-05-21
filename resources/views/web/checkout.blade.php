@@ -3,43 +3,38 @@
 @section('content')
 <div class="container">
     <div class="row">
-        <div class="col-6">
-            <h5>Endereço de Entrega</h5>
+        <div class="col-3 mt-2 me-3">
+            <h5 class="text-green-600">Alterar o Carrinho de Compra</h5>
+            <div class="btn-back-cart">
+                <i class="fa fa-shopping-cart"></i>
+                <a href="{{ route('cart') }}">Voltar ao Carrinho</a>
+            </div>
+        </div>
+        <div class="col-3 ps-5 mt-2">
+            <h5 class="text-green-600">Endereço de Entrega</h5>
             <ul class="list-unstyled">
-                <li>
+                <li class="mb-1">
                     {{ $customer->name }}
                 </li>
-                <li>
-                    {{ $customer_address->address }} {{ $customer_address->number }} {{ $customer_address->complement }}
+                <li class="mb-1">
+                    {{ $customer_address->address }}, {{ $customer_address->number }} 
                 </li>
-                <li>
+                <li class="mb-1">
+                    {{ $customer_address->complement }}
+                </li>
+                <li class="mb-1">
                     {{ $customer_address->neighbourhood }}
                 </li>
-                <li>
+                <li class="mb-1">
                     {{ $customer_address->state }} - {{ $customer_address->city }}
                 </li>
-                <li>
+                <li class="mb-1">
                     {{ $customer_address->zipcode }}
                 </li>
             </ul>
         </div>
-        <div class="col-6">
-            <div class="card bg-light">
-                <div class="card-header">
-                    <h5>Resumo do Pedido</h5>
-                </div>
-                <div class="card-body">
-                    <div>
-                        Subtotal: R$ {{ formatCurrency($cart->order_subtotal) }}
-                    </div>
-                   <div>
-                        Frete: R$ {{ formatCurrency($shipping[0]['price']) }}
-                   </div>
-                   <div>
-                        Total: R$ {{ formatCurrency($cart->order_total) }}
-                    </div>
-                </div>
-            </div>
+        <div class="col-5">
+            @include('web.partials.cards.card-resume')
         </div>
     </div>
 </div>
