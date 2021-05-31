@@ -2,8 +2,8 @@
     &.card-simple {
         border: none;
         border-radius: 7px;
-        box-shadow: -1px 3px 10px 0 rgb(0 0 0 / 13%);
-        max-width: 245px;
+        box-shadow: -1px 3px 10px 0 rgb(29 70 102 / 22%);
+        width: 245px;
         color: $secondary;
     
         .card-img-top {
@@ -32,8 +32,8 @@
     }
     
     &.card-resume {
-        background-color: $gray-300;
-        border-radius: 6px;
+        background-color: $gray-200;
+        border-radius: 10px;
         color: $gray-400;
         border: none;
     
@@ -43,9 +43,22 @@
             border: none;
 
             h3 {
-                color: #6c757d;
+                color: $gray-400;
                 font-family: $font-family-root;
                 font-size: 1.5rem;
+            }
+        }
+
+        .card-body {
+            padding: 4px 20px 20px;
+
+            .card-total {
+                font-size: 22px;
+                font-weight: 600;
+            }
+
+            .btn {
+                padding: 0.9rem 1rem;
             }
         }
     }

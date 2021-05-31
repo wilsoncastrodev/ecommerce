@@ -14,7 +14,7 @@
         display: flex;
 
         &:focus {
-            box-shadow: 0 0.5px 14px rgb(0 0 0 / 24%) !important;
+            box-shadow: -1px 3px 10px 0 rgb(29 70 102 / 22%) !important;
         }
     }
 
@@ -26,7 +26,7 @@
 
         &:focus {
             pointer-events: none !important;
-            box-shadow: 0 0.5px 14px rgb(0 0 0 / 24%) !important;
+            box-shadow: -1px 3px 10px 0 rgb(29 70 102 / 22%) !important;
         }
     }
 }
