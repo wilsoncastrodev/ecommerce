@@ -73,7 +73,7 @@ class WebController extends Controller
         return redirect()->route('cart');
     }
 
-    public function cart()
+    public function showCart()
     {
         $customer_ip = getRealCustomerIp();
 
@@ -87,10 +87,11 @@ class WebController extends Controller
         return view('web.cart', compact('cart'));
     }
 
-    public function checkout()
+    public function showCheckout()
     {
         $customer_ip = getRealCustomerIp();
-        $shippingRequest = collect();
+        $shipping_request = collect();
+        $credit_card = collect();
 
         $cart = Cart::where('customer_ip', $customer_ip)->first();
 
@@ -98,17 +99,20 @@ class WebController extends Controller
         $customer = $cart->customer;
         $customer_address = $cart->customer->customerAddress;
 
-        $shippingRequest->cart_id = $cart->id;
-        $shippingRequest->zipcode = $customer_address->zipcode;
+        $shipping_request->cart_id = $cart->id;
+        $shipping_request->zipcode = $customer_address->zipcode;
 
-        $cart->shipping_price = Shipping::calculateShipping($shippingRequest)[0]['price'];
+        $cart->shipping_price = Shipping::calculateShipping($shipping_request)[0]['price'];
 
         $cart->products = Cart::subtotalCart($products);
         $cart->order_subtotal = Order::subtotalOrder($products);
 
         $cart->order_total = Order::totalOrder($cart->order_subtotal, $cart->shipping_price);
 
-        return view('web.checkout', compact('cart', 'customer', 'customer_address'));
+        $credit_card->years = creditCardYears();
+        $credit_card->months = creditCardMonths();
+
+        return view('web.checkout', compact('cart', 'customer', 'customer_address', 'credit_card'));
     }
 
     public function checkShipping(Request $request)

@@ -57,3 +57,21 @@ if (!function_exists('limitText')) {
         return $value;
     }
 }
+
+if (!function_exists('creditCardYears')) {
+    function creditCardYears()
+    {
+        $date_years = range(date("Y"), date("Y") + 15);
+
+        return $date_years;
+    }
+}
+
+if (!function_exists('creditCardMonths')) {
+    function creditCardMonths()
+    {
+        $date_months = range(1, 12);
+
+        return $date_months;
+    }
+}

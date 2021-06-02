@@ -102,3 +102,108 @@
         border-radius: 5px;
     }
 }
+
+form {
+    .form-control {
+        height: 46px;
+        border-radius: 0.35rem;
+    }
+
+    &.was-validated {
+        .form-control {
+            &:valid,
+            &.valid {
+                background-image: url(../images/check.svg);
+                background-size: 18px;
+                background-position: right calc(0.775em + 0.1875rem) center;
+                border-color: $green;
+
+                &:focus {
+                    border-color: $green;
+                }
+
+                &.number {
+                    background-position: right calc(4.375em + 0.1875rem) center;
+                }
+                
+                &.security-code {
+                    background-position: right calc(4.375em + 0.1875rem) center;
+                }
+            } 
+
+            &:invalid,
+            &.invalid {
+                background-image: url(../images/exclamation.svg);
+                background-size: 18px;
+                background-position: right calc(0.575em + 0.1875rem) center;
+                border-color: $red-alt;
+
+                &:focus {
+                    border-color: $red-alt;
+                }
+
+                &.number {
+                    background-position: right calc(0.575em + 0.1875rem) center;
+                }
+
+                &.security-code {
+                    background-position: right calc(0.575em + 0.1875rem) center;
+                }
+            }
+        }
+
+        .form-select {
+            &:valid {
+                background-image: url(../images/arrow-down.svg), url(../images/check.svg);
+                background-position: right 0.75rem center, center right 2.25rem;
+                background-size: 16px 12px, 18px;
+                border-color: $green;
+            }
+
+            &:invalid {
+                background-image: url(../images/arrow-down.svg), url(../images/exclamation.svg);
+                background-size: 18px;
+                background-position: right 0.75rem center, center right 2.25rem;
+                border-color: $red-alt;
+            }
+        }
+
+        .invalid-feedback {
+            color: $red-alt;
+
+            &.invalid-number {
+                display: block;
+            }
+        }
+    } 
+
+    .credit-cards {
+        position: absolute;
+        top: 35px;
+        right: 8px;
+
+        .credit-card {
+            width: 50px;
+            height: auto;
+            border-radius: 2px;
+            display: none;
+            
+            path {
+                fill: $green-200;
+            }
+
+            &.hipercard {
+                .hipercard-color {
+                    fill: $white;
+                }
+            }
+
+            &.security-code {
+                .security-code-bg {
+                    fill: $green-200;
+                }
+            }
+        }
+    }
+}
+
