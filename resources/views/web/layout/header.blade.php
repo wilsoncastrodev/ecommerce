@@ -12,7 +12,7 @@
                     </form>
                 </div>
                 <div class="col-3 d-flex justify-content-end">
-                    <div class="text-white ms-4 me-3 nav-icon">
+                    <div class="text-white nav-icon">
                         <a href="{{ route('cart') }}" class="d-inline-block">
                             <i class="fa fa-heart"></i>
                         </a>
@@ -21,18 +21,28 @@
                         </a>
                     </div>
 
-                    @auth
-                        <div>Teste</div>
+                    @guest('customer')
+                        @if(Route::has('form.customer.login'))
+                            <a href="{{ route('form.customer.login') }}" class="navbox text-white text-decoration-none ms-3">
+                                <i class="fa fa-user me-2"></i>
+                                <span>Entrar</span>
+                            </a>
+                        @endif
                     @else
-                        @guest('customer')
-                            @if(Route::has('form.customer.login'))
-                                <a href="{{ route('form.customer.login') }}" class="navbox text-white text-decoration-none">
-                                    <i class="fa fa-user me-2"></i>
-                                    <span>Entrar</span>
-                                </a>
-                            @endif
-                        @endguest
-                    @endauth
+                        <a href="" class="navbox text-white text-decoration-none ms-1 me-2">
+                            <i class="fa fa-user me-1"></i>
+                            <span>{{ firstName(Auth::guard('customer')->user()->name) }}</span>
+                        </a>
+
+                        <a href="{{ route('customer.logout') }}" class="navbox navbox-alt text-white px-1"
+                                onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                            <span>Sair</span>
+                        </a>
+
+                        <form id="logout-form" action="{{ route('customer.logout') }}" method="POST" class="d-none">
+                            @csrf
+                        </form>
+                    @endguest
                 </div>
             </div>
             <div class="row pt-1">
@@ -68,18 +78,17 @@
                                 </button>
                             </li>
                             <li class="nav-item">
-                                @auth
-                                    <div>Teste</div>
+                                @guest('customer')
+                                    @if(Route::has('form.customer.register'))
+                                        <a href="{{ route('form.customer.register') }}" class="btn btn-menu btn-lg">
+                                            <span>Cadastra-se</span>
+                                        </a>
+                                    @endif
                                 @else
-                                    @guest('customer')
-                                        @if(Route::has('form.customer.register'))
-                                            <a href="{{ route('form.customer.register') }}" class="btn btn-menu btn-lg">
-                                                <span>Cadastra-se</span>
-                                            </a>
-                                        @endif
-                                    @endguest
-                                @endauth
-                                
+                                    <a href="" class="btn btn-menu btn-lg">
+                                        <span>Minha Conta</span>
+                                    </a>
+                                @endguest
                             </li>
                         </ul>
                     </div>

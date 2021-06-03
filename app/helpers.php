@@ -89,3 +89,10 @@ if (!function_exists('removePointDecimal')) {
         return str_replace('.', '', number_format($value, 2, '.', ''));
     }
 }
+
+if (!function_exists('firstName')) {
+    function firstName($value)
+    {
+        return strtok($value, " ");
+    }
+}

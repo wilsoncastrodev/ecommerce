@@ -11084,6 +11084,11 @@ input:-webkit-autofill, input:-webkit-autofill:hover, input:-webkit-autofill:foc
   border-radius: 1rem;
   height: 60px;
 }
+.navbar .navbox.navbox-alt {
+  background: none;
+  padding-top: 22px;
+  padding: 22px 10px;
+}
 .navbar .navbox i {
   font-size: 26px;
   color: #fff;
@@ -11400,6 +11405,7 @@ h2, .h2 {
   left: 268px;
   top: 20px;
   color: rgba(50, 49, 54, 0.82);
+  border-radius: 0 !important;
 }
 .shipping-form input {
   padding: 0.95rem 0;
