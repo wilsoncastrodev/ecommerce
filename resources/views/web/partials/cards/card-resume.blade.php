@@ -1,4 +1,4 @@
-<div class="card card-resume">
+<div class="card card-resume h-auto">
     <div class="card-header pb-0">
         <h3>Resumo da Compra</h3>
     </div>

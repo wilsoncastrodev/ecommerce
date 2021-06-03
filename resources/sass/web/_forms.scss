@@ -56,7 +56,6 @@
         border-left: none;
         border-right: none;
         border-top: none;
-        border-radius: 0;
 
         &:focus {
             border-color: $gray-400;
@@ -103,7 +102,7 @@
     }
 }
 
-form {
+.credit-card-form {
     .form-control {
         height: 46px;
         border-radius: 0.35rem;

@@ -4,11 +4,13 @@ namespace App\Http\Controllers;
 
 use App\Models\Cart;
 use App\Models\Order;
+use App\Models\Payment;
 use App\Models\Product;
 use App\Models\CartItem;
 use App\Models\Shipping;
-use Illuminate\Support\Str;
+use App\Models\OrderItem;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class WebController extends Controller
 {
@@ -135,6 +137,61 @@ class WebController extends Controller
         }
 
         return Shipping::calculateShipping($request);
+    }
+
+    public function createOrder(Request $request)
+    {
+        $customer_id = Auth::id();
+        $shipping = collect();
+
+        $cart = Cart::where('customer_id', $customer_id)->first();
+
+        $products = $cart->products;
+        $customer_address = $cart->customer->customerAddress;
+
+        $shipping->cart_id = $cart->id;
+        $shipping->zipcode = $customer_address->zipcode;
+
+        $shipping = Shipping::calculateShipping($shipping);
+
+        $cart->products = Cart::subtotalCart($products);
+        $cart->order_subtotal = Order::subtotalOrder($products);
+        $cart->order_total = Order::totalOrder($cart->order_subtotal, $shipping[0]['price']);
+
+        $order = new Order();
+        $order->customer_id = $customer_id;
+        $order->status = "open";
+        $order->shipping_type = $shipping[0]['name'];
+        $order->shipping_cost = $shipping[0]['price'];
+        $order->subtotal = $cart->order_subtotal;
+        $order->total = $cart->order_total;
+        $order->save();
+
+        foreach ($cart->products as $product) {
+            $order_item = new OrderItem;
+            $order_item->order_id = $order->id;
+            $order_item->product_id = $product->id;
+            $order_item->price = $product->product_sale_price;
+            $order_item->quantity = $product->pivot->quantity;
+            $order_item->save();
+        }
+
+        if ($request->payment_method == "CREDIT_CARD") {
+            $data = Payment::createDataCC($request, $order);
+            $payment_response = Payment::paymentCreditCard($data);
+        } else {
+            $payment_response = Payment::paymentBankSlip($request);
+        }
+
+        $payment = new Payment();
+        $payment->order_id = $payment_response['reference_id'];
+        $payment->code = $payment_response['id'];
+        $payment->status = $payment_response['status'];
+        $payment->method = $payment_response['payment_method']['type'];
+        $payment->paid_at = !empty($payment_response['paid_at']) ? $payment_response['paid_at'] : null;
+        $payment->save();
+
+        return redirect()->back();
     }
 
     public function updateQuantity(Request $request)

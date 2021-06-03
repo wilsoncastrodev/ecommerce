@@ -75,3 +75,17 @@ if (!function_exists('creditCardMonths')) {
         return $date_months;
     }
 }
+
+if (!function_exists('removeAllSpaces')) {
+    function removeAllSpaces($value)
+    {
+        return str_replace(' ', '', $value);
+    }
+}
+
+if (!function_exists('removePointDecimal')) {
+    function removePointDecimal($value)
+    {
+        return str_replace('.', '', number_format($value, 2, '.', ''));
+    }
+}

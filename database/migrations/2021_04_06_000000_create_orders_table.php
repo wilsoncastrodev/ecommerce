@@ -16,7 +16,6 @@ class CreateOrdersTable extends Migration
         Schema::create('orders', function (Blueprint $table) {
             $table->id();
             $table->foreignId('customer_id')->constrained('customers');
-            $table->foreignId('payment_id')->constrained('payments');
             $table->enum('status', ['open', 'paid', 'delivered', 'cancelled']);
             $table->string('shipping_type');
             $table->decimal('shipping_cost', 8, 2);
