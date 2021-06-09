@@ -77,13 +77,15 @@ const buttonsQuantity = () => {
             });
 
             $btn_plus.addEventListener('click', () => {
-                data.quantity = parseInt($field_quantity.value) + 1,
                 data.zipcode = $shippingForm.zipcode.value;
 
-                updateQuantity(data);
-
                 if (max >= 99) max = 99;
-                if (data.quantity <= max) $field_quantity.value = data.quantity;
+
+                if (data.quantity < max) {
+                    data.quantity = parseInt($field_quantity.value) + 1,
+                    $field_quantity.value = data.quantity;
+                    updateQuantity(data);
+                }    
             });
 
             $field_quantity.addEventListener('change', (e) => {
@@ -154,6 +156,10 @@ const deleteProduct = () => {
                     const $subtotal = document.getElementById('subtotal'),
                           $total = document.getElementById('total'),
                           $product = document.getElementById('product-' + product);
+                    
+                    const $cart_product = document.getElementById('cart-product'),
+                          $cart_item = document.querySelectorAll('.cart-item'),
+                          $cart_empty = document.getElementById('cart-empty');
 
                     const $shipping_message = document.getElementById('shipping-message'),
                           $sedex_price = document.getElementById('sedex-price'),
@@ -173,6 +179,11 @@ const deleteProduct = () => {
                     }
 
                     $product.remove();
+
+                    if($cart_item.length <= 1) {
+                        $cart_product.classList.add('d-none');
+                        $cart_empty.classList.remove('d-none');
+                    }
                 });
             });
         });

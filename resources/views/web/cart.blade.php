@@ -4,7 +4,8 @@
 <section class="cart">
     <div class="container">
         <h2 class="h2">Meu Carrinho</h2>
-        <div class="row">
+        @empty(!$cart->products->first())
+        <div class="row" id="cart-product">
             <div class="col-8 pe-5">
                 <table class="cart-table">
                     <thead>
@@ -14,26 +15,18 @@
                     </thead>
                     <tbody>
                         @php($i = 1)
-                         @foreach($cart->products as $product)
-                        <tr id="product-{{ $product->id }}">
+                        @foreach($cart->products as $product)
+                        <tr id="product-{{ $product->id }}" class="cart-item">
                             <td class="td-product-image"><img src="{{ asset($product->product_image1) }}" /></td>
                             <td class="td-product-title px-2">{{ $product->product_title }}</td>
                             <td class="td-product-quantity">
                                 <div class="quantity-form d-inline-block position-static" id="quantity-cart-form">
                                     <input type="button" value="-" id="btn-minus-{{ $i }}" class="box-minus" />
-                                    <input id="quantity-{{ $i }}" class="quantity" name="quantity" type="text" onfocus="this.blur()" 
-                                    data-max="{{ $product->productStock->stock_quantity }}" 
-                                    data-product="{{ $product->id }}" 
-                                    data-cart="{{ $cart->id }}"
-                                    data-route="{{ route('update-quantity') }}"
-                                    value="{{ $product->pivot->quantity }}" readonly="readonly"  />
+                                    <input id="quantity-{{ $i }}" class="quantity" name="quantity" type="text" onfocus="this.blur()" data-max="{{ $product->productStock->stock_quantity }}" data-product="{{ $product->id }}" data-cart="{{ $cart->id }}" data-route="{{ route('update-quantity') }}" value="{{ $product->pivot->quantity }}" readonly="readonly" />
                                     <input type="button" value="+" id="btn-plus-{{ $i }}" class="box-plus" />
                                 </div>
                                 <div class="mt-2">
-                                    <a href="#" id="delete-product" class="delete-product text-base" 
-                                        data-route="{{ route('delete-product') }}"
-                                        data-product="{{ $product->id }}"
-                                        data-cart="{{ $cart->id }}">
+                                    <a href="#" id="delete-product" class="delete-product text-base" data-route="{{ route('delete-product') }}" data-product="{{ $product->id }}" data-cart="{{ $cart->id }}">
                                         Remover
                                     </a>
                                 </div>
@@ -47,6 +40,19 @@
             </div>
             <div class="col-4">
                 @include('web.partials.cards.card-resume')
+            </div>
+        </div> 
+        @else
+            <div class="row mt-4" id="cart-empty">
+                <div class="col-12">
+                    @include('web.partials.cards.card-cart-empty')
+                </div>
+            </div>
+        @endempty
+
+        <div class="row d-none mt-4" id="cart-empty">
+            <div class="col-12">
+                @include('web.partials.cards.card-cart-empty')
             </div>
         </div>
     </div>

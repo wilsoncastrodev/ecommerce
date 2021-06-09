@@ -63,7 +63,6 @@ const checkShipping = () => {
                 product: product
             })
             .then((response) => {
-                console.log(response);
                 const $shipping_message = document.getElementById('shipping-message'),
                       $sedex_price = document.getElementById('sedex-price'),
                       $sedex_deadline = document.getElementById('sedex-deadline');
