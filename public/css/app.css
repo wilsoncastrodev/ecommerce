@@ -1,6 +1,6 @@
 @charset "UTF-8";
 /*!
- * Bootstrap v5.0.0-beta3 (https://getbootstrap.com/)
+ * Bootstrap v5.0.1 (https://getbootstrap.com/)
  * Copyright 2011-2021 The Bootstrap Authors
  * Copyright 2011-2021 Twitter, Inc.
  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)
@@ -1921,6 +1921,7 @@ progress {
 }
 .table {
   --bs-table-bg: transparent;
+  --bs-table-accent-bg: transparent;
   --bs-table-striped-color: #212529;
   --bs-table-striped-bg: rgba(0, 0, 0, 0.05);
   --bs-table-active-color: #212529;
@@ -2774,6 +2775,8 @@ textarea.form-control-lg {
 
 .was-validated .form-select:valid, .form-select.is-valid {
   border-color: #198754;
+}
+.was-validated .form-select:valid:not([multiple]):not([size]), .was-validated .form-select:valid:not([multiple])[size="1"], .form-select.is-valid:not([multiple]):not([size]), .form-select.is-valid:not([multiple])[size="1"] {
   padding-right: 4.125rem;
   background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3e%3cpath fill='none' stroke='%23343a40' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M2 5l6 6 6-6'/%3e%3c/svg%3e"), url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 8 8'%3e%3cpath fill='%23198754' d='M2.3 6.73L.6 4.53c-.4-1.04.46-1.4 1.1-.8l1.1 1.4 3.4-3.8c.6-.63 1.6-.27 1.2.7l-4 4.6c-.43.5-.8.4-1.1.1z'/%3e%3c/svg%3e");
   background-position: right 0.75rem center, center right 2.25rem;
@@ -2804,6 +2807,11 @@ textarea.form-control-lg {
 .was-validated .input-group .form-control:valid, .input-group .form-control.is-valid,
 .was-validated .input-group .form-select:valid,
 .input-group .form-select.is-valid {
+  z-index: 1;
+}
+.was-validated .input-group .form-control:valid:focus, .input-group .form-control.is-valid:focus,
+.was-validated .input-group .form-select:valid:focus,
+.input-group .form-select.is-valid:focus {
   z-index: 3;
 }
 
@@ -2856,6 +2864,8 @@ textarea.form-control-lg {
 
 .was-validated .form-select:invalid, .form-select.is-invalid {
   border-color: #dc3545;
+}
+.was-validated .form-select:invalid:not([multiple]):not([size]), .was-validated .form-select:invalid:not([multiple])[size="1"], .form-select.is-invalid:not([multiple]):not([size]), .form-select.is-invalid:not([multiple])[size="1"] {
   padding-right: 4.125rem;
   background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3e%3cpath fill='none' stroke='%23343a40' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M2 5l6 6 6-6'/%3e%3c/svg%3e"), url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12' width='12' height='12' fill='none' stroke='%23dc3545'%3e%3ccircle cx='6' cy='6' r='4.5'/%3e%3cpath stroke-linejoin='round' d='M5.8 3.6h.4L6 6.5z'/%3e%3ccircle cx='6' cy='8.2' r='.6' fill='%23dc3545' stroke='none'/%3e%3c/svg%3e");
   background-position: right 0.75rem center, center right 2.25rem;
@@ -2886,6 +2896,11 @@ textarea.form-control-lg {
 .was-validated .input-group .form-control:invalid, .input-group .form-control.is-invalid,
 .was-validated .input-group .form-select:invalid,
 .input-group .form-select.is-invalid {
+  z-index: 2;
+}
+.was-validated .input-group .form-control:invalid:focus, .input-group .form-control.is-invalid:focus,
+.was-validated .input-group .form-select:invalid:focus,
+.input-group .form-select.is-invalid:focus {
   z-index: 3;
 }
 
@@ -3443,7 +3458,6 @@ textarea.form-control-lg {
 
 .dropdown-menu {
   position: absolute;
-  top: 100%;
   z-index: 1000;
   display: none;
   min-width: 10rem;
@@ -3459,6 +3473,7 @@ textarea.form-control-lg {
   border-radius: 0.25rem;
 }
 .dropdown-menu[data-bs-popper] {
+  top: 100%;
   left: 0;
   margin-top: 0.125rem;
 }
@@ -3584,12 +3599,10 @@ textarea.form-control-lg {
   margin-left: 0;
 }
 
-.dropend .dropdown-menu {
+.dropend .dropdown-menu[data-bs-popper] {
   top: 0;
   right: auto;
   left: 100%;
-}
-.dropend .dropdown-menu[data-bs-popper] {
   margin-top: 0;
   margin-left: 0.125rem;
 }
@@ -3610,12 +3623,10 @@ textarea.form-control-lg {
   vertical-align: 0;
 }
 
-.dropstart .dropdown-menu {
+.dropstart .dropdown-menu[data-bs-popper] {
   top: 0;
   right: 100%;
   left: auto;
-}
-.dropstart .dropdown-menu[data-bs-popper] {
   margin-top: 0;
   margin-right: 0.125rem;
 }
@@ -3834,6 +3845,7 @@ textarea.form-control-lg {
 .nav-link {
   display: block;
   padding: 0.5rem 1rem;
+  color: #0d6efd;
   text-decoration: none;
   transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out;
 }
@@ -3841,6 +3853,9 @@ textarea.form-control-lg {
   .nav-link {
     transition: none;
   }
+}
+.nav-link:hover, .nav-link:focus {
+  color: #0a58ca;
 }
 .nav-link.disabled {
   color: #6c757d;
@@ -4420,7 +4435,7 @@ textarea.form-control-lg {
 }
 .accordion-button:not(.collapsed)::after {
   background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%230c63e4'%3e%3cpath fill-rule='evenodd' d='M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z'/%3e%3c/svg%3e");
-  transform: rotate(180deg);
+  transform: rotate(-180deg);
 }
 .accordion-button::after {
   flex-shrink: 0;
@@ -4453,7 +4468,6 @@ textarea.form-control-lg {
 }
 
 .accordion-item {
-  margin-bottom: -1px;
   background-color: #fff;
   border: 1px solid rgba(0, 0, 0, 0.125);
 }
@@ -4465,8 +4479,10 @@ textarea.form-control-lg {
   border-top-left-radius: calc(0.25rem - 1px);
   border-top-right-radius: calc(0.25rem - 1px);
 }
+.accordion-item:not(:first-of-type) {
+  border-top: 0;
+}
 .accordion-item:last-of-type {
-  margin-bottom: 0;
   border-bottom-right-radius: 0.25rem;
   border-bottom-left-radius: 0.25rem;
 }
@@ -5202,14 +5218,6 @@ textarea.form-control-lg {
   word-wrap: break-word;
 }
 
-.modal-open {
-  overflow: hidden;
-}
-.modal-open .modal {
-  overflow-x: hidden;
-  overflow-y: auto;
-}
-
 .modal {
   position: fixed;
   top: 0;
@@ -5218,7 +5226,8 @@ textarea.form-control-lg {
   display: none;
   width: 100%;
   height: 100%;
-  overflow: hidden;
+  overflow-x: hidden;
+  overflow-y: auto;
   outline: 0;
 }
 
@@ -5278,7 +5287,7 @@ textarea.form-control-lg {
   position: fixed;
   top: 0;
   left: 0;
-  z-index: 1050;
+  z-index: 1040;
   width: 100vw;
   height: 100vh;
   background-color: #000;
@@ -5329,14 +5338,6 @@ textarea.form-control-lg {
 }
 .modal-footer > * {
   margin: 0.25rem;
-}
-
-.modal-scrollbar-measure {
-  position: absolute;
-  top: -9999px;
-  width: 50px;
-  height: 50px;
-  overflow: scroll;
 }
 
 @media (min-width: 576px) {
@@ -5951,7 +5952,7 @@ textarea.form-control-lg {
   display: inline-block;
   width: 2rem;
   height: 2rem;
-  vertical-align: text-bottom;
+  vertical-align: -0.125em;
   border: 0.25em solid currentColor;
   border-right-color: transparent;
   border-radius: 50%;
@@ -5988,7 +5989,7 @@ textarea.form-control-lg {
   display: inline-block;
   width: 2rem;
   height: 2rem;
-  vertical-align: text-bottom;
+  vertical-align: -0.125em;
   background-color: currentColor;
   border-radius: 50%;
   opacity: 0;
@@ -6011,7 +6012,7 @@ textarea.form-control-lg {
 .offcanvas {
   position: fixed;
   bottom: 0;
-  z-index: 1040;
+  z-index: 1050;
   display: flex;
   flex-direction: column;
   max-width: 100%;
@@ -6029,6 +6030,7 @@ textarea.form-control-lg {
 
 .offcanvas-header {
   display: flex;
+  align-items: center;
   justify-content: space-between;
   padding: 1rem 1rem;
 }
@@ -6064,6 +6066,16 @@ textarea.form-control-lg {
   transform: translateX(100%);
 }
 
+.offcanvas-top {
+  top: 0;
+  right: 0;
+  left: 0;
+  height: 30vh;
+  max-height: 100%;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+  transform: translateY(-100%);
+}
+
 .offcanvas-bottom {
   right: 0;
   left: 0;
@@ -6075,17 +6087,6 @@ textarea.form-control-lg {
 
 .offcanvas.show {
   transform: none;
-}
-
-.offcanvas-backdrop::before {
-  position: fixed;
-  top: 0;
-  left: 0;
-  z-index: 1039;
-  width: 100vw;
-  height: 100vh;
-  content: "";
-  background-color: rgba(0, 0, 0, 0.5);
 }
 
 .clearfix::after {
@@ -10854,6 +10855,97 @@ input:-webkit-autofill, input:-webkit-autofill:hover, input:-webkit-autofill:foc
   transition-property: background-color, color;
 }
 
+.badge {
+  font-weight: 600;
+}
+
+.btn {
+  font-family: "Rubik", sans-serif;
+  font-size: 1.1875rem;
+  color: #fff;
+  border-radius: 4px;
+}
+.btn:hover {
+  color: #fff;
+}
+.btn.btn-xs {
+  padding: 8px 24px;
+}
+.btn.btn-sm, .btn-group-sm > .btn {
+  padding: 10px 12px;
+}
+.btn.btn-md {
+  padding: 10px 80px;
+}
+.btn.btn-success {
+  border: none;
+  background-color: #21bf48;
+  box-shadow: -1px 3px 10px 0 rgba(29, 70, 102, 0.08);
+}
+.btn.btn-success:hover {
+  background: #1da940;
+}
+.btn.btn-base {
+  border: none;
+  background-color: #1685a7;
+}
+.btn.btn-base:hover {
+  background: #137390;
+}
+.btn.btn-purple {
+  border: none;
+  background-color: #582ea9;
+}
+.btn.btn-purple:hover {
+  background: #4e2995;
+}
+.btn.btn-danger {
+  border: none;
+  background-color: #e24242;
+}
+.btn.btn-danger:hover {
+  background: #df2c2c;
+}
+.btn.btn-outline-secondary {
+  color: #1c5c80 !important;
+  border: 1px solid #1c5c80;
+  border-radius: 5px;
+  margin-top: 8px;
+  font-family: "Work Sans";
+  font-size: 18px;
+  font-weight: 400;
+  padding: 12px 22px;
+}
+.btn.btn-outline-secondary:hover {
+  background: #fff;
+}
+.btn.btn-outline-secondary i {
+  font-size: 22px;
+  position: relative;
+  top: 2px;
+}
+.btn i {
+  margin-right: 4px;
+}
+
+.btn-back-cart i {
+  width: 60px;
+  height: 60px;
+  background: #cfe0e6;
+  margin-top: 10px;
+  padding: 16px 13px;
+  font-size: 28px;
+  color: #19779a;
+  border-radius: 6px;
+}
+.btn-back-cart a {
+  margin-left: 0.8rem;
+  border-bottom: 1px solid;
+  color: #19779a;
+  position: relative;
+  top: -10px;
+}
+
 .card {
   box-shadow: 0px 1px 4px 0px rgba(29, 70, 102, 0.22);
   padding: 17px 22px;
@@ -10917,156 +11009,255 @@ input:-webkit-autofill, input:-webkit-autofill:hover, input:-webkit-autofill:foc
 .card.card-resume .card-body .btn {
   padding: 0.9rem 1rem;
 }
+.card.card-resume .fa-shopping-cart {
+  font-size: 56px;
+}
+.card.card-alt {
+  box-shadow: 0 1.35rem 2.4rem rgba(18, 38, 63, 0.1);
+}
+.card.card-alt .card-header {
+  height: 120px;
+  width: 100%;
+  background: #1b668a;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+  padding: 18px 40px 34px;
+}
+.card.card-alt .card-header h2, .card.card-alt .card-header .h2 {
+  display: inline-block;
+}
+.card.card-alt .card-header div {
+  background: rgba(255, 255, 255, 0.05);
+  width: 84px;
+  height: 84px;
+  border-radius: 50%;
+}
+.card.card-alt .card-header div i {
+  padding: 23px 27.5px;
+  font-size: 34px;
+}
+.card.card-alt .card-header.card-header-alt {
+  height: auto;
+  padding: 12px 40px 12px;
+}
+.card.card-alt .card-body {
+  padding: 30px 40px 34px;
+}
 
-.panel {
-  background-color: #fff;
-  width: 100%;
-  height: 100%;
+.scrolling-wrapper {
+  display: flex;
+  flex-wrap: no-wrap;
+  overflow: hidden;
+  padding: 10px;
 }
-.panel.panel-border-top {
-  border-top: 1px solid #edecf0;
+.scrolling-wrapper.active {
+  cursor: pointer;
 }
-.panel .panel-image-feature {
-  padding: 0 16px 13px;
+.scrolling-wrapper .card {
+  margin-right: 2rem;
+  flex: 0 0 auto;
+  display: flex;
 }
-.panel .panel-image-feature img {
-  width: 100%;
-  height: 364px;
-  -o-object-fit: cover;
-     object-fit: cover;
-  -o-object-position: center;
-     object-position: center;
-  border-radius: 6px;
+.scrolling-wrapper .card:focus {
+  box-shadow: -1px 3px 10px 0 rgba(29, 70, 102, 0.22) !important;
 }
-.panel .panel-image-thumbnails {
-  padding: 0 0 0 16px;
+.scrolling-wrapper[data-dragging=true] a {
+  pointer-events: none !important;
 }
-.panel .panel-image-thumbnails img {
-  height: 124px;
-  width: 174px;
-  margin-right: 7.7px;
-  border-radius: 6px;
-  -o-object-fit: cover;
-     object-fit: cover;
-  -o-object-position: center;
-     object-position: center;
+.scrolling-wrapper[data-dragging=true]:focus {
+  pointer-events: none !important;
+  box-shadow: -1px 3px 10px 0 rgba(29, 70, 102, 0.22) !important;
 }
-.panel .panel-share {
+
+.quantity-form {
   position: relative;
-  left: -4px;
-  margin-top: 23px;
+  top: 3.5px;
 }
-.panel .panel-share i {
-  font-weight: 400;
-  font-size: 2.4375rem;
-  margin-bottom: 17px;
+.quantity-form .quantity {
+  border: none;
+  background: #EEEFF0;
+  padding: 0.5rem;
+  text-align: center;
+  width: 44px;
+  font-size: 1.375rem;
+  color: #777777;
 }
-.panel .panel-share i.fa-share-alt-square {
-  color: #3a79f7;
+.quantity-form .box-minus,
+.quantity-form .box-plus {
+  border: none;
+  background: #EEEFF0;
+  color: #777777;
+  padding: 0.5rem;
+  font-size: 1.375rem;
+  position: relative;
 }
-.panel .panel-share i.fa-twitter-square {
-  color: #3a79f7;
+.quantity-form .box-minus {
+  left: 6px;
+  top: 0px;
+  border-bottom-left-radius: 6px;
+  border-top-left-radius: 6px;
+  padding-left: 0.875rem;
 }
-.panel .panel-share i.fa-facebook-square {
-  color: #582ea9;
-}
-.panel .panel-share i.fa-whatsapp-square {
-  color: #2ea95a;
-}
-.panel .panel-share .fa-square-alt {
-  width: 35px;
-  height: 34px;
-  background: #777777;
-  border-radius: 4px;
-  margin-top: 3px;
-}
-.panel .panel-share .fa-square-alt .fa-envelope {
-  font-size: 1.125rem;
-  margin: 7px 9px;
-  color: #fff;
+.quantity-form .box-plus {
+  right: 6px;
+  top: 0px;
+  border-bottom-right-radius: 6px;
+  border-top-right-radius: 6px;
+  padding-right: 0.875rem;
 }
 
-.btn {
-  font-family: "Rubik", sans-serif;
-  font-size: 1.1875rem;
-  color: #fff;
-  border-radius: 4px;
+.shipping-form i {
+  position: absolute;
+  left: 268px;
+  top: 20px;
+  color: rgba(50, 49, 54, 0.82);
 }
-.btn:hover {
-  color: #fff;
+.shipping-form input {
+  padding: 0.95rem 0;
+  padding-left: 300px;
+  display: inline-block;
+  width: 100%;
+  border: 1px solid rgba(50, 49, 54, 0.2);
+  border-left: none;
+  border-right: none;
+  border-top: none;
+  border-radius: 0 !important;
 }
-.btn.btn-sm, .btn-group-sm > .btn {
-  padding: 10px 12px;
+.shipping-form input:focus {
+  border-color: #777777;
 }
-.btn.btn-md {
-  padding: 10px 80px;
-}
-.btn.btn-success {
+.shipping-form label {
+  position: absolute;
+  font-size: 1rem;
+  top: 16.9px;
+  left: 0;
+  background: none;
+  padding: 0;
+  color: rgba(50, 49, 54, 0.82);
   border: none;
-  background-color: #2ea95a;
-}
-.btn.btn-success:hover {
-  background: #29954f;
-}
-.btn.btn-base {
+  font-weight: 500;
   border: none;
-  background-color: #1685a7;
+  border-radius: 0;
+  padding-right: 16px;
+  border-right: 1px solid #77777757;
+  cursor: default;
 }
-.btn.btn-base:hover {
-  background: #137390;
+.shipping-form label:hover {
+  color: rgba(50, 49, 54, 0.82);
 }
-.btn.btn-purple {
+
+.shipping-cart i {
+  position: absolute;
+  left: 20px;
+  top: 52px;
+  color: #777777;
+}
+.shipping-cart input {
+  background: rgba(255, 255, 255, 0.73);
+  margin: 10px 0 0;
+  padding: 0.85rem 0;
+  padding-left: 54px;
   border: none;
-  background-color: #582ea9;
-}
-.btn.btn-purple:hover {
-  background: #4e2995;
-}
-.btn.btn-danger {
-  border: none;
-  background-color: #e24242;
-}
-.btn.btn-danger:hover {
-  background: #df2c2c;
-}
-.btn.btn-outline-secondary {
-  color: #1c5c80 !important;
-  border: 1px solid #1c5c80;
   border-radius: 5px;
-  margin-top: 8px;
-  font-family: "Work Sans";
-  font-size: 18px;
-  font-weight: 400;
-  padding: 12px 22px;
-}
-.btn.btn-outline-secondary:hover {
-  background: #fff;
-}
-.btn.btn-outline-secondary i {
-  font-size: 22px;
-  position: relative;
-  top: 2px;
-}
-.btn i {
-  margin-right: 4px;
 }
 
-.btn-back-cart i {
-  width: 60px;
-  height: 60px;
-  background: #19779a;
-  margin-top: 10px;
-  padding: 16px 13px;
-  font-size: 28px;
-  color: #ffff;
-  border-radius: 6px;
+.default-form .form-control {
+  height: 50px;
+  border-radius: 0.35rem;
 }
-.btn-back-cart a {
-  margin-left: 1rem;
-  border-bottom: 1px solid;
-  color: #19779a;
-  position: relative;
-  top: -10px;
+.default-form .form-control:focus {
+  border-color: #1681a4;
+}
+.default-form.credit-card-form.was-validated .form-control:valid, .default-form.credit-card-form.was-validated .form-control.valid .default-form.credit-card-form.was-validated .form-control.is-valid, .default-form.register-form.was-validated .form-control:valid, .default-form.credit-card-form.was-validated .form-control.valid .default-form.register-form.was-validated .form-control.is-valid, .default-form.register-form.was-validated .form-control.valid .default-form.credit-card-form.was-validated .form-control.is-valid, .default-form.register-form.was-validated .form-control.valid .default-form.register-form.was-validated .form-control.is-valid {
+  background-image: url(../images/check.svg);
+  background-size: 18px;
+  background-position: right calc(0.775em + 0.1875rem) center;
+  border-color: #21bf48;
+}
+.default-form.credit-card-form.was-validated .form-control:valid:focus, .default-form.credit-card-form.was-validated .form-control.valid .default-form.credit-card-form.was-validated .form-control.is-valid:focus, .default-form.register-form.was-validated .form-control:valid:focus, .default-form.credit-card-form.was-validated .form-control.valid .default-form.register-form.was-validated .form-control.is-valid:focus, .default-form.register-form.was-validated .form-control.valid .default-form.credit-card-form.was-validated .form-control.is-valid:focus, .default-form.register-form.was-validated .form-control.valid .default-form.register-form.was-validated .form-control.is-valid:focus {
+  border-color: #21bf48;
+}
+.default-form.credit-card-form.was-validated .form-control:valid.number, .default-form.credit-card-form.was-validated .form-control.valid .default-form.credit-card-form.was-validated .form-control.is-valid.number, .default-form.register-form.was-validated .form-control:valid.number, .default-form.credit-card-form.was-validated .form-control.valid .default-form.register-form.was-validated .form-control.is-valid.number, .default-form.register-form.was-validated .form-control.valid .default-form.credit-card-form.was-validated .form-control.is-valid.number, .default-form.register-form.was-validated .form-control.valid .default-form.register-form.was-validated .form-control.is-valid.number {
+  background-position: right calc(4.375em + 0.1875rem) center;
+}
+.default-form.credit-card-form.was-validated .form-control:valid.security-code, .default-form.credit-card-form.was-validated .form-control.valid .default-form.credit-card-form.was-validated .form-control.is-valid.security-code, .default-form.register-form.was-validated .form-control:valid.security-code, .default-form.credit-card-form.was-validated .form-control.valid .default-form.register-form.was-validated .form-control.is-valid.security-code, .default-form.register-form.was-validated .form-control.valid .default-form.credit-card-form.was-validated .form-control.is-valid.security-code, .default-form.register-form.was-validated .form-control.valid .default-form.register-form.was-validated .form-control.is-valid.security-code {
+  background-position: right calc(4.375em + 0.1875rem) center;
+}
+.default-form.credit-card-form.was-validated .form-control:invalid, .default-form.credit-card-form.was-validated .form-control.invalid .default-form.credit-card-form.was-validated .form-control.is-invalid, .default-form.register-form.was-validated .form-control:invalid, .default-form.credit-card-form.was-validated .form-control.invalid .default-form.register-form.was-validated .form-control.is-invalid, .default-form.register-form.was-validated .form-control.invalid .default-form.credit-card-form.was-validated .form-control.is-invalid, .default-form.register-form.was-validated .form-control.invalid .default-form.register-form.was-validated .form-control.is-invalid {
+  background-image: url(../images/exclamation.svg);
+  background-size: 18px;
+  background-position: right calc(0.575em + 0.1875rem) center;
+  border-color: #ed4758;
+}
+.default-form.credit-card-form.was-validated .form-control:invalid:focus, .default-form.credit-card-form.was-validated .form-control.invalid .default-form.credit-card-form.was-validated .form-control.is-invalid:focus, .default-form.register-form.was-validated .form-control:invalid:focus, .default-form.credit-card-form.was-validated .form-control.invalid .default-form.register-form.was-validated .form-control.is-invalid:focus, .default-form.register-form.was-validated .form-control.invalid .default-form.credit-card-form.was-validated .form-control.is-invalid:focus, .default-form.register-form.was-validated .form-control.invalid .default-form.register-form.was-validated .form-control.is-invalid:focus {
+  border-color: #ed4758;
+}
+.default-form.credit-card-form.was-validated .form-control:invalid.number, .default-form.credit-card-form.was-validated .form-control.invalid .default-form.credit-card-form.was-validated .form-control.is-invalid.number, .default-form.register-form.was-validated .form-control:invalid.number, .default-form.credit-card-form.was-validated .form-control.invalid .default-form.register-form.was-validated .form-control.is-invalid.number, .default-form.register-form.was-validated .form-control.invalid .default-form.credit-card-form.was-validated .form-control.is-invalid.number, .default-form.register-form.was-validated .form-control.invalid .default-form.register-form.was-validated .form-control.is-invalid.number {
+  background-position: right calc(0.575em + 0.1875rem) center;
+}
+.default-form.credit-card-form.was-validated .form-control:invalid.security-code, .default-form.credit-card-form.was-validated .form-control.invalid .default-form.credit-card-form.was-validated .form-control.is-invalid.security-code, .default-form.register-form.was-validated .form-control:invalid.security-code, .default-form.credit-card-form.was-validated .form-control.invalid .default-form.register-form.was-validated .form-control.is-invalid.security-code, .default-form.register-form.was-validated .form-control.invalid .default-form.credit-card-form.was-validated .form-control.is-invalid.security-code, .default-form.register-form.was-validated .form-control.invalid .default-form.register-form.was-validated .form-control.is-invalid.security-code {
+  background-position: right calc(0.575em + 0.1875rem) center;
+}
+.default-form.credit-card-form.was-validated .form-select:valid, .default-form.register-form.was-validated .form-select:valid {
+  background-image: url(../images/arrow-down.svg), url(../images/check.svg);
+  background-position: right 0.75rem center, center right 2.25rem;
+  background-size: 16px 12px, 18px;
+  border-color: #21bf48;
+}
+.default-form.credit-card-form.was-validated .form-select:invalid, .default-form.register-form.was-validated .form-select:invalid {
+  background-image: url(../images/arrow-down.svg), url(../images/exclamation.svg);
+  background-size: 18px;
+  background-position: right 0.75rem center, center right 2.25rem;
+  border-color: #ed4758;
+}
+.default-form.credit-card-form.was-validated .form-validated, .default-form.register-form.was-validated .form-validated {
+  background-image: none !important;
+  border-color: #ced4da !important;
+}
+.default-form.credit-card-form.was-validated .invalid-feedback, .default-form.register-form.was-validated .invalid-feedback {
+  color: #ed4758;
+}
+.default-form.credit-card-form.was-validated .invalid-feedback.invalid-number, .default-form.register-form.was-validated .invalid-feedback.invalid-number {
+  display: block;
+}
+.default-form.credit-card-form .credit-cards, .default-form.register-form .credit-cards {
+  position: absolute;
+  top: 36px;
+  right: 8px;
+}
+.default-form.credit-card-form .credit-cards .credit-card, .default-form.register-form .credit-cards .credit-card {
+  width: 56px;
+  height: auto;
+  border-radius: 2px;
+  display: none;
+}
+.default-form.credit-card-form .credit-cards .credit-card path, .default-form.register-form .credit-cards .credit-card path {
+  fill: #1681a4;
+}
+.default-form.credit-card-form .credit-cards .credit-card.hipercard .hipercard-color, .default-form.register-form .credit-cards .credit-card.hipercard .hipercard-color {
+  fill: #fff;
+}
+.default-form.credit-card-form .credit-cards .credit-card.security-code .security-code-bg, .default-form.register-form .credit-cards .credit-card.security-code .security-code-bg {
+  fill: #1681a4;
+}
+
+.stars {
+  margin-bottom: 8px;
+}
+.stars i {
+  margin-right: 5px;
+}
+
+.product-price {
+  line-height: 1.4;
+}
+.product-price .price {
+  font-size: 1.125rem;
+}
+.product-price .sale-price {
+  font-size: 32px;
+  font-weight: 600;
+  color: rgba(50, 49, 54, 0.82);
 }
 
 .navbar {
@@ -11088,6 +11279,9 @@ input:-webkit-autofill, input:-webkit-autofill:hover, input:-webkit-autofill:foc
   background: none;
   padding-top: 22px;
   padding: 22px 10px;
+}
+.navbar .navbox.navbox-login {
+  margin-top: 13px;
 }
 .navbar .navbox i {
   font-size: 26px;
@@ -11184,6 +11378,145 @@ input:-webkit-autofill, input:-webkit-autofill:hover, input:-webkit-autofill:foc
   padding: 0.7rem 3.8rem;
 }
 
+.panel {
+  background-color: #fff;
+  width: 100%;
+  height: 100%;
+}
+.panel.panel-border-top {
+  border-top: 1px solid #edecf0;
+}
+.panel .panel-image-feature {
+  padding: 0 16px 13px;
+}
+.panel .panel-image-feature img {
+  width: 100%;
+  height: 364px;
+  -o-object-fit: cover;
+     object-fit: cover;
+  -o-object-position: center;
+     object-position: center;
+  border-radius: 6px;
+}
+.panel .panel-image-thumbnails {
+  padding: 0 0 0 16px;
+}
+.panel .panel-image-thumbnails img {
+  height: 124px;
+  width: 174px;
+  margin-right: 7.7px;
+  border-radius: 6px;
+  -o-object-fit: cover;
+     object-fit: cover;
+  -o-object-position: center;
+     object-position: center;
+}
+.panel .panel-share {
+  position: relative;
+  left: -4px;
+  margin-top: 23px;
+}
+.panel .panel-share i {
+  font-weight: 400;
+  font-size: 2.4375rem;
+  margin-bottom: 17px;
+}
+.panel .panel-share i.fa-share-alt-square {
+  color: #3a79f7;
+}
+.panel .panel-share i.fa-twitter-square {
+  color: #3a79f7;
+}
+.panel .panel-share i.fa-facebook-square {
+  color: #582ea9;
+}
+.panel .panel-share i.fa-whatsapp-square {
+  color: #21bf48;
+}
+.panel .panel-share .fa-square-alt {
+  width: 35px;
+  height: 34px;
+  background: #777777;
+  border-radius: 4px;
+  margin-top: 3px;
+}
+.panel .panel-share .fa-square-alt .fa-envelope {
+  font-size: 1.125rem;
+  margin: 7px 9px;
+  color: #fff;
+}
+
+.shipping-table {
+  background-color: #f4f5f7;
+  border-radius: 5px;
+  padding: 2px 14px 6px;
+  font-size: 14px;
+  color: #777777;
+}
+.shipping-table .shipping-table-header {
+  font-weight: 600;
+}
+.shipping-table .shipping-table-header span {
+  padding: 10px 0;
+  display: inline-block;
+  min-width: 132px;
+}
+.shipping-table .shipping-table-item div {
+  padding: 4px 0;
+  display: inline-block;
+  min-width: 132px;
+}
+
+.cart-table {
+  border-collapse: separate;
+  border-spacing: 0 1rem;
+  margin-top: -1rem;
+  margin-bottom: -1rem;
+  color: #777777;
+}
+.cart-table thead tr {
+  box-shadow: none;
+  border-radius: 0;
+}
+.cart-table tbody tr {
+  box-shadow: 0px 1px 4px 0px rgba(29, 70, 102, 0.22);
+  border-radius: 8px;
+  height: 166px;
+}
+.cart-table tbody tr img {
+  border-radius: 5px;
+  width: 150px;
+  height: 120px;
+  -o-object-fit: cover;
+     object-fit: cover;
+  -o-object-position: center;
+     object-position: center;
+}
+.cart-table tbody tr .td-product-image {
+  vertical-align: top;
+}
+.cart-table tbody tr .td-product-title {
+  vertical-align: top;
+  text-align: left;
+}
+.cart-table tbody tr .td-product-quantity {
+  width: 156px;
+}
+.cart-table tbody tr .td-product-price {
+  width: 152px;
+  font-size: 20px;
+}
+.cart-table th {
+  padding: 0;
+}
+.cart-table td {
+  text-align: center;
+  padding: 1rem;
+}
+.cart-table tr {
+  text-align: center;
+}
+
 .text-blue {
   color: #2e5ba4 !important;
 }
@@ -11241,11 +11574,11 @@ input:-webkit-autofill, input:-webkit-autofill:hover, input:-webkit-autofill:foc
 }
 
 .text-green {
-  color: #2ea95a !important;
+  color: #21bf48 !important;
 }
 
 .bg-green {
-  background-color: #2ea95a !important;
+  background-color: #21bf48 !important;
 }
 
 .text-teal {
@@ -11334,290 +11667,23 @@ h2, .h2 {
   font-size: 1.05rem;
 }
 
-.scrolling-wrapper {
-  display: flex;
-  flex-wrap: no-wrap;
-  overflow: hidden;
-  padding: 10px;
-}
-.scrolling-wrapper.active {
-  cursor: pointer;
-}
-.scrolling-wrapper .card {
-  margin-right: 2rem;
-  flex: 0 0 auto;
-  display: flex;
-}
-.scrolling-wrapper .card:focus {
-  box-shadow: -1px 3px 10px 0 rgba(29, 70, 102, 0.22) !important;
-}
-.scrolling-wrapper[data-dragging=true] a {
-  pointer-events: none !important;
-}
-.scrolling-wrapper[data-dragging=true]:focus {
-  pointer-events: none !important;
-  box-shadow: -1px 3px 10px 0 rgba(29, 70, 102, 0.22) !important;
-}
-
-.badge {
-  font-weight: 600;
-}
-
-.quantity-form {
-  position: relative;
-  top: 3.5px;
-}
-.quantity-form .quantity {
-  border: none;
-  background: #EEEFF0;
-  padding: 0.5rem;
-  text-align: center;
-  width: 44px;
-  font-size: 1.375rem;
-  color: #777777;
-}
-.quantity-form .box-minus,
-.quantity-form .box-plus {
-  border: none;
-  background: #EEEFF0;
-  color: #777777;
-  padding: 0.5rem;
-  font-size: 1.375rem;
-  position: relative;
-}
-.quantity-form .box-minus {
-  left: 6px;
-  top: 0px;
-  border-bottom-left-radius: 6px;
-  border-top-left-radius: 6px;
-  padding-left: 0.875rem;
-}
-.quantity-form .box-plus {
-  right: 6px;
-  top: 0px;
-  border-bottom-right-radius: 6px;
-  border-top-right-radius: 6px;
-  padding-right: 0.875rem;
-}
-
-.shipping-form i {
-  position: absolute;
-  left: 268px;
-  top: 20px;
-  color: rgba(50, 49, 54, 0.82);
-  border-radius: 0 !important;
-}
-.shipping-form input {
-  padding: 0.95rem 0;
-  padding-left: 300px;
-  display: inline-block;
-  width: 100%;
-  border: 1px solid rgba(50, 49, 54, 0.2);
-  border-left: none;
-  border-right: none;
-  border-top: none;
-}
-.shipping-form input:focus {
-  border-color: #777777;
-}
-.shipping-form label {
-  position: absolute;
-  font-size: 1rem;
-  top: 16.9px;
-  left: 0;
-  background: none;
-  padding: 0;
-  color: rgba(50, 49, 54, 0.82);
-  border: none;
-  font-weight: 500;
-  border: none;
-  border-radius: 0;
-  padding-right: 16px;
-  border-right: 1px solid #77777757;
-  cursor: default;
-}
-.shipping-form label:hover {
-  color: rgba(50, 49, 54, 0.82);
-}
-
-.shipping-cart i {
-  position: absolute;
-  left: 20px;
-  top: 52px;
-  color: #777777;
-}
-.shipping-cart input {
-  background: rgba(255, 255, 255, 0.73);
-  margin: 10px 0 0;
-  padding: 0.85rem 0;
-  padding-left: 54px;
-  border: none;
-  border-radius: 5px;
-}
-
-.credit-card-form .form-control {
-  height: 46px;
-  border-radius: 0.35rem;
-}
-.credit-card-form.was-validated .form-control:valid, .credit-card-form.was-validated .form-control.valid {
-  background-image: url(../images/check.svg);
-  background-size: 18px;
-  background-position: right calc(0.775em + 0.1875rem) center;
-  border-color: #2ea95a;
-}
-.credit-card-form.was-validated .form-control:valid:focus, .credit-card-form.was-validated .form-control.valid:focus {
-  border-color: #2ea95a;
-}
-.credit-card-form.was-validated .form-control:valid.number, .credit-card-form.was-validated .form-control.valid.number {
-  background-position: right calc(4.375em + 0.1875rem) center;
-}
-.credit-card-form.was-validated .form-control:valid.security-code, .credit-card-form.was-validated .form-control.valid.security-code {
-  background-position: right calc(4.375em + 0.1875rem) center;
-}
-.credit-card-form.was-validated .form-control:invalid, .credit-card-form.was-validated .form-control.invalid {
-  background-image: url(../images/exclamation.svg);
-  background-size: 18px;
-  background-position: right calc(0.575em + 0.1875rem) center;
-  border-color: #ed4758;
-}
-.credit-card-form.was-validated .form-control:invalid:focus, .credit-card-form.was-validated .form-control.invalid:focus {
-  border-color: #ed4758;
-}
-.credit-card-form.was-validated .form-control:invalid.number, .credit-card-form.was-validated .form-control.invalid.number {
-  background-position: right calc(0.575em + 0.1875rem) center;
-}
-.credit-card-form.was-validated .form-control:invalid.security-code, .credit-card-form.was-validated .form-control.invalid.security-code {
-  background-position: right calc(0.575em + 0.1875rem) center;
-}
-.credit-card-form.was-validated .form-select:valid {
-  background-image: url(../images/arrow-down.svg), url(../images/check.svg);
-  background-position: right 0.75rem center, center right 2.25rem;
-  background-size: 16px 12px, 18px;
-  border-color: #2ea95a;
-}
-.credit-card-form.was-validated .form-select:invalid {
-  background-image: url(../images/arrow-down.svg), url(../images/exclamation.svg);
-  background-size: 18px;
-  background-position: right 0.75rem center, center right 2.25rem;
-  border-color: #ed4758;
-}
-.credit-card-form.was-validated .invalid-feedback {
-  color: #ed4758;
-}
-.credit-card-form.was-validated .invalid-feedback.invalid-number {
-  display: block;
-}
-.credit-card-form .credit-cards {
-  position: absolute;
-  top: 35px;
-  right: 8px;
-}
-.credit-card-form .credit-cards .credit-card {
-  width: 50px;
-  height: auto;
-  border-radius: 2px;
-  display: none;
-}
-.credit-card-form .credit-cards .credit-card path {
-  fill: #1681a4;
-}
-.credit-card-form .credit-cards .credit-card.hipercard .hipercard-color {
-  fill: #fff;
-}
-.credit-card-form .credit-cards .credit-card.security-code .security-code-bg {
-  fill: #1681a4;
-}
-
-.stars {
-  margin-bottom: 8px;
-}
-.stars i {
-  margin-right: 5px;
-}
-
-.product-price {
-  line-height: 1.4;
-}
-.product-price .price {
-  font-size: 1.125rem;
-}
-.product-price .sale-price {
-  font-size: 32px;
-  font-weight: 600;
-  color: rgba(50, 49, 54, 0.82);
-}
-
-.shipping-table {
-  background-color: #f4f5f7;
-  border-radius: 5px;
-  padding: 2px 14px 6px;
-  font-size: 14px;
-  color: #777777;
-}
-.shipping-table .shipping-table-header {
-  font-weight: 600;
-}
-.shipping-table .shipping-table-header span {
-  padding: 10px 0;
-  display: inline-block;
-  min-width: 132px;
-}
-.shipping-table .shipping-table-item div {
-  padding: 4px 0;
-  display: inline-block;
-  min-width: 132px;
-}
-
-.cart-table {
-  border-collapse: separate;
-  border-spacing: 0 1rem;
-  margin-top: -1rem;
-  margin-bottom: -1rem;
-  color: #777777;
-}
-.cart-table thead tr {
-  box-shadow: none;
-  border-radius: 0;
-}
-.cart-table tbody tr {
-  box-shadow: 0px 1px 4px 0px rgba(29, 70, 102, 0.22);
-  border-radius: 8px;
-  height: 166px;
-}
-.cart-table tbody tr img {
-  border-radius: 5px;
-  width: 150px;
-  height: 120px;
-  -o-object-fit: cover;
-     object-fit: cover;
-  -o-object-position: center;
-     object-position: center;
-}
-.cart-table tbody tr .td-product-image {
-  vertical-align: top;
-}
-.cart-table tbody tr .td-product-title {
-  vertical-align: top;
-  text-align: left;
-}
-.cart-table tbody tr .td-product-quantity {
-  width: 156px;
-}
-.cart-table tbody tr .td-product-price {
-  width: 152px;
-  font-size: 20px;
-}
-.cart-table th {
-  padding: 0;
-}
-.cart-table td {
-  text-align: center;
-  padding: 1rem;
-}
-.cart-table tr {
-  text-align: center;
-}
-
+/* @import "utilities/align";
+@import "utilities/background"; */
+/* @import "utilities/clearfix";
+@import "utilities/display";
+@import "utilities/embed";
+@import "utilities/flex";
+@import "utilities/float";
+@import "utilities/interactions";
+@import "utilities/overflow";
+@import "utilities/position";
+@import "utilities/screenreaders";
+@import "utilities/shadows";
+@import "utilities/sizing";
+@import "utilities/spacing";
+@import "utilities/stretched-link";
+@import "utilities/text";
+@import "utilities/visibility"; */
 .main-content {
   margin-left: 280px;
 }

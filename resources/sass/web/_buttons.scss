@@ -8,6 +8,10 @@
         color: $white;
     }
 
+    &.btn-xs {
+        padding: 8px 24px;
+    }
+
     &.btn-sm {
         padding: 10px 12px;
     }
@@ -19,6 +23,7 @@
     &.btn-success {
         border: none;
         background-color: $green;
+        box-shadow: -1px 3px 10px 0 rgb(29 70 102 / 8%);
 
         &:hover {
             background: darken($green, 5%);
@@ -82,16 +87,16 @@
     i {
         width: 60px;
         height: 60px;
-        background: #19779a;
+        background: $green-100;
         margin-top: 10px;
         padding: 16px 13px;
         font-size: 28px;
-        color: #ffff;
+        color: $green-300;
         border-radius: 6px;
     }
 
     a {
-        margin-left: 1rem;
+        margin-left: 0.8rem;
         border-bottom: 1px solid;
         color: #19779a;
         position: relative;

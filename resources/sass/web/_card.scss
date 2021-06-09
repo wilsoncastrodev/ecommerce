@@ -74,5 +74,42 @@
             font-size: 56px;
         }
     }
+
+    &.card-alt {
+        box-shadow: 0 1.35rem 2.4rem rgb(18 38 63 / 10%);
+
+        .card-header {
+            height: 120px;
+            width: 100%;
+            background: #1b668a;
+            border-top-left-radius: 10px;
+            border-top-right-radius: 10px;
+            padding: 18px 40px 34px;
+
+            h2 {
+                display: inline-block;
+            }
+
+            div {
+                background: rgb(255 255 255 / 5%);
+                width: 84px;
+                height: 84px;
+                border-radius: 50%;
+
+                i {
+                    padding: 23px 27.5px;
+                    font-size: 34px;
+                }
+            }
+
+            &.card-header-alt {
+                height: auto;
+                padding: 12px 40px 12px;
+            }
+        }
+
+        .card-body {
+            padding: 30px 40px 34px;
+        }
     }
 }
