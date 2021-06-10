@@ -7,6 +7,7 @@ use App\Models\Order;
 use App\Models\Payment;
 use App\Models\Product;
 use App\Models\CartItem;
+use App\Models\Category;
 use App\Models\Shipping;
 use App\Models\OrderItem;
 use Illuminate\Http\Request;
@@ -19,8 +20,19 @@ class WebController extends Controller
         $products = Product::all();
         $products_featured = Product::productsFeatured($products);
         $products_top = Product::productsTop($products);
+        $categories = Category::orderBy('category_title')->get();
+        $categories_top = Category::where('category_top', 'yes')->orderBy('category_title')->get();
 
-        return view('home', compact('products', 'products_featured', 'products_top'));
+        return view('home', compact('products', 'products_featured', 'products_top', 'categories', 'categories_top'));
+    }
+
+    public function showCategory($slug)
+    {
+        $category = Category::where('category_slug', $slug)->first();
+        $categories = Category::orderBy('category_title')->get();
+        $categories_top = Category::where('category_top', 'yes')->orderBy('category_title')->get();
+
+        return view('web.category', compact('category', 'categories', 'categories_top'));
     }
 
     public function productDetails($slug)
@@ -30,6 +42,8 @@ class WebController extends Controller
         $cart = Cart::where('customer_ip', $customer_ip)->first();
 
         $product = Product::with('productStock')->where('product_url', $slug)->first();
+        $categories = Category::orderBy('category_title')->get();
+        $categories_top = Category::where('category_top', 'yes')->orderBy('category_title')->get();
 
         foreach ($cart->products as $cart_product) {
             if ($cart_product->product_url == $slug) {
@@ -37,7 +51,7 @@ class WebController extends Controller
             }
         }
 
-        return view('web.product-details', compact('product', 'cart'));
+        return view('web.product-details', compact('product', 'cart', 'categories', 'categories_top'));
     }
 
     public function addCart(Request $request)
@@ -81,12 +95,15 @@ class WebController extends Controller
 
         $cart = Cart::where('customer_ip', $customer_ip)->first();
 
+        $categories = Category::orderBy('category_title')->get();
+        $categories_top = Category::where('category_top', 'yes')->orderBy('category_title')->get();
+
         $products = $cart->products;
 
         $cart->products = Cart::subtotalCart($products);
         $cart->order_subtotal = Order::subtotalOrder($products);
 
-        return view('web.cart', compact('cart'));
+        return view('web.cart', compact('cart', 'categories', 'categories_top'));
     }
 
     public function showCheckout()
@@ -94,6 +111,9 @@ class WebController extends Controller
         $customer_ip = getRealCustomerIp();
         $shipping_request = collect();
         $credit_card = collect();
+
+        $categories = Category::orderBy('category_title')->get();
+        $categories_top = Category::where('category_top', 'yes')->orderBy('category_title')->get();
 
         $cart = Cart::where('customer_ip', $customer_ip)->first();
 
@@ -114,7 +134,7 @@ class WebController extends Controller
         $credit_card->years = creditCardYears();
         $credit_card->months = creditCardMonths();
 
-        return view('web.checkout', compact('cart', 'customer', 'customer_address', 'credit_card'));
+        return view('web.checkout', compact('cart', 'customer', 'customer_address', 'credit_card', 'categories', 'categories_top'));
     }
 
     public function checkShipping(Request $request)

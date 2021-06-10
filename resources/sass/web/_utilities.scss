@@ -1,18 +1,20 @@
-@import "utilities/align";
-@import "utilities/background";
-@import "utilities/borders";
-@import "utilities/clearfix";
-@import "utilities/display";
-@import "utilities/embed";
-@import "utilities/flex";
-@import "utilities/float";
-@import "utilities/interactions";
-@import "utilities/overflow";
-@import "utilities/position";
-@import "utilities/screenreaders";
-@import "utilities/shadows";
-@import "utilities/sizing";
-@import "utilities/spacing";
-@import "utilities/stretched-link";
-@import "utilities/text";
-@import "utilities/visibility";
+.bg-dropdown {
+   &::after {
+    background: rgb(28 68 101 / 60%);
+    content: '';
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 100;
+   } 
+}
+
+.z-index-none {
+   z-index: 0 !important;
+}
+
+.z-index-1000 {
+   z-index: 1000 !important;
+}

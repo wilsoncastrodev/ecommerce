@@ -65,4 +65,26 @@ const fallbackImage = () => {
         });
     }); 
 }
+
+const backgroundDropdown = () => {
+    const $btn_menu_dropdown = document.getElementById('btn-menu-dropdown');
+
+    if ($btn_menu_dropdown) {
+        const $bg_dropdown = document.getElementById('bg-dropdown'),
+              $dropdown_menu = document.getElementById('dropdown-menu');
+
+        $btn_menu_dropdown.addEventListener('mouseover', () => {
+            $dropdown_menu.classList.add('show');
+            $bg_dropdown.classList.remove('d-none');
+        });
+
+        $bg_dropdown.addEventListener('mouseover', () => {
+            $bg_dropdown.classList.add('d-none');
+            $dropdown_menu.classList.remove('show');
+        })
+    }
+}
+
 scrollingCards();
+fallbackImage();
+backgroundDropdown();

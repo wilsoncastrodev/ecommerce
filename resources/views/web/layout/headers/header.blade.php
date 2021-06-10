@@ -48,30 +48,36 @@
             <div class="row pt-1">
                 <div class="col-auto px-0 me-2">
                     <div class="btn-group">
-                        <button class="btn btn-menu btn-menu-dropdown btn-secondary btn-lg" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        <button class="btn btn-menu btn-menu-dropdown btn-secondary btn-lg" id="btn-menu-dropdown" type="button" data-bs-toggle="dropdown" aria-expanded="false">
                             <i class="fas fa-bars me-2"></i>
                             <span class="me-2">Departamentos</span>
                         </button>
-                        <ul class="dropdown-menu">
-                            ...
+                        
+                        <ul class="dropdown-menu" id="dropdown-menu">
+                            @foreach ($categories as $category)
+                                @empty (!$category->products->first())
+                                    <a class="dropdown-item" href="{{ route('category', $category->category_slug) }}">{{ $category->category_title }}</a>
+                                @endempty
+                            @endforeach
                         </ul>
                     </div>
                 </div>
                 <div class="col-5">
                     <div class="collapse navbar-collapse" id="navbarSupportedContent">
                         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                            <li class="nav-item">
-                                <a class="nav-link active" aria-current="page" href="#">Home</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="#">Link</a>
-                            </li>
+                            @foreach ($categories_top as $category)
+                                @empty (!$category->products->first())
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="{{ route('category', $category->category_slug) }}">{{ $category->category_title }}</a>
+                                    </li>
+                                @endempty
+                            @endforeach
                         </ul>
                     </div>
                 </div>
                 <div class="col-4">
-                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                        <ul class="navbar-nav ms-5 me-auto mb-2 mb-lg-0">
+                    <div class="float-end">
+                        <ul class="navbar-nav btn-group z-index-none ms-5 me-auto mb-2 mb-lg-0">
                             <li class="nav-item me-3">
                                 <button class="btn btn-menu btn-secondary btn-lg" type="button" data-bs-toggle="dropdown" aria-expanded="false">
                                     <span>Meus Pedidos</span>
@@ -100,3 +106,4 @@
         </div>
     </nav>
 </header>
+<div class="bg-dropdown d-none" id="bg-dropdown"></div>
