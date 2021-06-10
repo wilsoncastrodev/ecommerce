@@ -1,5 +1,5 @@
-var scrollingCards = () => {
-    const $scrolling_wrapper = document.querySelectorAll(".scrolling-wrapper");
+const scrollingCards = () => {
+    const $scrolling_wrapper = document.querySelectorAll('.scrolling-wrapper');
 
     if ($scrolling_wrapper) {
         $scrolling_wrapper.forEach((e) => {
@@ -52,4 +52,17 @@ var scrollingCards = () => {
 
 }
 
+const fallbackImage = () => {
+    const $images = document.querySelectorAll('img');
+
+    let url = window.location.href, 
+        url_split = url.split('public');
+
+    $images.forEach((image) => {
+        image.addEventListener('error', (e) => {
+            e.target.src = url_split[0] + 'public/images/bg-gray.png';
+            e.target.classList.add('img-error');
+        });
+    }); 
+}
 scrollingCards();

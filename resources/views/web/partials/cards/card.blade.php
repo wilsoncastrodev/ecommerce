@@ -1,4 +1,4 @@
-<a href="{{ url("/produto") . "/" .  $product->product_url }}">
+<a href="{{ route('product', $product->product_url) }}">
     <div class="card card-simple p-0">
         <img class="card-img-top" src="{{ asset($product->product_image1) }}" alt="Card image cap">
         <div class="card-body">
