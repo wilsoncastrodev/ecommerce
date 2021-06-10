@@ -11040,6 +11040,11 @@ input:-webkit-autofill, input:-webkit-autofill:hover, input:-webkit-autofill:foc
   height: auto;
   padding: 12px 40px 12px;
 }
+.card.card-alt .card-header.card-header-alt .alert-danger {
+  color: #842029;
+  background-color: #f8d7da;
+  border-radius: 0;
+}
 .card.card-alt .card-body {
   padding: 30px 40px 34px;
 }
@@ -11168,35 +11173,39 @@ input:-webkit-autofill, input:-webkit-autofill:hover, input:-webkit-autofill:foc
 .default-form .form-control:focus {
   border-color: #1681a4;
 }
-.default-form.credit-card-form.was-validated .form-control:valid, .default-form.credit-card-form.was-validated .form-control.valid .default-form.credit-card-form.was-validated .form-control.is-valid, .default-form.register-form.was-validated .form-control:valid, .default-form.credit-card-form.was-validated .form-control.valid .default-form.register-form.was-validated .form-control.is-valid, .default-form.register-form.was-validated .form-control.valid .default-form.credit-card-form.was-validated .form-control.is-valid, .default-form.register-form.was-validated .form-control.valid .default-form.register-form.was-validated .form-control.is-valid {
+.default-form.credit-card-form.was-validated .form-control:valid, .default-form.credit-card-form.was-validated .form-control.valid, .default-form.credit-card-form.was-validated .form-control.is-valid, .default-form.register-form.was-validated .form-control:valid, .default-form.register-form.was-validated .form-control.valid, .default-form.register-form.was-validated .form-control.is-valid {
   background-image: url(../images/check.svg);
   background-size: 18px;
   background-position: right calc(0.775em + 0.1875rem) center;
   border-color: #21bf48;
 }
-.default-form.credit-card-form.was-validated .form-control:valid:focus, .default-form.credit-card-form.was-validated .form-control.valid .default-form.credit-card-form.was-validated .form-control.is-valid:focus, .default-form.register-form.was-validated .form-control:valid:focus, .default-form.credit-card-form.was-validated .form-control.valid .default-form.register-form.was-validated .form-control.is-valid:focus, .default-form.register-form.was-validated .form-control.valid .default-form.credit-card-form.was-validated .form-control.is-valid:focus, .default-form.register-form.was-validated .form-control.valid .default-form.register-form.was-validated .form-control.is-valid:focus {
+.default-form.credit-card-form.was-validated .form-control:valid:focus, .default-form.credit-card-form.was-validated .form-control.valid:focus, .default-form.credit-card-form.was-validated .form-control.is-valid:focus, .default-form.register-form.was-validated .form-control:valid:focus, .default-form.register-form.was-validated .form-control.valid:focus, .default-form.register-form.was-validated .form-control.is-valid:focus {
   border-color: #21bf48;
 }
-.default-form.credit-card-form.was-validated .form-control:valid.number, .default-form.credit-card-form.was-validated .form-control.valid .default-form.credit-card-form.was-validated .form-control.is-valid.number, .default-form.register-form.was-validated .form-control:valid.number, .default-form.credit-card-form.was-validated .form-control.valid .default-form.register-form.was-validated .form-control.is-valid.number, .default-form.register-form.was-validated .form-control.valid .default-form.credit-card-form.was-validated .form-control.is-valid.number, .default-form.register-form.was-validated .form-control.valid .default-form.register-form.was-validated .form-control.is-valid.number {
+.default-form.credit-card-form.was-validated .form-control:valid.number, .default-form.credit-card-form.was-validated .form-control.valid.number, .default-form.credit-card-form.was-validated .form-control.is-valid.number, .default-form.register-form.was-validated .form-control:valid.number, .default-form.register-form.was-validated .form-control.valid.number, .default-form.register-form.was-validated .form-control.is-valid.number {
   background-position: right calc(4.375em + 0.1875rem) center;
 }
-.default-form.credit-card-form.was-validated .form-control:valid.security-code, .default-form.credit-card-form.was-validated .form-control.valid .default-form.credit-card-form.was-validated .form-control.is-valid.security-code, .default-form.register-form.was-validated .form-control:valid.security-code, .default-form.credit-card-form.was-validated .form-control.valid .default-form.register-form.was-validated .form-control.is-valid.security-code, .default-form.register-form.was-validated .form-control.valid .default-form.credit-card-form.was-validated .form-control.is-valid.security-code, .default-form.register-form.was-validated .form-control.valid .default-form.register-form.was-validated .form-control.is-valid.security-code {
+.default-form.credit-card-form.was-validated .form-control:valid.security-code, .default-form.credit-card-form.was-validated .form-control.valid.security-code, .default-form.credit-card-form.was-validated .form-control.is-valid.security-code, .default-form.register-form.was-validated .form-control:valid.security-code, .default-form.register-form.was-validated .form-control.valid.security-code, .default-form.register-form.was-validated .form-control.is-valid.security-code {
   background-position: right calc(4.375em + 0.1875rem) center;
 }
-.default-form.credit-card-form.was-validated .form-control:invalid, .default-form.credit-card-form.was-validated .form-control.invalid .default-form.credit-card-form.was-validated .form-control.is-invalid, .default-form.register-form.was-validated .form-control:invalid, .default-form.credit-card-form.was-validated .form-control.invalid .default-form.register-form.was-validated .form-control.is-invalid, .default-form.register-form.was-validated .form-control.invalid .default-form.credit-card-form.was-validated .form-control.is-invalid, .default-form.register-form.was-validated .form-control.invalid .default-form.register-form.was-validated .form-control.is-invalid {
+.default-form.credit-card-form.was-validated .form-control:invalid, .default-form.credit-card-form.was-validated .form-control.invalid, .default-form.credit-card-form.was-validated .form-control.invalid-cpf, .default-form.register-form.was-validated .form-control:invalid, .default-form.register-form.was-validated .form-control.invalid, .default-form.register-form.was-validated .form-control.invalid-cpf {
   background-image: url(../images/exclamation.svg);
   background-size: 18px;
   background-position: right calc(0.575em + 0.1875rem) center;
   border-color: #ed4758;
 }
-.default-form.credit-card-form.was-validated .form-control:invalid:focus, .default-form.credit-card-form.was-validated .form-control.invalid .default-form.credit-card-form.was-validated .form-control.is-invalid:focus, .default-form.register-form.was-validated .form-control:invalid:focus, .default-form.credit-card-form.was-validated .form-control.invalid .default-form.register-form.was-validated .form-control.is-invalid:focus, .default-form.register-form.was-validated .form-control.invalid .default-form.credit-card-form.was-validated .form-control.is-invalid:focus, .default-form.register-form.was-validated .form-control.invalid .default-form.register-form.was-validated .form-control.is-invalid:focus {
+.default-form.credit-card-form.was-validated .form-control:invalid:focus, .default-form.credit-card-form.was-validated .form-control.invalid:focus, .default-form.credit-card-form.was-validated .form-control.invalid-cpf:focus, .default-form.register-form.was-validated .form-control:invalid:focus, .default-form.register-form.was-validated .form-control.invalid:focus, .default-form.register-form.was-validated .form-control.invalid-cpf:focus {
   border-color: #ed4758;
 }
-.default-form.credit-card-form.was-validated .form-control:invalid.number, .default-form.credit-card-form.was-validated .form-control.invalid .default-form.credit-card-form.was-validated .form-control.is-invalid.number, .default-form.register-form.was-validated .form-control:invalid.number, .default-form.credit-card-form.was-validated .form-control.invalid .default-form.register-form.was-validated .form-control.is-invalid.number, .default-form.register-form.was-validated .form-control.invalid .default-form.credit-card-form.was-validated .form-control.is-invalid.number, .default-form.register-form.was-validated .form-control.invalid .default-form.register-form.was-validated .form-control.is-invalid.number {
+.default-form.credit-card-form.was-validated .form-control:invalid.number, .default-form.credit-card-form.was-validated .form-control.invalid.number, .default-form.credit-card-form.was-validated .form-control.invalid-cpf.number, .default-form.register-form.was-validated .form-control:invalid.number, .default-form.register-form.was-validated .form-control.invalid.number, .default-form.register-form.was-validated .form-control.invalid-cpf.number {
   background-position: right calc(0.575em + 0.1875rem) center;
 }
-.default-form.credit-card-form.was-validated .form-control:invalid.security-code, .default-form.credit-card-form.was-validated .form-control.invalid .default-form.credit-card-form.was-validated .form-control.is-invalid.security-code, .default-form.register-form.was-validated .form-control:invalid.security-code, .default-form.credit-card-form.was-validated .form-control.invalid .default-form.register-form.was-validated .form-control.is-invalid.security-code, .default-form.register-form.was-validated .form-control.invalid .default-form.credit-card-form.was-validated .form-control.is-invalid.security-code, .default-form.register-form.was-validated .form-control.invalid .default-form.register-form.was-validated .form-control.is-invalid.security-code {
+.default-form.credit-card-form.was-validated .form-control:invalid.security-code, .default-form.credit-card-form.was-validated .form-control.invalid.security-code, .default-form.credit-card-form.was-validated .form-control.invalid-cpf.security-code, .default-form.register-form.was-validated .form-control:invalid.security-code, .default-form.register-form.was-validated .form-control.invalid.security-code, .default-form.register-form.was-validated .form-control.invalid-cpf.security-code {
   background-position: right calc(0.575em + 0.1875rem) center;
+}
+.default-form.credit-card-form.was-validated .form-control:disabled, .default-form.credit-card-form.was-validated .form-control[readonly], .default-form.register-form.was-validated .form-control:disabled, .default-form.register-form.was-validated .form-control[readonly] {
+  border-color: #e9ecef;
+  background-color: #f9fafb;
 }
 .default-form.credit-card-form.was-validated .form-select:valid, .default-form.register-form.was-validated .form-select:valid {
   background-image: url(../images/arrow-down.svg), url(../images/check.svg);
@@ -11307,7 +11316,9 @@ input:-webkit-autofill, input:-webkit-autofill:hover, input:-webkit-autofill:foc
   color: #fff;
 }
 .navbar .navbar-collapse ul li a {
-  color: #fff !important;
+  color: rgba(255, 255, 255, 0.9) !important;
+  padding-right: 0.8rem !important;
+  padding-left: 0.8rem !important;
 }
 .navbar form {
   margin-top: 17px;
@@ -11357,7 +11368,10 @@ input:-webkit-autofill, input:-webkit-autofill:hover, input:-webkit-autofill:foc
   color: rgba(255, 255, 255, 0.05);
   box-shadow: none !important;
 }
-.navbar .btn-menu {
+.navbar .btn-group {
+  z-index: 200;
+}
+.navbar .btn-group .btn-menu {
   border-top-right-radius: 0.4rem !important;
   border-bottom-right-radius: 0 !important;
   border-bottom-left-radius: 0;
@@ -11367,15 +11381,30 @@ input:-webkit-autofill, input:-webkit-autofill:hover, input:-webkit-autofill:foc
   font-size: 16px;
   padding: 0.7rem 1.2rem;
 }
-.navbar .btn-menu i {
+.navbar .btn-group .btn-menu i {
   font-size: 18px;
 }
-.navbar .btn-menu span {
+.navbar .btn-group .btn-menu span {
   position: relative;
   top: -1px;
 }
-.navbar .btn-menu-dropdown {
+.navbar .btn-group .btn-menu-dropdown {
   padding: 0.7rem 3.8rem;
+}
+.navbar .btn-group .dropdown-menu {
+  border-radius: 0;
+  border-bottom-right-radius: 7px;
+  border-bottom-left-radius: 7px;
+  border: none;
+  top: 96%;
+  width: 273px;
+}
+.navbar .btn-group .dropdown-menu .dropdown-item {
+  padding: 0.4rem 1.2rem;
+  color: #172B4D;
+}
+.navbar .btn-group .dropdown-menu .dropdown-item:active {
+  background-color: #e9ecef;
 }
 
 .panel {
@@ -11442,7 +11471,7 @@ input:-webkit-autofill, input:-webkit-autofill:hover, input:-webkit-autofill:foc
 }
 .panel .panel-share .fa-square-alt .fa-envelope {
   font-size: 1.125rem;
-  margin: 7px 9px;
+  margin: 8px 9px;
   color: #fff;
 }
 
@@ -11667,23 +11696,21 @@ h2, .h2 {
   font-size: 1.05rem;
 }
 
-/* @import "utilities/align";
-@import "utilities/background"; */
-/* @import "utilities/clearfix";
-@import "utilities/display";
-@import "utilities/embed";
-@import "utilities/flex";
-@import "utilities/float";
-@import "utilities/interactions";
-@import "utilities/overflow";
-@import "utilities/position";
-@import "utilities/screenreaders";
-@import "utilities/shadows";
-@import "utilities/sizing";
-@import "utilities/spacing";
-@import "utilities/stretched-link";
-@import "utilities/text";
-@import "utilities/visibility"; */
+.bg-dropdown::after {
+  background: rgba(28, 68, 101, 0.6);
+  content: "";
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 100;
+}
+
+.z-index-none {
+  z-index: 0 !important;
+}
+
 .main-content {
   margin-left: 280px;
 }

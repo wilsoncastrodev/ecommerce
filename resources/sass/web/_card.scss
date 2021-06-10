@@ -105,6 +105,12 @@
             &.card-header-alt {
                 height: auto;
                 padding: 12px 40px 12px;
+
+                .alert-danger {
+                    color: #842029;
+                    background-color: #f8d7da;
+                    border-radius: 0;
+                }
             }
         }
 

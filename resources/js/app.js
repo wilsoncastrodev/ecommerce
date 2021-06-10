@@ -1,7 +1,8 @@
 require('./bootstrap');
-require('./routes/common');
 
 require('./routes/cart');
+require('./routes/checkout');
+require('./routes/common');
 require('./routes/product-details');
 require('./routes/products');
-require('./routes/checkout');
+require('./routes/register');

@@ -118,7 +118,7 @@
         &.was-validated {
             .form-control {
                 &:valid,
-                &.valid
+                &.valid,
                 &.is-valid {
                     background-image: url(../images/check.svg);
                     background-size: 18px;
@@ -139,8 +139,8 @@
                 } 
     
                 &:invalid,
-                &.invalid
-                &.is-invalid {
+                &.invalid,
+                &.invalid-cpf {
                     background-image: url(../images/exclamation.svg);
                     background-size: 18px;
                     background-position: right calc(0.575em + 0.1875rem) center;
@@ -157,6 +157,12 @@
                     &.security-code {
                         background-position: right calc(0.575em + 0.1875rem) center;
                     }
+                }
+
+                &:disabled,
+                &[readonly] {
+                    border-color: #e9ecef;
+                    background-color: #f9fafb;
                 }
             }
     

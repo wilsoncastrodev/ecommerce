@@ -24,6 +24,7 @@ Route::prefix('/')->group(function () {
     Route::post('produto/atualizar-quantidade', [WebController::class, 'updateQuantity'])->name('update-quantity');
     Route::post('produto/adicionar-carrinho', [WebController::class, 'addCart'])->name('add-cart');
     Route::post('produto/remover-produto', [WebController::class, 'deleteProduct'])->name('delete-product');
+    Route::post('registro/validar-cliente', [RegisterController::class, 'validatorCustomer'])->name('register-validate');
 });
 
 Route::name('admin.')->prefix('admin')->group(function () {

@@ -2,11 +2,12 @@
 
 namespace App\Http\Controllers\Auth;
 
+use Carbon\Carbon;
 use App\Models\User;
 use App\Models\Customer;
 use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
 use App\Models\CustomerAddress;
+use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Support\Facades\Validator;
@@ -58,8 +59,6 @@ class RegisterController extends Controller
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
         ]);
-
-        
     }
     
     /**
@@ -68,13 +67,30 @@ class RegisterController extends Controller
      * @param  array  $data
      * @return \Illuminate\Contracts\Validation\Validator
      */
-    protected function validatorCustomer(array $data)
+    protected function validatorCustomer(Request $request, $back_validate = null)
     {
-        return Validator::make($data, [
+        $validator = Validator::make($request->all(), [
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:customers'],
-            'password' => ['required', 'string', 'min:8', 'confirmed'],
+            'password' => ['required', 'string', 'min:8', 'max:255'],
+            'phone' => ['required', 'string', 'min:13', 'max:255'],
+            'cpf' => ['required', 'string', 'min:14', 'unique:customers', 'max:255'],
+            'birthday' => ['required', 'date_format:d/m/Y', 'before:18 years ago', 'min:10'],
+            'address' => ['required', 'string', 'max:255'],
+            'number' => ['required', 'string', 'max:255'],
+            'zipcode' => ['required', 'string', 'min:9', 'max:255'],
+            'complement' => ['required', 'string', 'max:255'],
+            'neighbourhood' => ['required', 'string', 'max:255'],
+            'city' => ['required', 'string', 'max:255'],
+            'state' => ['required', 'string', 'max:255'],
+            'reference' => ['required', 'string', 'max:255'],
         ]);
+
+        if (!$back_validate) {
+            return response()->json(['error'=>$validator->errors()->get($request->keys()[0])]);
+        }
+
+        return $validator;
     }
 
     /**
@@ -99,14 +115,18 @@ class RegisterController extends Controller
 
     protected function createCustomer(Request $request)
     {
-        $this->validatorCustomer($request->all())->validate();
+        $birthday = Carbon::createFromFormat('d/m/Y', $request->birthday)->format('Y-m-d');
+
+        $back_validate = true;
+
+        $this->validatorCustomer($request, $back_validate)->validate();
 
         $customer_id = Customer::create([
             'name' => $request->name,
             'email' => $request->email,
             'cpf' => $request->cpf,
             'phone' => $request->phone,
-            'birthday' => $request->birthday,
+            'birthday' => $birthday,
             'password' => Hash::make($request->password),
             'ip' => getRealCustomerIp(),
         ])->id;
