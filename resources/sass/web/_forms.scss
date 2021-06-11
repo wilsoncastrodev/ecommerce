@@ -227,3 +227,48 @@
     }
 }
 
+.search-form {
+    position: relative;
+
+    input,
+    button {
+        z-index: 1000;
+    }
+
+    &-box {
+        width: 100%;
+        height: 300px;
+        background: $white;
+        border-radius: 25px;
+        position: absolute;
+        top: 74px;
+        z-index: 500;
+        border-radius: 10px;
+        padding: 14px 18px;
+        display: none;
+
+        ul {
+            li {
+                padding: 3px 0px;
+                color: $secondary;
+                font-size: 14px;
+                font-weight: 500;
+            }
+        }
+    }
+
+    &.active {
+        input,
+        button {
+            background-color: rgba(255, 255, 255, 0.08);
+            
+            &:focus {
+                background-color: rgba(255, 255, 255, 0.08);
+            }
+        }
+
+        .search-form-box {
+            display: block;
+        }
+    }
+}

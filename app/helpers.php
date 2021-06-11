@@ -90,9 +90,53 @@ if (!function_exists('removePointDecimal')) {
     }
 }
 
+if (!function_exists('removeSpecialChars')) {
+    function removeSpecialChars($string)
+    {
+        return preg_replace('/[^A-Za-zà-úÀ-Ú0-9 ]/', '', $string);
+    }
+}
+
 if (!function_exists('firstName')) {
     function firstName($value)
     {
         return strtok($value, " ");
+    }
+}
+
+if (!function_exists('sortArrayMulti')) {
+    function sortArrayMulti($string, $key, $type = null)
+    {
+        if ($type === 'reverse') {
+            usort($string, function ($a, $b) use ($key) {
+                return $b[$key] <=> $a[$key];
+            });
+        } else {
+            usort($string, function ($a, $b) use ($key) {
+                return $a[$key] <=> $b[$key];
+            });
+        }
+
+        return $string;
+    }
+}
+
+if (!function_exists('uniqueArrayMulti')) {
+    function uniqueArrayMulti($array, $key)
+    {
+        $temp_array = [];
+        $key_array = [];
+        $i = 0;
+    
+        foreach ($array as $val) {
+            if (!in_array($val[$key], $key_array)) {
+                $key_array[$i] = $val[$key];
+                $temp_array[$i] = $val;
+            }
+
+            $i++;
+        }
+
+        return $temp_array;
     }
 }

@@ -85,6 +85,58 @@ const backgroundDropdown = () => {
     }
 }
 
+const searchProducts = () => {
+    const $search = document.getElementById('search');
+
+    if ($search) {
+        $search.addEventListener('keyup', (e) => {
+            const $bg_search = document.getElementById('bg-search'),
+                  $search_form = document.getElementById('search-form'),
+                  $search_form_box = document.getElementById('search-form-box');
+                  
+            let route = e.target.getAttribute('data-route'),
+                keyword = e.target.value
+                url = window.location.href, 
+                url_split = url.split('public');
+                
+            if(keyword.length > 0) {
+                $bg_search.classList.remove('d-none');
+                $search_form.classList.add('active');
+
+                axios.get(`${route}/${keyword}`)
+                .then(function (response) {
+                    const $quick_search = document.getElementById('quick-search');
+
+                    if(response.data.length > 0) {
+                        $quick_search.innerHTML = '';
+
+                        $search_form_box.classList.remove('d-none')
+
+                        Object.values(response.data).forEach((product) => {
+                            $quick_search.insertAdjacentHTML('beforeend', 
+                                `<a href=${url_split[0]}public/pesquisa?s=${encodeURIComponent(product.product_title)}>
+                                        <li>
+                                        ${product.product_title}
+                                        </li>
+                                </a>`
+                            );
+                        });
+                    } else {
+                        $search_form_box.classList.add('d-none')
+                    } 
+                })  
+                .catch(function () {  
+                    $search_form_box.classList.add('d-none')
+                });  
+            } else {
+                $bg_search.classList.add('d-none');
+                $search_form.classList.remove('active');
+            }
+        });
+    }
+}
+
+searchProducts();
 scrollingCards();
 fallbackImage();
 backgroundDropdown();

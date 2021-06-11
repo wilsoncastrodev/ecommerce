@@ -6,9 +6,14 @@
                     <a class="navbar-brand text-white" href="{{ url('/') }}">{{ env('APP_NAME', 'wCastro') }}</a>
                 </div>
                 <div class="col-6">
-                    <form class="d-flex">
-                        <input class="form-control" type="search" placeholder="Pesquisar por Produto" aria-label="Search">
-                        <button class="btn btn-outline-success" type="submit"><i class="fa fa-search text-white"></i></button>
+                    <form class="search-form d-flex" id="search-form" method="GET" action="{{ route('search-products') }}">
+                        <input class="form-control" name="s" type="search" id="search" placeholder="Pesquisar por Produto" aria-label="Search" data-route="{{  route('quick-search-products') }}" autocomplete="off">
+                        <button class="btn" type="submit"><i class="fa fa-search text-white"></i></button>
+
+                        <div class="search-form-box" id="search-form-box">
+                            <h5 class="text-secondary">Você quis dizer: </h5>
+                            <ul class="list-unstyled" id="quick-search"></ul>
+                        </div>
                     </form>
                 </div>
                 <div class="col-3 d-flex justify-content-end">
@@ -107,3 +112,4 @@
     </nav>
 </header>
 <div class="bg-dropdown d-none" id="bg-dropdown"></div>
+<div class="bg-search d-none" id="bg-search"></div>

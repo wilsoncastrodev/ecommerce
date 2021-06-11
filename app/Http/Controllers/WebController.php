@@ -35,6 +35,40 @@ class WebController extends Controller
         return view('web.category', compact('category', 'categories', 'categories_top'));
     }
 
+
+    public function quickSearchProducts($keywords)
+    {
+        $keywords = explode(' ', $keywords);
+
+        $products = Product::select('product_title')->where(function ($q) use ($keywords) {
+            foreach ($keywords as $keyword) {
+                $q->orWhere('product_title', 'like', "%{$keyword}%");
+            }
+        })->get();
+        
+        if (!empty($products->first())) {
+            foreach ($products as $key => $product) {
+                $search_keywords[$key]['words'] = 0;
+                $products_array[] = explode(' ', removeSpecialChars(ucwords($product->product_title)));
+                
+                foreach ($products_array[$key] as $product_array) {
+                    foreach ($keywords as $keyword) {
+                        if (strpos(strtolower($product_array), strtolower($keyword)) !== false) {
+                            $keywords_array[$key][] = ucfirst($product_array);
+                            $search_keywords[$key]['words']  = $search_keywords[$key]['words'] + 1;
+                        }
+                    }
+                }
+    
+                $search_keywords[$key]['product_title'] = implode(' ', array_slice(array_unique(array_merge($keywords_array[$key], $products_array[$key])), 0, $search_keywords[$key]['words'] + 2));
+            }
+    
+            return array_slice(uniqueArrayMulti(sortArrayMulti($search_keywords, 'words', 'reverse'), 'product_title'), 0, 3);
+        }
+
+        return false;
+    }
+
     public function productDetails($slug)
     {
         $customer_ip = getRealCustomerIp();
