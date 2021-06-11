@@ -100,9 +100,9 @@ const validateFormRegister = () => {
                     axios.post(route, {
                         [name]: value
                     })
-                        .then(function (response) {
-                            !response.data.error.length ? e.target.classList.remove('invalid') : e.target.classList.add('invalid');
-                        })
+                    .then(function (response) {
+                        !response.data.error.length ? e.target.classList.remove('invalid') : e.target.classList.add('invalid');
+                    })
                 });
             });
         }
