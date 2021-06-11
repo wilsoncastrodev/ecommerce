@@ -35,6 +35,20 @@ class WebController extends Controller
         return view('web.category', compact('category', 'categories', 'categories_top'));
     }
 
+    public function search(Request $request)
+    {
+        $keywords = explode(' ', $request->s);
+        $categories = Category::orderBy('category_title')->get();
+        $categories_top = Category::where('category_top', 'yes')->orderBy('category_title')->get();
+
+        $search = Product::where(function ($q) use ($keywords) {
+            foreach ($keywords as $keyword) {
+                $q->orWhere('product_title', 'like', "%{$keyword}%");
+            }
+        })->get();
+
+        return view('web.search', compact('search', 'categories', 'categories_top'));
+    }
 
     public function quickSearchProducts($keywords)
     {
