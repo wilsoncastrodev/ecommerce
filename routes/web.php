@@ -18,7 +18,9 @@ Route::prefix('/')->group(function () {
     Route::get('', [WebController::class, 'home'])->name('home');
     Route::get('carrinho', [WebController::class, 'showCart'])->name('cart');
     Route::get('categoria/{slug}', [WebController::class, 'showCategory'])->name('category');
+    Route::post('categoria', [WebController::class, 'loadMoreCategory'])->name('load-more-category');
     Route::get('pesquisa', [WebController::class, 'search'])->name('search-products');
+    Route::post('pesquisa', [WebController::class, 'loadMoreSearch'])->name('load-more-search');
     Route::get('pesquisa-rapida/{keywords?}', [WebController::class, 'quickSearchProducts'])->name('quick-search-products');
     Route::get('pagamento', [WebController::class, 'showCheckout'])->name('checkout')->middleware('auth:customer');
     Route::post('pagamento', [WebController::class, 'createOrder'])->name('create-order')->middleware('auth:customer');

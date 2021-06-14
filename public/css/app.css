@@ -10981,6 +10981,15 @@ input:-webkit-autofill, input:-webkit-autofill:hover, input:-webkit-autofill:foc
   font-size: 1.2rem;
   font-weight: 500;
 }
+.card.card-simple-alt {
+  width: auto;
+}
+.card.card-simple-alt .card-img-top {
+  height: 167px;
+}
+.card.card-simple-alt .card-body {
+  height: 187px;
+}
 .card.card-resume {
   background-color: #f4f5f7;
   border-radius: 10px;
@@ -11259,18 +11268,25 @@ input:-webkit-autofill, input:-webkit-autofill:hover, input:-webkit-autofill:foc
 }
 .search-form-box {
   width: 100%;
-  height: 300px;
   background: #fff;
   border-radius: 25px;
   position: absolute;
   top: 74px;
   z-index: 500;
   border-radius: 10px;
-  padding: 14px 18px;
+  padding: 14px 0;
   display: none;
 }
+.search-form-box h5, .search-form-box .h5 {
+  padding: 0 16px;
+}
+.search-form-box a:focus, .search-form-box a:hover {
+  background: rgba(119, 143, 163, 0.13);
+  width: 100%;
+  display: block;
+}
 .search-form-box ul li {
-  padding: 3px 0px;
+  padding: 4px 16px;
   color: #172B4D;
   font-size: 14px;
   font-weight: 500;

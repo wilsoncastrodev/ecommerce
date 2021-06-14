@@ -93,7 +93,7 @@ if (!function_exists('removePointDecimal')) {
 if (!function_exists('removeSpecialChars')) {
     function removeSpecialChars($string)
     {
-        return preg_replace('/[^A-Za-zà-úÀ-Ú0-9 ]/', '', $string);
+        return preg_replace('/[^A-Za-zà-úÀ-Ú0-9 .-]/', '', $string);
     }
 }
 

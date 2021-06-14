@@ -7,12 +7,13 @@
                 </div>
                 <div class="col-6">
                     <form class="search-form d-flex" id="search-form" method="GET" action="{{ route('search-products') }}">
-                        <input class="form-control" name="s" type="search" id="search" placeholder="Pesquisar por Produto" aria-label="Search" data-route="{{  route('quick-search-products') }}" autocomplete="off">
-                        <button class="btn" type="submit"><i class="fa fa-search text-white"></i></button>
+                        <input class="form-control" name="s" type="search" id="search" placeholder="Pesquisar por Produto" aria-label="Search" data-route="{{  route('quick-search-products') }}" 
+                         autocomplete="off">
+                        <button class="btn" type="submit" id="btn-search"><i class="fa fa-search text-white"></i></button>
 
                         <div class="search-form-box" id="search-form-box">
                             <h5 class="text-secondary">Você quis dizer: </h5>
-                            <ul class="list-unstyled" id="quick-search"></ul>
+                            <ul class="list-unstyled mb-0" id="quick-search"></ul>
                         </div>
                     </form>
                 </div>

@@ -35,6 +35,18 @@
                 }
             }
         }
+
+        &-alt {
+            width: auto;
+
+            .card-img-top {
+                height: 167px;
+            }
+
+            .card-body {
+                height: 187px;
+            }
+        }
     }
     
     &.card-resume {

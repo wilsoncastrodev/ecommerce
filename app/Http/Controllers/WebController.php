@@ -28,26 +28,80 @@ class WebController extends Controller
 
     public function showCategory($slug)
     {
-        $category = Category::where('category_slug', $slug)->first();
+        $products_view = 4;
+
+        $category = Category::with([
+            'products' => function ($query) use ($products_view) {
+                 $query->limit($products_view);
+            }
+        ])->where('category_slug', $slug)->first();
+
+        $category_products = Category::where('category_slug', $slug)->first();
+        $category->total_products = $category_products->products->count();
+        $category->products_view = $products_view;
+        
         $categories = Category::orderBy('category_title')->get();
         $categories_top = Category::where('category_top', 'yes')->orderBy('category_title')->get();
 
         return view('web.category', compact('category', 'categories', 'categories_top'));
     }
+    
+    public function loadMoreCategory(Request $request)
+    {
+        $category = Category::with([
+            'products' => function ($query) use ($request) {
+                 $query->offset($request->number_products)->take($request->products_view);
+            }
+        ])->where('category_slug', $request->category_slug)->first();
+
+        $products = $category->products;
+        
+        return view('web.partials.cards.card-alt', compact('products'));
+    }
 
     public function search(Request $request)
     {
+        $products_view = 4;
+
         $keywords = explode(' ', $request->s);
         $categories = Category::orderBy('category_title')->get();
         $categories_top = Category::where('category_top', 'yes')->orderBy('category_title')->get();
 
-        $search = Product::where(function ($q) use ($keywords) {
+        $search = Product::where(function ($query) use ($keywords) {
             foreach ($keywords as $keyword) {
-                $q->orWhere('product_title', 'like', "%{$keyword}%");
+                $query->where('product_title', 'like', "%{$keyword}%");
+            }
+        })->limit(4)->get();
+
+        $search_products = Product::where(function ($query) use ($keywords) {
+            foreach ($keywords as $keyword) {
+                $query->where('product_title', 'like', "%{$keyword}%");
             }
         })->get();
 
+        $search->total_products = $search_products->count();
+        $search->products_view = $products_view;
+        $search->keywords = $request->s;
+
         return view('web.search', compact('search', 'categories', 'categories_top'));
+    }
+    
+    public function loadMoreSearch(Request $request)
+    {
+        $keywords = explode(' ', $request->s);
+
+        $categories = Category::orderBy('category_title')->get();
+        $categories_top = Category::where('category_top', 'yes')->orderBy('category_title')->get();
+
+        $search = Product::where(function ($query) use ($keywords) {
+            foreach ($keywords as $keyword) {
+                $query->where('product_title', 'like', "%{$keyword}%");
+            }
+        })->offset($request->number_products)->take($request->products_view)->get();
+
+        $products = $search;
+        
+        return view('web.partials.cards.card-alt', compact('products'));
     }
 
     public function quickSearchProducts($keywords)
@@ -73,11 +127,21 @@ class WebController extends Controller
                         }
                     }
                 }
-    
-                $search_keywords[$key]['product_title'] = implode(' ', array_slice(array_unique(array_merge($keywords_array[$key], $products_array[$key])), 0, $search_keywords[$key]['words'] + 2));
+                
+                $search_keywords[$key]['product_title'][] = implode(' ', array_slice(array_unique(array_merge($keywords_array[$key], $products_array[$key])), 0, $search_keywords[$key]['words']));
+                $search_keywords[$key]['product_title'][] = implode(' ', array_slice(array_unique(array_merge($keywords_array[$key], $products_array[$key])), 0, $search_keywords[$key]['words'] + 1));
+                $search_keywords[$key]['product_title'][] = implode(' ', array_slice(array_unique(array_merge($keywords_array[$key], $products_array[$key])), 0, $search_keywords[$key]['words'] + 2));
             }
-    
-            return array_slice(uniqueArrayMulti(sortArrayMulti($search_keywords, 'words', 'reverse'), 'product_title'), 0, 3);
+
+            $search_keywords = uniqueArrayMulti(sortArrayMulti($search_keywords, 'words', 'reverse'), 'product_title');
+
+            foreach ($search_keywords as $keywords) {
+                foreach ($keywords['product_title'] as $keyword) {
+                    $main_keywords[] = $keyword;
+                }
+            }
+
+            return array_slice(array_values(array_unique($main_keywords, SORT_STRING)), 0, 8);
         }
 
         return false;
