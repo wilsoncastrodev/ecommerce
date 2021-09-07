@@ -1,0 +1,287 @@
+.quantity-form {
+    position: relative;
+    top: 3.5px;
+    
+    .quantity {
+        border: none;
+        background: $gray-300;
+        padding: 0.5rem;
+        text-align: center;
+        width: 44px;
+        font-size: 1.375rem;
+        color: $gray-400;
+    }
+
+    .box-minus,
+    .box-plus {
+        border: none;
+        background: $gray-300;
+        color: $gray-400;
+        padding: 0.5rem;
+        font-size: 1.375rem;
+        position: relative;
+    }
+
+    .box-minus {
+        left: 6px;
+        top: 0px;
+        border-bottom-left-radius: 6px;
+        border-top-left-radius: 6px;
+        padding-left: 0.875rem;
+    }
+
+    .box-plus {
+        right: 6px;
+        top: 0px;
+        border-bottom-right-radius: 6px;
+        border-top-right-radius: 6px;
+        padding-right: 0.875rem;
+    }
+}
+
+.shipping-form {
+    i {
+        position: absolute;
+        left: 268px;
+        top: 20px;
+        color: rgb(50 49 54 / 82%);
+    }
+
+    input {
+        padding: 0.95rem 0;
+        padding-left: 300px;
+        display: inline-block;
+        width: 100%;
+        border: 1px solid rgba(50, 49, 54, 0.2);
+        border-left: none;
+        border-right: none;
+        border-top: none;
+        border-radius: 0 !important;
+
+        &:focus {
+            border-color: $gray-400;
+        }
+    }
+
+    label {
+        position: absolute;
+        font-size: 1rem;
+        top: 16.9px;
+        left: 0;
+        background: none;
+        padding: 0;
+        color: rgb(50 49 54 / 82%);
+        border: none;
+        font-weight: 500;
+        border: none;
+        border-radius: 0;
+        padding-right: 16px;
+        border-right: 1px solid #77777757;
+        cursor: default;
+
+        &:hover {
+            color: rgb(50 49 54 / 82%);
+        }
+    }
+}
+
+.shipping-cart {
+    i {
+        position: absolute;
+        left: 20px;
+        top: 52px;
+        color: #777777;
+    }
+
+    input {
+        background: rgb(255 255 255 / 73%);
+        margin: 10px 0 0;
+        padding: 0.85rem 0;
+        padding-left: 54px;
+        border: none;
+        border-radius: 5px;
+    }
+}
+
+.default-form {
+    .form-control {
+        height: 50px;
+        border-radius: 0.35rem;
+
+        &:focus {
+            border-color: $green-200;
+        }
+    }
+
+    &.credit-card-form,
+    &.register-form {
+        &.was-validated {
+            .form-control {
+                &:valid,
+                &.valid,
+                &.is-valid {
+                    background-image: url(../images/check.svg);
+                    background-size: 18px;
+                    background-position: right calc(0.775em + 0.1875rem) center;
+                    border-color: $green;
+    
+                    &:focus {
+                        border-color: $green;
+                    }
+    
+                    &.number {
+                        background-position: right calc(4.375em + 0.1875rem) center;
+                    }
+                    
+                    &.security-code {
+                        background-position: right calc(4.375em + 0.1875rem) center;
+                    }
+                } 
+    
+                &:invalid,
+                &.invalid,
+                &.invalid-cpf {
+                    background-image: url(../images/exclamation.svg);
+                    background-size: 18px;
+                    background-position: right calc(0.575em + 0.1875rem) center;
+                    border-color: $red-alt;
+    
+                    &:focus {
+                        border-color: $red-alt;
+                    }
+    
+                    &.number {
+                        background-position: right calc(0.575em + 0.1875rem) center;
+                    }
+    
+                    &.security-code {
+                        background-position: right calc(0.575em + 0.1875rem) center;
+                    }
+                }
+
+                &:disabled,
+                &[readonly] {
+                    border-color: #e9ecef;
+                    background-color: #f9fafb;
+                }
+            }
+    
+            .form-select {
+                &:valid {
+                    background-image: url(../images/arrow-down.svg), url(../images/check.svg);
+                    background-position: right 0.75rem center, center right 2.25rem;
+                    background-size: 16px 12px, 18px;
+                    border-color: $green;
+                }
+    
+                &:invalid {
+                    background-image: url(../images/arrow-down.svg), url(../images/exclamation.svg);
+                    background-size: 18px;
+                    background-position: right 0.75rem center, center right 2.25rem;
+                    border-color: $red-alt;
+                }
+            }
+
+            .form-validated {
+                background-image: none !important;
+                border-color: #ced4da !important;
+            }
+    
+            .invalid-feedback {
+                color: $red-alt;
+    
+                &.invalid-number {
+                    display: block;
+                }
+            }
+        } 
+    
+        .credit-cards {
+            position: absolute;
+            top: 36px;
+            right: 8px;
+    
+            .credit-card {
+                width: 56px;
+                height: auto;
+                border-radius: 2px;
+                display: none;
+                
+                path {
+                    fill: $green-200;
+                }
+    
+                &.hipercard {
+                    .hipercard-color {
+                        fill: $white;
+                    }
+                }
+    
+                &.security-code {
+                    .security-code-bg {
+                        fill: $green-200;
+                    }
+                }
+            }
+        }
+    }
+}
+
+.search-form {
+    position: relative;
+
+    input,
+    button {
+        z-index: 1000;
+    }
+
+    &-box {
+        width: 100%;
+        background: $white;
+        border-radius: 25px;
+        position: absolute;
+        top: 74px;
+        z-index: 500;
+        border-radius: 10px;
+        padding: 14px 0;
+        display: none;
+
+        h5 {
+            padding: 0 16px;
+        }
+
+        a {
+            &:focus,
+            &:hover {
+                background: rgb(119 143 163 / 13%);
+                width: 100%;
+                display: block;
+            }
+        }
+
+        ul {
+            li {
+                padding: 4px 16px;
+                color: $secondary;
+                font-size: 14px;
+                font-weight: 500;
+            }
+        }
+
+    }
+
+    &.active {
+        input,
+        button {
+            background-color: rgba(255, 255, 255, 0.08);
+            
+            &:focus {
+                background-color: rgba(255, 255, 255, 0.08);
+            }
+        }
+
+        .search-form-box {
+            display: block;
+        }
+    }
+}

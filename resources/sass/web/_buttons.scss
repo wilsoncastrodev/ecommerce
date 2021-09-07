@@ -1,0 +1,105 @@
+.btn {
+    font-family: $font-family-root;
+    font-size: 1.1875rem;
+    color: $white;
+    border-radius: 4px;
+
+    &:hover {
+        color: $white;
+    }
+
+    &.btn-xs {
+        padding: 8px 24px;
+    }
+
+    &.btn-sm {
+        padding: 10px 12px;
+    }
+
+    &.btn-md {
+        padding: 10px 80px;
+    }
+
+    &.btn-success {
+        border: none;
+        background-color: $green;
+        box-shadow: -1px 3px 10px 0 rgb(29 70 102 / 8%);
+
+        &:hover {
+            background: darken($green, 5%);
+        }
+    }
+
+    &.btn-base {
+        border: none;
+        background-color: $base;
+
+        &:hover {
+            background: darken($base, 5%);
+        }
+    }
+
+    &.btn-purple {
+        border: none;
+        background-color: $purple;
+
+        &:hover {
+            background: darken($purple, 5%);
+        }
+    }
+
+    &.btn-danger {
+        border: none;
+        background-color: $red;
+
+        &:hover {
+            background: darken($red, 5%);
+        }
+    }
+
+    &.btn-outline-secondary {
+        color: #1c5c80 !important;
+        border: 1px solid #1c5c80;
+        border-radius: 5px;
+        margin-top: 8px;
+        font-family: "Work Sans";
+        font-size: 18px;
+        font-weight: 400;
+        padding: 12px 22px;
+
+        &:hover {
+            background: $white;
+        }
+
+        i {
+            font-size: 22px;
+            position: relative;
+            top: 2px;
+        }
+    }
+
+    i {
+        margin-right: 4px;
+    }
+}
+
+.btn-back-cart {
+    i {
+        width: 60px;
+        height: 60px;
+        background: $green-100;
+        margin-top: 10px;
+        padding: 16px 13px;
+        font-size: 28px;
+        color: $green-300;
+        border-radius: 6px;
+    }
+
+    a {
+        margin-left: 0.8rem;
+        border-bottom: 1px solid;
+        color: #19779a;
+        position: relative;
+        top: -10px;
+    }
+}

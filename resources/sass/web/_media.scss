@@ -1,0 +1,21 @@
+.stars {
+    margin-bottom: 8px;
+
+    i {
+        margin-right: 5px;
+    }
+}
+
+.product-price {
+    line-height: 1.4;
+
+    .price {
+        font-size: 1.125rem;
+    }
+    
+    .sale-price {
+        font-size: 32px;
+        font-weight: 600;
+        color: $primary; 
+    }
+}

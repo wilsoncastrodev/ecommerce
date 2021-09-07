@@ -1,0 +1,32 @@
+.scrolling-wrapper {
+    display: flex;
+    flex-wrap: no-wrap;
+    overflow: hidden;
+    padding: 10px;
+    
+    &.active {
+        cursor: pointer;
+    }
+
+    .card {
+        margin-right: 2rem;
+        flex: 0 0 auto;
+        display: flex;
+
+        &:focus {
+            box-shadow: -1px 3px 10px 0 rgb(29 70 102 / 22%) !important;
+        }
+    }
+
+    &[data-dragging='true'] {
+
+        a {
+            pointer-events: none !important;
+        }
+
+        &:focus {
+            pointer-events: none !important;
+            box-shadow: -1px 3px 10px 0 rgb(29 70 102 / 22%) !important;
+        }
+    }
+}

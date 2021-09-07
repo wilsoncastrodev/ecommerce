@@ -1,0 +1,164 @@
+.navbar {
+    background-image: linear-gradient(to right, #138fb1, #19799c, #1c6387, #1d4f71, #1b3b5a);
+
+    .navbar-brand {
+        font-size: 2.9rem;
+        font-family: $font-family-root;
+    }
+
+    .navbox {
+        background-color: rgb(255 255 255 / 5%);
+        display: inline-block;
+        margin-top: 17px;
+        padding: 16px 15px 12px;
+        border-radius: 1rem;
+        height: 60px;
+
+        &.navbox-alt {
+            background: none;
+            padding-top: 22px;
+            padding: 22px 10px;
+        }
+
+        &.navbox-login {
+            margin-top: 13px;
+        }
+
+        i {
+            font-size: 26px;
+            color: $white;
+        }
+
+        span {
+            position: relative;
+            top: -5px;
+            font-size: 15px;
+            font-weight: 500;
+            color: $white;
+        }
+    }
+
+    .nav-icon {
+        display: inline-block;
+        margin-top: 17px;
+        
+        a {
+            padding: 16px 9px;
+            margin-right: 4px;
+            
+            i {
+                font-size: 26px;
+                color: $white;
+            }
+        }
+    }
+
+    .navbar-collapse {
+        ul {
+            li {
+                a {
+                    color: rgb(255 255 255 / 90%) !important;
+                    padding-right: 0.8rem !important;;
+                    padding-left: 0.8rem !important;;
+                }
+            }
+        }
+    }
+
+    form {
+        margin-top: 17px;
+
+        input {
+            color: $white;
+            border-bottom-left-radius: 1rem;
+            border-top-left-radius: 1rem;
+            border-bottom-right-radius: 0;
+            border-top-right-radius: 0;
+            padding-top: 1rem;
+            padding-bottom: 1rem;
+            padding-left: 1.5rem;
+            border: none;
+            background-color: rgb(255 255 255 / 5%);
+
+            &::placeholder {
+                color: $white;
+            }
+
+            &:focus {
+                color: $white;
+                background-color: rgb(255 255 255 / 5%);
+                border: none;
+                outline: 0;
+                box-shadow: none;
+            }
+
+            &::-webkit-search-cancel-button {
+                -webkit-appearance: none;
+                background: none;
+            }
+        }
+
+        button {
+            border-bottom-left-radius: 0;
+            border-top-left-radius: 0;
+            border-bottom-right-radius: 1rem;
+            border-top-right-radius: 1rem;
+            border: none;
+            background-color: rgb(255 255 255 / 5%);
+
+            &:hover,
+            &:focus,
+            &:active {
+                background-color: rgb(255 255 255 / 5%);
+                color: rgb(255 255 255 / 5%);
+                box-shadow: none !important;
+            }
+        }
+    }
+
+    .btn-group {
+        z-index: 200;
+
+        .btn-menu {
+            border-top-right-radius: 0.4rem !important;
+            border-bottom-right-radius: 0 !important;
+            border-bottom-left-radius: 0;
+            border-top-left-radius: 0.4rem;
+            background-color: rgb(255 255 255 / 6%);
+            border: none;
+            font-size: 16px;
+            padding: 0.7rem 1.2rem;
+            
+            i {
+                font-size: 18px;
+            }
+
+            span {
+                position: relative;
+                top: -1px;
+            }
+
+            &-dropdown {
+                padding: 0.7rem 3.8rem;
+            }
+        }
+
+        .dropdown-menu {
+            border-radius: 0;
+            border-bottom-right-radius: 7px;
+            border-bottom-left-radius: 7px;
+            border: none;
+            top: 96%;
+            width: 273px;
+
+            .dropdown-item {
+                padding: 0.4rem 1.2rem;
+                color: $secondary;
+
+                &:active {
+                    background-color: #e9ecef;
+                }
+            }
+        }
+    }
+}

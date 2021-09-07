@@ -1,9 +1,25 @@
-// Fonts
-@import url('https://fonts.googleapis.com/css?family=Nunito');
-
 // Bootstrap
 @import '~bootstrap/scss/bootstrap';
 
-// Variables
-@import 'variables';
-@import 'card';
+// Common
+@import 'common/variables';
+@import 'common/global';
+
+// Web
+@import 'web/badge';
+@import 'web/buttons';
+@import 'web/card';
+@import 'web/carousel';
+@import 'web/forms';
+@import 'web/media';
+@import 'web/navbar';
+@import 'web/pages';
+@import 'web/panels';
+@import 'web/tables';
+@import 'web/type';
+@import 'web/typography';
+@import 'web/utilities';
+
+
+//Admin
+@import 'admin/global'

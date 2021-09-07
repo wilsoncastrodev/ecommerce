@@ -1,0 +1,133 @@
+.card {
+    box-shadow: 0px 1px 4px 0px rgb(29 70 102 / 22%);
+    padding: 17px 22px;
+    border-radius: 10px;
+    border: none;
+    height: 100%;
+
+    &.card-simple {
+        border: none;
+        border-radius: 7px;
+        box-shadow: -1px 3px 10px 0 rgb(29 70 102 / 22%);
+        width: 245px;
+        color: $secondary;
+    
+        .card-img-top {
+            border-top-left-radius: 7px;
+            border-top-right-radius: 7px;
+            object-fit: cover;
+            height: 154px;
+        }
+    
+        .card-body {
+            position: relative;
+            height: 175px;
+            padding: 0.8rem 0.9rem;
+            font-size: 0.875rem;
+    
+            .card-content-price {
+                position: absolute;
+                bottom: 12px;
+    
+                .card-sale-price {
+                    font-size: 1.2rem;
+                    font-weight: 500;
+                }
+            }
+        }
+
+        &-alt {
+            width: auto;
+
+            .card-img-top {
+                height: 167px;
+            }
+
+            .card-body {
+                height: 187px;
+            }
+        }
+    }
+    
+    &.card-resume {
+        background-color: $gray-200;
+        border-radius: 10px;
+        color: $gray-400;
+        border: none;
+        box-shadow: 0px 1px 4px 0px rgb(29 70 102 / 22%);
+        padding: 0;
+    
+        .card-header {
+            padding: 20px;
+            background: none;
+            border: none;
+
+            h3 {
+                color: $gray-400;
+                font-family: $font-family-root;
+                font-size: 1.5rem;
+            }
+        }
+
+        .card-body {
+            padding: 4px 20px 20px;
+
+            .card-total {
+                font-size: 22px;
+                font-weight: 600;
+            }
+
+            .btn {
+                padding: 0.9rem 1rem;
+            }
+        }
+
+        .fa-shopping-cart {
+            font-size: 56px;
+        }
+    }
+
+    &.card-alt {
+        box-shadow: 0 1.35rem 2.4rem rgb(18 38 63 / 10%);
+
+        .card-header {
+            height: 120px;
+            width: 100%;
+            background: #1b668a;
+            border-top-left-radius: 10px;
+            border-top-right-radius: 10px;
+            padding: 18px 40px 34px;
+
+            h2 {
+                display: inline-block;
+            }
+
+            div {
+                background: rgb(255 255 255 / 5%);
+                width: 84px;
+                height: 84px;
+                border-radius: 50%;
+
+                i {
+                    padding: 23px 27.5px;
+                    font-size: 34px;
+                }
+            }
+
+            &.card-header-alt {
+                height: auto;
+                padding: 12px 40px 12px;
+
+                .alert-danger {
+                    color: #842029;
+                    background-color: #f8d7da;
+                    border-radius: 0;
+                }
+            }
+        }
+
+        .card-body {
+            padding: 30px 40px 34px;
+        }
+    }
+}
