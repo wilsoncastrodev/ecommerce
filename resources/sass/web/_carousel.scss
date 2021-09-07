@@ -1,32 +1,83 @@
-.scrolling-wrapper {
-    display: flex;
-    flex-wrap: no-wrap;
-    overflow: hidden;
-    padding: 10px;
-    
-    &.active {
-        cursor: pointer;
-    }
+.scrollbox {
+    position: relative;
 
-    .card {
-        margin-right: 2rem;
-        flex: 0 0 auto;
+    .scrolling-wrapper {
         display: flex;
-
-        &:focus {
-            box-shadow: -1px 3px 10px 0 rgb(29 70 102 / 22%) !important;
+        flex-wrap: no-wrap;
+        overflow: hidden;
+        padding: 10px;
+        
+        &.active {
+            cursor: pointer;
         }
-    }
-
-    &[data-dragging='true'] {
-
-        a {
-            pointer-events: none !important;
+    
+        .card {
+            margin-left: 2rem;
+            flex: 0 0 auto;
+            display: flex;
+    
+            &:focus {
+                box-shadow: -1px 3px 10px 0 rgb(29 70 102 / 22%) !important;
+            }
         }
+    
+        &[data-dragging='true'] {
+    
+            a {
+                pointer-events: none !important;
+            }
+    
+            &:focus {
+                pointer-events: none !important;
+                box-shadow: -1px 3px 10px 0 rgb(29 70 102 / 22%) !important;
+            }
+        }
+    
+        .btn-group-scrolling {
+            .btn {
+                &.btn-base {
+                    background-color: #eeeff1;
+                    box-shadow: 0px 0px 2px 2px rgb(29 70 102 / 10%);
+                    border: 3px solid $white;
+                    border-radius: 12px;
+                    font-size: 1.2875rem;
 
-        &:focus {
-            pointer-events: none !important;
-            box-shadow: -1px 3px 10px 0 rgb(29 70 102 / 22%) !important;
+                    &:focus {
+                        box-shadow: 0px 0px 2px 2px rgb(29 70 102 / 10%) !important;
+                    }
+                }
+
+                &.btn-left-arrow,
+                &.btn-right-arrow {
+                    position: absolute;
+                    top: 145px;
+                    z-index: 5;
+
+                    i {
+                        color: #8d93a2;
+                        font-size: 1.125rem;
+                    }
+                }
+
+                &.btn-left-arrow {
+                    left: -67px;
+                    padding: 8px 15px;
+
+                    i {
+                        margin-right: 4px;
+                    }
+                }
+                
+                &.btn-right-arrow {
+                    right: -67px;
+                    padding: 8px 13px;
+
+                    i {
+                        margin-left: 4px;
+                    }
+                }
+            }
         }
     }
 }
+

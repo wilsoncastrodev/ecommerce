@@ -3,7 +3,9 @@ const scrollingCards = () => {
 
     if ($scrolling_wrapper) {
         $scrolling_wrapper.forEach((e) => {
-            const $slider = e;
+            const $slider = e,
+                    $btn_right_arrow = e.querySelector('.btn-right-arrow'),
+                    $btn_left_arrow = e.querySelector('.btn-left-arrow');
 
             let isDown = false,
                 startX,
@@ -47,9 +49,30 @@ const scrollingCards = () => {
 
                 $slider.scrollLeft = scrollLeft - walk;
             });
+
+            if ($btn_right_arrow) {
+                $btn_right_arrow.addEventListener("click", function(event) {
+                    e.scrollBy({
+                        top: 0,
+                        left: +1105,
+                        behavior: 'smooth'
+                    });
+                    event.preventDefault();
+                });
+            }
+            
+            if ($btn_left_arrow) {
+                $btn_left_arrow.addEventListener("click", function(event) {
+                    e.scrollBy({
+                        top: 0,
+                        left: -1105,
+                        behavior: 'smooth'
+                    });
+                    event.preventDefault();
+                });
+            }
         });
     }
-
 }
 
 const fallbackImage = () => {
