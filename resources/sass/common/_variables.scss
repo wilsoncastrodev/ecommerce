@@ -36,6 +36,7 @@ $green-100: #cfe0e6;
 $green-200: #1681a4;
 $green-300: #19779a;
 $green-600: #1c6286;
+$green-900: #1d5476;
 
 $colors: (
     "blue": $blue,
@@ -53,5 +54,6 @@ $colors: (
     "primary": $primary,
     "secondary": $secondary,
     "base": $base,
-    "green-600": $green-600
+    "green-600": $green-600,
+    "green-900": $green-900
 );

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Cart;
 use App\Models\Order;
+use App\Models\Review;
 use App\Models\Payment;
 use App\Models\Product;
 use App\Models\CartItem;
@@ -154,8 +155,12 @@ class WebController extends Controller
         $cart = Cart::where('customer_ip', $customer_ip)->first();
 
         $product = Product::with('productStock')->where('product_url', $slug)->first();
+        
         $categories = Category::orderBy('category_title')->get();
         $categories_top = Category::where('category_top', 'yes')->orderBy('category_title')->get();
+
+
+        $reviews = Review::has('customer')->where('product_id', $product->id)->get();
 
         foreach ($cart->products as $cart_product) {
             if ($cart_product->product_url == $slug) {
@@ -163,7 +168,7 @@ class WebController extends Controller
             }
         }
 
-        return view('web.product-details', compact('product', 'cart', 'categories', 'categories_top'));
+        return view('web.product-details', compact('product', 'cart', 'categories', 'categories_top', 'reviews'));
     }
 
     public function addCart(Request $request)
@@ -342,5 +347,19 @@ class WebController extends Controller
                 ->delete();
 
         return $this->checkShipping($request);
+    }
+
+    public function storeReviewProduct(Request $request)
+    {
+        $review = new Review();
+        $review->product_id = $request->product_id;
+        $review->customer_id = $request->customer_id;
+        $review->review_rating = $request->review_rating;
+        $review->review_title = $request->review_title;
+        $review->review_content = $request->review_content;
+        $review->review_status = 'active';
+        $review->save();
+
+        return redirect()->back();
     }
 }

@@ -1,4 +1,5 @@
 import socialMediaLinks from 'social-media-links';
+import { Modal } from 'bootstrap';
 
 const buttonsQuantity = () => {
     const $btn_minus = document.getElementById('btn-minus'),
@@ -133,6 +134,73 @@ const shareLinks = () => {
     }
 }
 
+const showReviewForm = () => {
+    const $login_review = document.getElementById('login-review');
+    
+    if($login_review) {
+        $login_review.addEventListener('submit', (e) => {
+            e.preventDefault();
+            e.stopPropagation();
+
+            localStorage.setItem('modal_review', 'active');
+
+            $login_review.submit();
+        });
+    }
+
+    const openModalReview = () => {
+        let modal_review = localStorage.getItem('modal_review');
+        
+        if(modal_review == 'active') {
+            const $modal_review = new Modal(document.getElementById('modal-rating'));
+
+            $modal_review.show();
+
+            localStorage.setItem('modal_review', 'desactive');
+        }
+    }
+
+    const hoverRatingLabel = () => {
+        const $rating_label = document.querySelectorAll('.rating-icon');
+
+        if ($rating_label) {
+            $rating_label.forEach((e) => {
+                e.addEventListener('mouseover', (event) => {
+                    const $hover_rating_label = document.getElementById('hover-rating-label');
+
+                    let rating_value = event.target.getAttribute('data-stars');
+
+                    event.target.parentNode.nextElementSibling.checked = true;
+
+                    if (rating_value == '1 star') {
+                        $hover_rating_label.innerHTML = 'Péssimo';
+                    }
+                    
+                    if (rating_value == '2 stars') {
+                        $hover_rating_label.innerHTML = 'Ruim';
+                    }
+                    
+                    if (rating_value == '3 stars') {
+                        $hover_rating_label.innerHTML = 'Bom';
+                    }
+                    
+                    if (rating_value == '4 stars') {
+                        $hover_rating_label.innerHTML = 'Ótimo';
+                    }
+                    
+                    if (rating_value == '5 stars') {
+                        $hover_rating_label.innerHTML = 'Excelente';
+                    }
+                });
+            });
+        }
+    }
+
+    hoverRatingLabel();
+    openModalReview();
+}
+
 buttonsQuantity();
 shareLinks();
 checkShipping();
+showReviewForm();

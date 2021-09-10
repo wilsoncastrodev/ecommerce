@@ -73,4 +73,39 @@
             }
         }
     }
+
+    .panel-description {
+        div {
+            font-size: 0.875rem;
+            line-height: 1.7;
+        }
+    }
+
+    .panel-reviews {
+        .review-quantity {
+            font-size: 0.9375rem;
+            color: $green-900;
+            margin-top: 6px;
+        }
+
+        .review-customer{
+            .review-rating {
+                .stars-sm {
+                    i {
+                        position: relative;
+                        top: -1px;
+                    }
+                }
+            }
+    
+            .review-content {
+                font-size: 0.875rem;
+                line-height: 1.7;
+            }
+    
+            .review-footer {
+                font-size: 0.8125rem;
+            }
+        }
+    }
 }

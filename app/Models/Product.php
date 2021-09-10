@@ -44,6 +44,11 @@ class Product extends Model
         return $this->belongsToMany(Order::class, 'orders_items')->using(OrderItem::class);
     }
 
+    public function reviews()
+    {
+        return $this->hasMany(Review::class);
+    }
+
     public static function productsFeatured($products)
     {
         return $products->filter(function ($item) {
@@ -59,6 +64,8 @@ class Product extends Model
 
         $collection->splice(3);
 
-        return $collection->all();
+        $products_collection = $collection->all();
+
+        return collect($products_collection);
     }
 }

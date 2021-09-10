@@ -29,6 +29,7 @@ Route::prefix('/')->group(function () {
     Route::post('produto/atualizar-quantidade', [WebController::class, 'updateQuantity'])->name('update-quantity');
     Route::post('produto/adicionar-carrinho', [WebController::class, 'addCart'])->name('add-cart');
     Route::post('produto/remover-produto', [WebController::class, 'deleteProduct'])->name('delete-product');
+    Route::post('produto/avaliar-produto', [WebController::class, 'storeReviewProduct'])->name('store-review-product');
     Route::post('registro/validar-cliente', [RegisterController::class, 'validatorCustomer'])->name('register-validate');
 });
 
@@ -55,6 +56,7 @@ Route::prefix('admin')->group(function () {
 
 Route::prefix('/')->group(function () {
     Route::get('login', [LoginController::class, 'showCustomerLoginForm'])->name('form.customer.login');
+    Route::post('produto/login-review')->name('login-review')->middleware('auth:customer');
     Route::post('logout', [LoginController::class, 'logout'])->name('customer.logout');
     Route::get('register', [RegisterController::class, 'showCustomerRegisterForm'])->name('form.customer.register');
     Route::post('login', [LoginController::class, 'customerLogin'])->name('customer.login');

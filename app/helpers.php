@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Str;
+use Carbon\Carbon;
 
 if (!function_exists('storeImages')) {
     function storeImages($images, $type, $name)
@@ -37,6 +38,12 @@ if (!function_exists('formatCurrency')) {
     function formatCurrency($value)
     {
         return number_format($value, 2, ',', '.');
+    }
+}
+if (!function_exists('formatRating')) {
+    function formatRating($value)
+    {
+        return number_format($value, 1, ',', '.');
     }
 }
 
@@ -138,5 +145,12 @@ if (!function_exists('uniqueArrayMulti')) {
         }
 
         return $temp_array;
+    }
+}
+
+if (!function_exists('formatDateDefault')) {
+    function formatDateDefault($date)
+    {
+        return Carbon::parse($date)->format('d/m/Y');
     }
 }

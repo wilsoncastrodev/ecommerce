@@ -240,7 +240,7 @@
         background: $white;
         border-radius: 25px;
         position: absolute;
-        top: 74px;
+        top: 70px;
         z-index: 500;
         border-radius: 10px;
         padding: 14px 0;
@@ -282,6 +282,87 @@
 
         .search-form-box {
             display: block;
+        }
+    }
+}
+
+.review-form {
+    border-radius: 5px;
+    padding: 0 8px 0;
+
+    textarea {
+        min-height: 112px;
+    }
+
+    .btn-close {
+        position: absolute;
+        top: 16px;
+        right: 18px;
+    }
+
+    .review-product {
+        margin-top: 16px;
+
+        img {
+            height: 124px;
+            width: 510px;
+            margin-right: 16px;
+            border-radius: 6px;
+            object-fit: cover;
+            object-position: center;
+        }
+
+        h6 {
+            font-size: 0.9rem;
+            font-weight: 400;
+            line-height: 1.5;
+        }
+    }
+
+    .review-rating {
+        .rating-group {
+            display: inline-flex;
+
+            label {
+                cursor: pointer;
+                padding: 0 0.1em;
+                font-size: 2rem;
+
+                i {
+                    color: $yellow;
+                    font-size: 26px;
+                }
+            }
+
+            span {
+                margin-top: 14px;
+                margin-left: 8px;
+            }
+        }
+
+        .rating {
+            position: absolute !important;
+            left: -9999px !important;
+
+            &:checked ~ label {
+                i {
+                    color: $gray-700;
+                }
+            }
+        }
+        
+        .rating-group:hover {
+            label {
+                i {
+                    color: $yellow;
+                }
+            }
+        } 
+
+        .rating:hover ~ label {
+            i {
+                color: $gray-700;
+            }
         }
     }
 }
