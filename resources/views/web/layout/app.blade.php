@@ -101,7 +101,7 @@
         <main class="py-4">
             @yield('content')
         </main>
+        <img src="{{ asset('images/bg-gray.png') }}" class="d-none" id="img-fallback"/>
     </div>
-    
 </body>
 </html>

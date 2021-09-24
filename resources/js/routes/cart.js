@@ -1,17 +1,19 @@
+import Inputmask from 'inputmask';
+
 const checkShipping = () => {
     const $check_shipping = document.getElementById('shippingCartForm'),
           $zipcode = document.getElementById('zipcode');
 
     if ($check_shipping) {
         $zipcode.addEventListener('keyup', (e) => {
-            let zipcode_lenth = e.target.value.length;
+            let zipcode_lenght = e.target.value.replace(/[^0-9]/g, '').length;
 
-            if (zipcode_lenth > 8) {
+            if (zipcode_lenght > 7) {
                 const $shippingForm = document.forms.shippingCartForm;
 
                 let route = $shippingForm.route.value,
                     cart = $shippingForm.cart ? $shippingForm.cart.value : null,
-                    zipcode = $shippingForm.zipcode.value;
+                    zipcode = $shippingForm.zipcode.value.replace(/[^0-9]/g, '');
 
                 axios.post(route, {
                     zipcode: zipcode,
@@ -42,6 +44,16 @@ const checkShipping = () => {
                 });
             }
         });
+    }
+}
+
+const addFieldsMask = () => {
+    const $register_form = document.getElementById('shippingCartForm');
+
+    if ($register_form) {
+        const $zip = document.getElementById('zipcode');
+
+        Inputmask({ 'mask': '99999-999', 'placeholder': ' ', 'showMaskOnHover': false }).mask($zip);
     }
 }
 
@@ -193,3 +205,4 @@ const deleteProduct = () => {
 deleteProduct();
 checkShipping();
 buttonsQuantity();
+addFieldsMask();

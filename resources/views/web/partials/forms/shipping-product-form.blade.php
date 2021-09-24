@@ -4,7 +4,7 @@
         <div class="position-relative">
             <i class="fa fa-truck"></i><input type="text" id="zipcode" class="form-control" placeholder="Digite aqui o seu CEP" name="zipcode" value="{{ old('zipcode') }}">
             <input type="hidden" id="product_id" class="form-control" value="{{ $product->id }}" />
-            <input type="hidden" id="cart" class="form-control" value="{{ $cart->id }}" />
+            <input type="hidden" id="cart" class="form-control" value="{{ $cart->id ?? "" }}" />
             <input type="hidden" id="route" class="form-control" value="{{ route('check-shipping') }}" />
             <label class="btn" id="check-shipping" disabled>Calcular Prazo e Valor do Frete</label>
         </div>

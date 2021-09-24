@@ -7,7 +7,7 @@
                 </div>
                 <div class="col-6">
                     <form class="search-form d-flex" id="search-form" method="GET" action="{{ route('search-products') }}">
-                        <input class="form-control" name="s" type="search" id="search" placeholder="Pesquisar por Produto" aria-label="Search" data-route="{{  route('quick-search-products') }}" 
+                        <input class="form-control" name="s" type="search" id="search" placeholder="Pesquisar por Produto" aria-label="Search" data-url="{{ url('/') }}" data-route="{{  route('quick-search-products') }}" 
                          autocomplete="off">
                         <button class="btn" type="submit" id="btn-search"><i class="fa fa-search text-white"></i></button>
 

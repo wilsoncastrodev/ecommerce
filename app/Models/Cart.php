@@ -11,6 +11,8 @@ class Cart extends Model
 
     protected $table = "cart";
 
+    protected $fillable = ['customer_id'];
+
     public function products()
     {
         return $this->belongsToMany(Product::class, 'cart_items')->using(CartItem::class)->withPivot('quantity');
