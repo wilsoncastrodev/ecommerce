@@ -9,7 +9,7 @@ const validateFormCreditCard = () => {
         if($credit_card_form) {
             const $number = document.getElementById('number');
 
-            Inputmask({"mask": "9999 9999 9999 9999"}).mask($number);
+            Inputmask({"mask": "9999 9999 9999 9999", "placeholder": ""}).mask($number);
         }
     }
 
@@ -53,24 +53,40 @@ const validateFormCreditCard = () => {
     }
 
     const validateFieldsEmpty = () => {
-        const $forms = document.querySelectorAll('.needs-validation'),
-              $number = document.getElementById('number');
+        const $input = document.querySelectorAll('.form-control'), 
+              $forms = document.querySelectorAll('.needs-validation'),
+              $number = document.getElementById('number'),
+              $credit_card_form = document.getElementById('creditCardForm');
 
-        Array.prototype.slice.call($forms).forEach(function ($form) {
-            $form.addEventListener('submit', function (event) {
-                if (!$form.checkValidity()) {
-                    event.preventDefault();
-                    event.stopPropagation();
-                } else {
-                    if($number.classList.contains('valid')) {
-                        $form.submit();
+        if($credit_card_form) {
+            $input.forEach((input) => {
+                input.addEventListener('keydown', (e) => {
+                    e.target.classList.remove('form-validated');
+                    e.target.nextElementSibling.classList.remove('d-none');
+                });
+            });
+    
+            Array.prototype.slice.call($forms).forEach(function ($form) {
+                $form.addEventListener('submit', function (event) {
+                    $input.forEach((input) => {
+                        input.classList.remove('form-validated');
+                        input.nextElementSibling.classList.remove('d-none');
+                    });
+    
+                    if (!$form.checkValidity()) {
+                        event.preventDefault();
+                        event.stopPropagation();
+                    } else {
+                        if($number.classList.contains('valid')) {
+                            $form.submit();
+                        }
                     }
-                }
-
-                $form.classList.add('was-validated')
-                
-            }, false);
-        });
+    
+                    $form.classList.add('was-validated')
+                    
+                }, false);
+            });
+        }
     }
 
     validateFieldsEmpty();

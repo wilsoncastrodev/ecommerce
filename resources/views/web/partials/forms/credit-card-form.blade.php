@@ -1,4 +1,4 @@
-<form action="{{ route('create-order') }}" id="creditCardForm" method="POST" class="credit-card-form my-3 needs-validation" novalidate>
+<form action="{{ route('create-order') }}" id="creditCardForm" method="POST" class="default-form credit-card-form my-3 needs-validation was-validated" novalidate>
     @csrf
     <input type="hidden" name="payment_method" value="CREDIT_CARD" />
     <div class="row">
@@ -8,7 +8,10 @@
                 <div class="col-12">
                     <div class="mb-3 position-relative">
                         <label class="mb-1" for="number">Número do Cartão</label>
-                        <input id="number" name="number" type="text" class="form-control number" value="{{ old('number') }}" required />
+                        <input id="number" name="number" type="text" class="form-control form-validated number" value="{{ old('number') }}" required />
+                        <div class="invalid-feedback d-none invalid-card">
+                            Por favor, insira um número do cartão de crédito válido.
+                        </div>
                         <div class="credit-cards">
                             @include('web.partials.credit-cards.amex')
                             @include('web.partials.credit-cards.visa')
@@ -17,16 +20,13 @@
                             @include('web.partials.credit-cards.hipercard')
                             @include('web.partials.credit-cards.mastercard')
                         </div>
-                        <div class="invalid-feedback invalid-card">
-                            Por favor, insira um número do cartão de crédito válido.
-                        </div>
                     </div>
                 </div>
                 <div class="col-12">
                     <div class="mb-3">
                         <label class="mb-1" for="card_name">Nome Impresso do Cartão</label>
-                        <input type="text" id="card_name" name="card_name" class="form-control text-uppercase" value="{{ old('card_name') }}" required />
-                        <div class="invalid-feedback">
+                        <input type="text" id="card_name" name="card_name" class="form-control form-validated text-uppercase" value="{{ old('card_name') }}" required />
+                        <div class="invalid-feedback d-none">
                             Por favor, insira o nome impresso do cartão.
                         </div>
                     </div>
@@ -44,7 +44,7 @@
                                     </option>
                                     @endforeach
                                 </select>
-                                <div class="invalid-feedback">
+                                <div class="invalid-feedback d-none">
                                     Por favor, selecione o mês.
                                 </div>
                             </div>
@@ -59,7 +59,7 @@
                                     </option>
                                     @endforeach
                                 </select>
-                                <div class="invalid-feedback">
+                                <div class="invalid-feedback d-none">
                                     Por favor, selecione o ano.
                                 </div>
                             </div>
@@ -69,11 +69,11 @@
                 <div class="col-5">
                     <div class="mb-3 position-relative">
                         <label class="mb-1" for="security-code" class="required">Cod. de Segurança</label>
-                        <input id="security-code" name="security_code" maxlength="4" type="text" class="form-control security-code" required />
+                        <input id="security-code" name="security_code" maxlength="4" type="text" class="form-control form-validated security-code" required />
                         <div class="credit-cards">
                             @include('web.partials.credit-cards.security-code')
                         </div>
-                        <div class="invalid-feedback">
+                        <div class="invalid-feedback d-none">
                             Por favor, insira o código de segurança.
                         </div>
                     </div>
@@ -81,13 +81,13 @@
                 <div class="col-12">
                     <div class="mb-3">
                         <label class="mb-1" for="installments">Parcelas</label>
-                        <select id="installments" name="installments" class="form-control form-select" required>
+                        <select id="installments" name="installments" class="form-control form-validated form-select" required>
                             <option selected="true" disabled value="">Número de Parcelas</option>
                             <option value="01">1 vez</option>
                             <option value="02">2 vezes</option>
                             <option value="03">3 vezes</option>
                         </select>
-                        <div class="invalid-feedback">
+                        <div class="invalid-feedback d-none">
                             Por favor, seleciona a quantidade de parcelas.
                         </div>
                     </div>
