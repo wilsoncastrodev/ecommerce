@@ -77,13 +77,11 @@ const scrollingCards = () => {
 
 const fallbackImage = () => {
     const $images = document.querySelectorAll('img');
-
-    let url = window.location.href, 
-        url_split = url.split('public');
+          $image_fallback = document.getElementById('img-fallback');
 
     $images.forEach((image) => {
         image.addEventListener('error', (e) => {
-            e.target.src = url_split[0] + 'public/images/bg-gray.png';
+            e.target.src = $image_fallback.src;
             e.target.classList.add('img-error');
         });
     }); 
@@ -119,8 +117,7 @@ const searchProducts = () => {
             $search.addEventListener('keyup', (e) => {
                 let route = e.target.getAttribute('data-route'),
                     keyword = e.target.value,
-                    url = window.location.href, 
-                    url_split = url.split('public');
+                    url = e.target.getAttribute('data-url');
                     
                 if(keyword.replace(/\s/g, '').length > 0) {
                     $bg_search.classList.remove('d-none');
@@ -137,7 +134,7 @@ const searchProducts = () => {
     
                             response.data.forEach((product_title) => {
                                 $quick_search.insertAdjacentHTML('beforeend', 
-                                    `<a href=${url_split[0]}public/pesquisa?s=${encodeURIComponent(product_title)} class="search-item">
+                                    `<a href=${url}/pesquisa?s=${encodeURIComponent(product_title)} class="search-item">
                                             <li>
                                             <i class="fa fa-search text-secondary"></i>
                                             ${product_title}

@@ -158,13 +158,15 @@ class WebController extends Controller
         
         $categories = Category::orderBy('category_title')->get();
         $categories_top = Category::where('category_top', 'yes')->orderBy('category_title')->get();
-
+        $product->quantity = 0;
 
         $reviews = Review::has('customer')->where('product_id', $product->id)->get();
 
-        foreach ($cart->products as $cart_product) {
-            if ($cart_product->product_url == $slug) {
-                $product->quantity = $cart_product->pivot->quantity;
+        if (isset($cart)) {
+            foreach ($cart->products as $cart_product) {
+                if ($cart_product->product_url == $slug) {
+                    $product->quantity = $cart_product->pivot->quantity;
+                }
             }
         }
 
@@ -174,6 +176,7 @@ class WebController extends Controller
     public function addCart(Request $request)
     {
         $customer_ip = getRealCustomerIp();
+        $customer_id = Auth::id() ? Auth::id() : null;
 
         $cart = Cart::where('customer_ip', $customer_ip)->first();
 
@@ -195,6 +198,7 @@ class WebController extends Controller
 
         $cart = new Cart;
         $cart->customer_ip = $customer_ip;
+        $cart->customer_id = $customer_id;
         $cart_id = $cart->save();
 
         $cart_item =  new CartItem;
@@ -226,6 +230,7 @@ class WebController extends Controller
     public function showCheckout()
     {
         $customer_ip = getRealCustomerIp();
+        $customer_id = Auth::id();
         $shipping_request = collect();
         $credit_card = collect();
 
@@ -233,6 +238,7 @@ class WebController extends Controller
         $categories_top = Category::where('category_top', 'yes')->orderBy('category_title')->get();
 
         $cart = Cart::where('customer_ip', $customer_ip)->first();
+        $cart->update(['customer_id' => $customer_id]);
 
         $products = $cart->products;
         $customer = $cart->customer;

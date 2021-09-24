@@ -8,14 +8,16 @@
            @include('web.partials.cards.card-alt', ['products' => $category->products])
         </div>
         <div class="text-center">
-            <div class="btn btn-base btn-lg" id="btn-load-more" 
-                data-products-view="{{ $category->products_view }}" 
-                data-route="{{ route('load-more-category') }}" 
-                data-total-products="{{ $category->total_products }}"
-                data-category-slug="{{ $category->category_slug }}"
-            >
-                Ver Mais Produtos
-            </div>
+            @if($category->products->count() > 3)
+                <div class="btn btn-base btn-lg" id="btn-load-more" 
+                    data-products-view="{{ $category->products_view }}" 
+                    data-route="{{ route('load-more-category') }}" 
+                    data-total-products="{{ $category->total_products }}"
+                    data-category-slug="{{ $category->category_slug }}"
+                >
+                    Ver Mais Produtos
+                </div>
+            @endif
         </div>
     </div>
 </section>
