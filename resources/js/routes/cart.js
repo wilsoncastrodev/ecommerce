@@ -155,7 +155,7 @@ const deleteProduct = () => {
 
                 let route = e.target.getAttribute('data-route'),
                     product = e.target.getAttribute('data-product'),
-                    cart = e.target.getAttribute('data-cart')
+                    cart = e.target.getAttribute('data-cart'),
                     zipcode = $zipcode.value;
         
                 axios.post(route, {

@@ -16,16 +16,21 @@
         <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     </head>
     <body>
-        <div class="vertical-menu position-fixed">
-            @include('layouts.navbars.sidebar')
-        </div>
-        
-        <div class="main-content w-100">
-            <div class="page-content">
-                <div class="content">
-                     @yield('content')
+        <div class="d-none d-xl-block">
+            <div class="vertical-menu position-fixed">
+                @include('layouts.navbars.sidebar')
+            </div>
+            
+            <div class="main-content w-100 ">
+                <div class="page-content">
+                    <div class="content">
+                        @yield('content')
+                    </div>
                 </div>
             </div>
+        </div>
+        <div class="d-block d-xl-none">
+            <h1 class="h1">Responsivo em Construção</h1>
         </div>
     </body>
 </html>
