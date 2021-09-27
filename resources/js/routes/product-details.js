@@ -150,13 +150,16 @@ const showReviewForm = () => {
 
     const openModalReview = () => {
         let modal_review = localStorage.getItem('modal_review');
+        const $modal_rating = document.getElementById('modal-rating');
         
-        if(modal_review == 'active') {
-            const $modal_review = new Modal(document.getElementById('modal-rating'));
+        if ($modal_rating) {
+            if(modal_review == 'active') {
+                const $modal_review = new Modal($modal_rating);
 
-            $modal_review.show();
+                $modal_review.show();
 
-            localStorage.setItem('modal_review', 'desactive');
+                localStorage.setItem('modal_review', 'desactive');
+            }
         }
     }
 

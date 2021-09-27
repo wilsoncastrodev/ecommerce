@@ -63,7 +63,6 @@ class ProductController extends Controller
             'category_id' => 'required',
             'product_seo_description' => 'required',
             'product_keywords' => 'required',
-            'product_label' => 'required',
             'stock_enabled' => 'required',
             /* 'stock_quantity	' => 'required', */
             'stock_status' => 'required',
@@ -91,7 +90,6 @@ class ProductController extends Controller
         $product->product_features = $request->product_features;
         $product->product_featured = $request->product_featured;
         $product->product_keywords = $request->product_keywords;
-        $product->product_label = $request->product_label;
         $product->product_weight = $request->product_weight;
         $product->product_height = $request->product_height;
         $product->product_width = $request->product_width;

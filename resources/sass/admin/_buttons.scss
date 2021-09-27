@@ -1,0 +1,15 @@
+.btn-admin {
+    font-size: 1.0875rem;
+
+    &-primary {
+        background-color: $blue-100;
+        border-color: $blue-100;
+    
+        &:hover,
+        &:focus,
+        &:active {
+            background-color: $blue-100;
+            border-color: $blue-100;
+        }
+    }
+}

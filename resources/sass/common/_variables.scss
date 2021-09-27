@@ -30,6 +30,9 @@ $gray-600: #dcdcdc;
 $gray-700: #d8d8d8;
 $gray-800: #3b4863;
 $gray-900: #323136;
+$gray-alt-100: #f9f9f9;
+$gray-alt-200: #ced4da;
+$gray-alt-300: #fefefe;
 
 //Greens
 $green-100: #cfe0e6;
@@ -37,6 +40,10 @@ $green-200: #1681a4;
 $green-300: #19779a;
 $green-600: #1c6286;
 $green-900: #1d5476;
+
+//Blues
+$blue-100: #068ba9;
+$blue-200: #086c83;
 
 $colors: (
     "blue": $blue,
@@ -55,5 +62,6 @@ $colors: (
     "secondary": $secondary,
     "base": $base,
     "green-600": $green-600,
-    "green-900": $green-900
+    "green-900": $green-900,
+    "blue-100": $blue-100
 );

@@ -1,3 +1,13 @@
-.main-content {
-    margin-left: 280px;
+.app-admin {
+    .main-content {
+        margin: 24px 23px 0 323px;
+
+        &-login {
+            margin-left: 0;
+        }
+
+        h1 {
+            color: $blue-100;
+        }
+    }
 }

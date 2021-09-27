@@ -53,7 +53,7 @@ class ProductCategoryController extends Controller
         $product_category->product_category_image = $path;
         $product_category->save();
         
-        return redirect()->back()->with('success', 'Categoria do Produto cadastrada com sucesso!');
+        return redirect()->back()->with('success', 'Subcategoria cadastrada com sucesso!');
     }
 
     /**

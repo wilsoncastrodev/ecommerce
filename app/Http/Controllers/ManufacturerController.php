@@ -39,7 +39,6 @@ class ManufacturerController extends Controller
     {
         $request->validate([
             'manufacturer_title' => 'required|unique:manufacturers|max:255',
-            'manufacturer_top' => 'required',
             'manufacturer_image' => 'required|image|mimes:jpg,png,jpeg,gif,svg|max:2048'
         ]);
 
@@ -49,7 +48,6 @@ class ManufacturerController extends Controller
 
         $manufacturer = new Manufacturer;
         $manufacturer->manufacturer_title = $request->manufacturer_title;
-        $manufacturer->manufacturer_top = $request->manufacturer_top;
         $manufacturer->manufacturer_image = $path;
         $manufacturer->save();
         
