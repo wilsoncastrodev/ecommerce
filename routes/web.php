@@ -33,11 +33,11 @@ Route::prefix('/')->group(function () {
     Route::post('registro/validar-cliente', [RegisterController::class, 'validatorCustomer'])->name('register-validate');
 });
 
-Route::name('admin.')->prefix('admin')->group(function () {
+Route::name('admin.')->prefix('admin')->middleware('auth')->group(function () {
     Route::get('/', [AdminController::class, 'index'])->name('dashboard');
     Route::resource('produtos', ProductController::class);
     Route::resource('categorias', CategoryController::class);
-    Route::resource('categorias-produtos', ProductCategoryController::class);
+    Route::resource('subcategory', ProductCategoryController::class);
     Route::resource('fabricantes', ManufacturerController::class);
     Route::resource('clientes', CustomerController::class);
 });
