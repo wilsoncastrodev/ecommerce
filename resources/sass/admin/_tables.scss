@@ -1,0 +1,70 @@
+.table-admin {
+    border-collapse: separate;
+    border-spacing: 0 1rem;
+    margin-top: -1rem;
+    margin-bottom: -1rem;
+    color: $blue-200;
+    width: 100%;
+
+    thead {
+        tr {
+            box-shadow: none;
+            border-radius: 0;
+        }
+    }
+
+    tbody {
+        tr {
+            box-shadow: 0px 1px 4px 0px rgb(29 70 102 / 25%);
+            border-radius: 10px;
+            height: 78px;
+            
+            img {
+                border-radius: 5px;
+                width: 150px;
+                height: 120px;
+                object-fit: cover;
+                object-position: center;
+            }
+
+            .td-id {
+                width: 65px;
+            }
+            
+            .td-actions {
+                width: 110px;
+            }
+        }
+    }
+
+    th {
+        padding: 0;
+        color: $blue-100;
+    }
+
+    td {
+        padding: 1rem;
+        max-width: 268px;
+        min-width: 15px;
+        font-weight: 500 !important;
+        font-size: 0.875rem;
+
+        a {
+            color: $blue-100;
+
+            i {
+                font-size: 20px;
+            }
+
+            &:hover,
+            &:active,
+            &:focus {
+                color: $blue-100;
+            }
+        }
+    }
+
+    tr {
+        text-align: center;
+    }
+}

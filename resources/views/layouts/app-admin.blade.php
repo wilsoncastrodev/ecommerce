@@ -22,9 +22,9 @@
                 <div class="vertical-menu position-fixed z-index-100">
                     @include('layouts.navbars.sidebar')
                 </div>
-                <div>
+                {{-- <div>
                     @include('layouts.headers.header')
-                </div>
+                </div> --}}
             @endauth
 
             <div class="main-content {{ request()->route()->getName() == 'login' ? 'main-content-login' : '' }}">

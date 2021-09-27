@@ -1,8 +1,8 @@
-<div class="d-flex flex-column p-3 text-white bg-dark vh-100" style="width: 280px;">
-    <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-white text-decoration-none">
-        <span class="fs-4">Ecommerce</span>
+<div class="sidebar-admin d-flex flex-column p-3 text-white vh-100">
+    <a href="/" class="navbar-brand text-white text-decoration-none me-0">
+        <span>wCastro</span>
     </a>
-    <hr>
+    <hr class="mx-5 px-5">
     <ul class="nav nav-pills flex-column mb-auto">
         <li class="nav-item">
             <a href="{{ route('admin.dashboard') }}" class="nav-link text-white {{ request()->is('admin') ? 'active' : '' }}">
@@ -13,7 +13,8 @@
             <a href="{{ route('admin.clientes.index') }}" class="nav-link text-white {{ request()->is('admin/clientes*') ? 'active' : '' }}">
                 Clientes
             </a>
-        </li><li>
+        </li>
+        <li>
             <a href="{{ route('admin.produtos.index') }}" class="nav-link text-white {{ request()->is('admin/produtos*') ? 'active' : '' }}">
                 Produtos
             </a>
@@ -24,14 +25,23 @@
             </a>
         </li>
         <li>
-            <a href="{{ route('admin.categorias.index') }}" class="nav-link text-white {{ request()->is('admin/categorias-produtos*') ? '' : (request()->is('admin/categorias*') ? 'active' : '') }}">
+            <a href="{{ route('admin.categorias.index') }}" class="nav-link text-white {{ request()->is('admin/subcategory*') ? '' : (request()->is('admin/categorias*') ? 'active' : '') }}">
                 Categorias
             </a>
         </li>
         <li>
-            <a href="{{ route('admin.categorias-produtos.index') }}" class="nav-link text-white {{ request()->is('admin/categorias-produtos*') ? 'active' : '' }}">
-                Categorias do Produto
+            <a href="{{ route('admin.subcategory.index') }}" class="nav-link text-white {{ request()->is('admin/subcategory*') ? 'active' : '' }}">
+                Subcategorias
             </a>
         </li>
     </ul>
+    <hr>
+    <a href="{{ route('logout') }}" class="text-center px-1"
+            onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+        <span class="text-white font-weight-bold">Sair</span>
+    </a>
+
+    <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+        @csrf
+    </form>
 </div>

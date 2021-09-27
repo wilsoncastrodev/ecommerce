@@ -1,5 +1,5 @@
 @extends('layouts.app-admin')
 
 @section('content')
-<h1>DashBoard</h1>
+    <h1>Painel Administrativo</h1>
 @endsection

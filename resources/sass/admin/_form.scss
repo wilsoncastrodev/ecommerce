@@ -1,0 +1,16 @@
+.form-admin {
+    label {
+        color: $blue-200;
+    }
+
+    .form-control {
+        border-color: $gray-alt-200;
+        height: 48px;
+    }
+
+    textarea {
+        &.form-control {
+            height: auto;
+        }
+    }
+}
