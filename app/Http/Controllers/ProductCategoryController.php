@@ -16,7 +16,7 @@ class ProductCategoryController extends Controller
     public function index()
     {
         $product_categories = ProductCategory::all()->toArray();
-        return view('admin.product-categories.index', compact('product_categories'));
+        return view('admin.subcategories.index', compact('product_categories'));
     }
 
     /**
@@ -26,7 +26,7 @@ class ProductCategoryController extends Controller
      */
     public function create()
     {
-        return view('admin.product-categories.create');
+        return view('admin.subcategories.create');
     }
 
     /**

@@ -12,16 +12,22 @@
 
         <link rel="dns-prefetch" href="//fonts.gstatic.com">
         <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.13.0/css/all.css">
 
         <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     </head>
-    <body>
-        <div class="d-none d-xl-block">
-            <div class="vertical-menu position-fixed">
-                @include('layouts.navbars.sidebar')
-            </div>
-            
-            <div class="main-content w-100 ">
+    <body class="app-admin">
+        <div class="d-none d-xl-block w-100">
+            @auth
+                <div class="vertical-menu position-fixed z-index-100">
+                    @include('layouts.navbars.sidebar')
+                </div>
+                <div>
+                    @include('layouts.headers.header')
+                </div>
+            @endauth
+
+            <div class="main-content {{ request()->route()->getName() == 'login' ? 'main-content-login' : '' }}">
                 <div class="page-content">
                     <div class="content">
                         @yield('content')
