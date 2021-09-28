@@ -1,0 +1,9 @@
+.alert-admin {
+    border-radius: 10px;
+    
+    &.alert-info {
+        color: $white;
+        background-color: #0092ab;
+        border-color: #1185a6;
+    }
+}

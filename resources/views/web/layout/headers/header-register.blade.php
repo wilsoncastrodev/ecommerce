@@ -7,15 +7,16 @@
                 </div>
                 <div class="col-9 d-flex justify-content-end">
                     @guest('customer')
-                        @if(Route::has('form.customer.login'))
-                            <a href="{{ route('form.customer.login') }}" class="navbox navbox-login text-white text-decoration-none ms-3">
-                                <i class="fa fa-user me-2"></i>
-                                <span>Entrar</span>
-                            </a>
-                        @endif
+                    @if(Route::has('form.customer.login'))
+                    <a href="{{ route('form.customer.login') }}" class="navbox navbox-login text-white text-decoration-none ms-3">
+                        <i class="fa fa-user me-2"></i>
+                        <span>Entrar</span>
+                    </a>
+                    @endif
                     @endguest
                 </div>
             </div>
         </div>
     </nav>
+    @include('web.partials.messages.info')
 </header>

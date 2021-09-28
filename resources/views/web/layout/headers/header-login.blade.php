@@ -18,4 +18,5 @@
             </div>
         </div>
     </nav>
+    @include('web.partials.messages.info')
 </header>

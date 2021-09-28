@@ -2,7 +2,7 @@
 
 @section('content')
 <div class="container">
-    <div class="row justify-content-center mt-5">
+    <div class="row justify-content-center">
         <div class="col-md-5 px-5">
             <div class="card card-alt p-0">
                 <div class="card-header">
@@ -66,6 +66,7 @@
                                 {{ __('Forgot Your Password?') }}
                             </a>
                         @endif --}}
+                        @include('web.partials.messages.auth')
                     </form>
                 </div>
             </div>

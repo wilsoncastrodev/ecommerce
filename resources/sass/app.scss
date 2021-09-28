@@ -6,6 +6,7 @@
 @import 'common/global';
 
 // Web
+@import 'web/alerts';
 @import 'web/badge';
 @import 'web/buttons';
 @import 'web/card';
@@ -22,6 +23,7 @@
 
 
 //Admin
+@import 'admin/alerts';
 @import 'admin/buttons';
 @import 'admin/form';
 @import 'admin/global';

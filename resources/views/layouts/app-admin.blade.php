@@ -28,6 +28,9 @@
             @endauth
 
             <div class="main-content {{ request()->route()->getName() == 'login' ? 'main-content-login' : '' }}">
+                @if(request()->route()->getName() != 'login')
+                    @include('partials.messages.info')
+                @endif
                 <div class="page-content">
                     <div class="content">
                         @yield('content')

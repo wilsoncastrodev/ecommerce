@@ -66,6 +66,8 @@
                                 {{ __('Forgot Your Password?') }}
                             </a>
                         @endif --}}
+
+                        @include('partials.messages.auth')
                     </form>
                 </div>
             </div>
