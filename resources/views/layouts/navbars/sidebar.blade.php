@@ -6,7 +6,7 @@
     <ul class="nav nav-pills flex-column mb-auto">
         <li class="nav-item">
             <a href="{{ route('admin.dashboard') }}" class="nav-link text-white {{ request()->is('admin') ? 'active' : '' }}">
-                Home
+                Painel Administrativo
             </a>
         </li>
         <li>

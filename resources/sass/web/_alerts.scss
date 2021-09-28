@@ -1,0 +1,11 @@
+.alert {
+    border-radius: 10px;
+
+    &.alert-info {
+        color: #1b668a;
+        background-color: #e8f6fa;
+        border-color: #e8f6fa;
+        font-size: 0.875rem;
+        margin-top: 26px;
+    }
+}

@@ -111,6 +111,7 @@
             </button>
         </div>
     </nav>
+    @include('web.partials.messages.info')
 </header>
 <div class="bg-dropdown d-none" id="bg-dropdown"></div>
 <div class="bg-search d-none" id="bg-search"></div>

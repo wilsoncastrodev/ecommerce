@@ -190,14 +190,14 @@
                                     <div class="col-12 mb-3">
                                         <h5 class="mt-2 mb-4 text-blue-100">Outras Informações do Produto</h5>
                                         <div class="mb-3">
-                                            <label class="mb-2" for="product-seo-description" class="required">Descrição de SEO do Produto</label>
+                                            <label class="mb-2" for="product-seo-description" class="required">Descrição para o SEO do Produto</label>
                                             <textarea id="product-seo-description" name="product_seo_description" rows="5" class="form-control"></textarea>
                                             @error('product_seo_description')
                                             <span class="text-danger">{{ $message }}</span>
                                             @enderror
                                         </div>
                                         <div class="mb-3">
-                                            <label class="mb-2" for="product-keywords">Palavras-Chave SEO do Produto</label>
+                                            <label class="mb-2" for="product-keywords">Palavras-Chave o SEO do Produto</label>
                                             <input type="text" id="product-keywords" name="product_keywords" class="form-control" />
                                             @error('product_keywords')
                                             <span class="text-danger">{{ $message }}</span>
