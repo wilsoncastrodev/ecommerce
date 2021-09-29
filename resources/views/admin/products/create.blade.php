@@ -22,42 +22,42 @@
                                     <div class="col-12 mb-3">
                                         <div class="mb-3">
                                             <label class="mb-2" for="product-title">Título do Produto</label>
-                                            <input id="product-title" name="product_title" type="text" class="form-control" />
+                                            <input id="product-title" name="product_title" type="text" class="form-control" value="{{ old('product_title') }}" />
                                             @error('product_title')
                                             <span class="text-danger">{{ $message }}</span>
                                             @enderror
                                         </div>
                                         <div class="mb-3">
                                             <label class="mb-2" for="product-url">Slug do Produto</label>
-                                            <input type="text" id="product-url" name="product_url" class="form-control" />
+                                            <input type="text" id="product-url" name="product_url" class="form-control" value="{{ old('product_url') }}" />
                                             @error('product_url')
                                             <span class="text-danger">{{ $message }}</span>
                                             @enderror
                                         </div>
                                         <div class="mb-3">
                                             <label class="mb-2" for="product-description" class="required">Descrição do Produto</label>
-                                            <textarea id="product-description" name="product_description" rows="5" class="form-control"></textarea>
+                                            <textarea id="product-description" name="product_description" rows="5" class="form-control">{{ old('product_description') }}</textarea>
                                             @error('product_description')
                                             <span class="text-danger">{{ $message }}</span>
                                             @enderror
                                         </div>
                                         <div class="mb-3">
                                             <label class="mb-2" for="product-features" class="required">Características do Produto</label>
-                                            <textarea id="product-features" name="product_features" rows="5" class="form-control"></textarea>
+                                            <textarea id="product-features" name="product_features" rows="5" class="form-control" >{{ old('product_features') }}</textarea>
                                             @error('product_features')
                                             <span class="text-danger">{{ $message }}</span>
                                             @enderror
                                         </div>
                                         <div class="mb-3">
                                             <label class="mb-2" for="product-price">Preço do Produto</label>
-                                            <input type="currency" id="product-price" name="product_price" class="form-control" />
+                                            <input type="currency" id="product-price" name="product_price" class="form-control" value="{{ old('product_price') }}" />
                                             @error('product_price')
                                             <span class="text-danger">{{ $message }}</span>
                                             @enderror
                                         </div>
                                         <div class="mb-3">
                                             <label class="mb-2" for="product-sale-price">Preço de Venda do Produto</label>
-                                            <input type="currency" id="product-sale-price" name="product_sale_price" class="form-control" />
+                                            <input type="currency" id="product-sale-price" name="product_sale_price" class="form-control" value="{{ old('product_sale_price') }}" />
                                             @error('product_sale_price')
                                             <span class="text-danger">{{ $message }}</span>
                                             @enderror
@@ -73,14 +73,14 @@
                                     <div class="col-6 mb-3">
                                         <div class="mb-3">
                                             <label class="mb-2" for="product-weight">Peso do Produto</label>
-                                            <input type="number" id="product-weight" name="product_weight" class="form-control" />
+                                            <input type="number" id="product-weight" name="product_weight" class="form-control" value="{{ old('product_weight') }}" />
                                             @error('product_weight')
                                             <span class="text-danger">{{ $message }}</span>
                                             @enderror
                                         </div>
                                         <div class="mb-3">
                                             <label class="mb-2" for="product-height">Altura do Produto</label>
-                                            <input type="number" id="product-height" name="product_height" class="form-control" />
+                                            <input type="number" id="product-height" name="product_height" class="form-control" value="{{ old('product_height') }}" />
                                             @error('product_height')
                                             <span class="text-danger">{{ $message }}</span>
                                             @enderror
@@ -89,14 +89,14 @@
                                     <div class="col-6">
                                         <div class="mb-3">
                                             <label class="mb-2" for="product-width">Largura do Produto</label>
-                                            <input type="number" id="product-width" name="product_width" class="form-control" />
+                                            <input type="number" id="product-width" name="product_width" class="form-control" value="{{ old('product_width') }}" />
                                             @error('product_width')
                                             <span class="text-danger">{{ $message }}</span>
                                             @enderror
                                         </div>
                                         <div class="mb-3">
                                             <label class="mb-2" for="product-lenght">Comprimento do Produto</label>
-                                            <input type="number" id="product-lenght" name="product_lenght" class="form-control" />
+                                            <input type="number" id="product-lenght" name="product_lenght" class="form-control" value="{{ old('product_lenght') }}" />
                                             @error('product_lenght')
                                             <span class="text-danger">{{ $message }}</span>
                                             @enderror
@@ -136,7 +136,7 @@
                                                         <div class="mb-3">
                                                             <select id="stock-status" name="stock_status" class="form-control form-select" aria-label="Status de Estoque">
                                                                 <option value="in_stock">Em Estoque</option>
-                                                                <option value="out_stock">Fora de Estoque</option>
+                                                                <option value="out_stock">Sem Estoque</option>
                                                                 <option value="on_backorder">Em Espera</option>
                                                             </select>
                                                             @error('stock_status')
@@ -152,7 +152,7 @@
                                                 <div class="col-12 col-md-6">
                                                     <div class="mb-3">
                                                         <label class="mb-2" for="stock-quantity">Quantidade em estoque</label>
-                                                        <input type="number" id="stock-quantity" name="stock_quantity" class="form-control" />
+                                                        <input type="number" id="stock-quantity" name="stock_quantity" class="form-control" value="{{ old('stock_quantity') }}" />
                                                         @error('stock_quantity')
                                                         <span class="text-danger">{{ $message }}</span>
                                                         @enderror
@@ -191,22 +191,35 @@
                                         <h5 class="mt-2 mb-4 text-blue-100">Outras Informações do Produto</h5>
                                         <div class="mb-3">
                                             <label class="mb-2" for="product-seo-description" class="required">Descrição para o SEO do Produto</label>
-                                            <textarea id="product-seo-description" name="product_seo_description" rows="5" class="form-control"></textarea>
+                                            <textarea id="product-seo-description" name="product_seo_description" rows="5" class="form-control" >{{ old('product_seo_description') }}</textarea>
                                             @error('product_seo_description')
                                             <span class="text-danger">{{ $message }}</span>
                                             @enderror
                                         </div>
                                         <div class="mb-3">
                                             <label class="mb-2" for="product-keywords">Palavras-Chave o SEO do Produto</label>
-                                            <input type="text" id="product-keywords" name="product_keywords" class="form-control" />
+                                            <input type="text" id="product-keywords" name="product_keywords" class="form-control" value="{{ old('product_keywords') }}" />
                                             @error('product_keywords')
                                             <span class="text-danger">{{ $message }}</span>
                                             @enderror
                                         </div>
                                         <div class="select">
+                                            <label class="mb-2" for="product-featured">Status do Produto</label>
+                                            <div class="mb-3">
+                                                <select feature="product-status" name="product_status" class="form-control form-select" aria-label="Selecione uma Opção">
+                                                    <option selected="true" disabled>Selecione uma Opção</option>
+                                                    <option value="active">Ativado</option>
+                                                    <option value="deactivate">Desativado</option>
+                                                </select>
+                                                @error('product_status')
+                                                <span class="text-danger">{{ $message }}</span>
+                                                @enderror
+                                            </div>
+                                        </div>
+                                        <div class="select">
                                             <label class="mb-2" for="product-featured">Produto em Destaque?</label>
                                             <div class="mb-3">
-                                                <select feature="product-featured" name="product_featured" class="form-control form-select" aria-label="Selecione uma Opção">
+                                                <select id="product-featured" name="product_featured" class="form-control form-select" aria-label="Selecione uma Opção">
                                                     <option selected="true" disabled>Selecione uma Opção</option>
                                                     <option value="yes">Sim</option>
                                                     <option value="no">Não</option>
@@ -297,17 +310,6 @@
                                             <div class="custom-file">
                                                 <div class="mb-3">
                                                     <input id="product-image3" name="product_image[]" type="file" class="custom-file-input form-control form-control-lg" aria-label="Imagem do Produto 3" />
-                                                    @error('product_image')
-                                                    <span class="text-danger">{{ $message }}</span>
-                                                    @enderror
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="file-upload">
-                                            <label class="mb-2" for="product-image4">Imagem do Produto 4</label>
-                                            <div class="custom-file">
-                                                <div class="mb-4">
-                                                    <input id="product-image4" name="product_image[]" type="file" class="custom-file-input form-control form-control-lg" aria-label="Imagem do Produto 4" />
                                                     @error('product_image')
                                                     <span class="text-danger">{{ $message }}</span>
                                                     @enderror

@@ -59,10 +59,10 @@ class Product extends Model
     public static function productsTop($products)
     {
         $collection = $products->sortBy([
-            fn ($b, $a) => $a['product_top'] <=> $b['product_top'],
+            fn ($b, $a) => $a['product_views'] <=> $b['product_views'],
         ]);
 
-        $collection->splice(3);
+        $collection->splice(5);
 
         $products_collection = $collection->all();
 

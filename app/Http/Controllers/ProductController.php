@@ -50,6 +50,7 @@ class ProductController extends Controller
             'product_description' => 'required',
             'product_features' => 'required',
             'product_featured' => 'required',
+            'product_status' => 'required',
             'product_weight' => 'required',
             'product_height' => 'required',
             'product_width' => 'required',
@@ -94,10 +95,7 @@ class ProductController extends Controller
         $product->product_height = $request->product_height;
         $product->product_width = $request->product_width;
         $product->product_lenght = $request->product_lenght;
-        $product->product_video = 'asdfasdfasdf';
-        $product->product_views = '1';
-        $product->product_vendor_status = 'active';
-        $product->product_status = 'active';
+        $product->product_status = $request->product_status;
         $product->save();
 
         $productStock = new ProductStock;

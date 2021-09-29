@@ -25,13 +25,10 @@ class CreateProductsTable extends Migration
             $table->text('product_description');
             $table->text('product_features');
             $table->text('product_featured');
-            $table->text('product_video');
             $table->text('product_keywords');
             $table->decimal('product_weight', 10, 2);
-            $table->integer('product_top')->default(0);
-            $table->text('product_views');
-            $table->text('product_vendor_status');
-            $table->text('product_status');
+            $table->text('product_views')->nullable()->default(0);
+            $table->text('product_status')->default("active");;
             $table->timestamps();
         });
     }

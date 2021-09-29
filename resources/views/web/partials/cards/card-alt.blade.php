@@ -7,12 +7,21 @@
                     <div class="card-body">
                         <p class="card-text mb-2">{{ limitText($product->product_title) }}</p>
                         <div class="stars">
-                            <i class="fa fa-star text-yellow"></i>
-                            <i class="fa fa-star text-yellow"></i>
-                            <i class="fa fa-star text-yellow"></i>
-                            <i class="fa fa-star text-yellow"></i>
-                            <i class="fa fa-star text-yellow"></i>
-                            <span>(20)</span>
+                            @php
+                                $rating = 0;
+
+                                if($product->reviews->sum('review_rating') > 0) {
+                                    $rating = formatRating($product->reviews->sum('review_rating') / $product->reviews->count());
+                                }
+                            @endphp
+                            @for($i = 0; $i < 5; $i++)
+                                @if($i < $rating)
+                                    <i class="fa fa-star text-yellow"></i>
+                                @else 
+                                    <i class="fa fa-star text-gray"></i>
+                                @endif
+                            @endfor
+                            <span>({{ $product->reviews->count() }})</span>
                         </div>
                         <div class="card-content-price">
                             <div class="card-price">

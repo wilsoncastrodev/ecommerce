@@ -18,7 +18,7 @@ class WebController extends Controller
 {
     public function home()
     {
-        $products = Product::all();
+        $products = Product::all()->sortByDesc("created_at");
         $products_featured = Product::productsFeatured($products);
         $products_top = Product::productsTop($products);
         $categories = Category::orderBy('category_title')->get();

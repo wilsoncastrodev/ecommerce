@@ -70,10 +70,9 @@
                                     </span>
                                     @enderror
                                 </div>
-
                                 <div class="form-group mb-3">
-                                    <label for="cpf" class="mb-2 text-green-600 text-md-right">CPF</label>
-                                    <input id="cpf" type="cpf" class="form-control form-validated" data-route="{{ route('register-validate') }}" name="cpf" value="{{ old('cpf') }}" required autocomplete="cpf">
+                                    <label for="cpf" class="mb-2 text-green-600 text-md-right">CPF (<a href="" id="generator-cpf" class="text-green-600 text-decoration-underline">Gerar CPF</a>)</label>
+                                    <input id="cpf" type="text" class="form-control form-validated" data-route="{{ route('register-validate') }}" name="cpf" value="{{ old('cpf') }}" required autocomplete="cpf">
 
                                     @error('cpf')
                                     <span class="invalid-feedback" role="alert">

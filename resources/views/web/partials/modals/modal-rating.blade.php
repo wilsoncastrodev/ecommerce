@@ -29,7 +29,7 @@
                                 <label aria-label="5 stars" class="rating-label z-index-100" for="rating-5"><i data-stars="5 stars" class="fa fa-star rating-icon"></i></label>
                                 <input class="rating" name="review_rating" id="rating-5" value="5" type="radio">
                             </div>
-                            <span id="hover-rating-label">Regular</span>
+                            <span id="hover-rating-label">Péssimo</span>
                         </div>
                     </div>
                     <div class="mb-3 position-relative">

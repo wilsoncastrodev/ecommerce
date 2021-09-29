@@ -2,7 +2,7 @@
     <div class="bg-overlay-transparent py-3">
         <div>
             Este site é apenas demonstrativo, favor não fornecer nenhuma informação pessoal sensível
-            ou qualquer informação original neste site.
+            ou qualquer informação original enquanto estiver navegando pelo site.
         </div>
         <div>
             <a class="text-white text-decoration-underline" 

@@ -4,6 +4,21 @@ import Inputmask from 'inputmask';
 import CPF from 'cpf';
 
 const validateFormRegister = () => {
+    const generatorCPF = () => {
+        const $register_form = document.getElementById('registerForm');
+
+        if($register_form) {
+            const $generator_cpf = document.getElementById('generator-cpf'),
+                  $cpf = document.getElementById('cpf');
+
+            $generator_cpf.addEventListener('click', (e) => {
+                e.preventDefault();
+
+                $cpf.value = generate({ format: true });
+            });
+        }
+    }
+
     const addFieldsMask = () => {
         const $register_form = document.getElementById('registerForm');
 
@@ -129,6 +144,7 @@ const validateFormRegister = () => {
     validateFieldsEmpty();
     getAddressCep();
     addFieldsMask();
+    generatorCPF();
 }
 
 

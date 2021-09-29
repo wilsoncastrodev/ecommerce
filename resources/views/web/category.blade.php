@@ -8,7 +8,7 @@
            @include('web.partials.cards.card-alt', ['products' => $category->products])
         </div>
         <div class="text-center">
-            @if($category->products->count() > 3)
+            @if($category->products->count() > 4)
                 <div class="btn btn-base btn-lg" id="btn-load-more" 
                     data-products-view="{{ $category->products_view }}" 
                     data-route="{{ route('load-more-category') }}" 
