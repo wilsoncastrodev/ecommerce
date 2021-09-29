@@ -23,8 +23,6 @@ class Customer extends Authenticatable
         'birthday',
         'cpf',
         'phone',
-        'ip',
-        'password',
     ];
 
     public function products()
@@ -51,15 +49,6 @@ class Customer extends Authenticatable
     {
         return $this->hasMany(Review::class);
     }
-
-    /**
-     * The attributes that should be hidden for arrays.
-     *
-     * @var array
-     */
-    protected $hidden = [
-        'email',
-    ];
 
     /**
      * The attributes that should be cast to native types.
