@@ -14,7 +14,7 @@ class CustomerController extends Controller
      */
     public function index()
     {
-        $customers = Customer::all()->toArray();
+        $customers = Customer::all()->sortByDesc("created_at")->toArray();
         return view('admin.customers.index', compact('customers'));
     }
 
