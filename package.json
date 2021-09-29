@@ -27,6 +27,7 @@
         "cep-promise": "^4.1.0",
         "cpf": "^2.0.1",
         "credit-card-type": "^9.1.0",
+        "gerador-validador-cpf": "^5.0.1",
         "inputmask": "^5.0.6",
         "social-media-links": "^1.0.2"
     }
