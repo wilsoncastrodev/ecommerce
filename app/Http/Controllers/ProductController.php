@@ -61,7 +61,7 @@ class ProductController extends Controller
             'product_sale_price' => 'required|regex:#^[0-9,]+$#',
             'product_image' => 'required',
             'product_image.*' => 'image|mimes:jpg,png,jpeg,gif,svg|max:2048',
-            'product_category_id' => 'required',
+            /* 'product_category_id' => 'required', */
             'manufacturer_id' => 'required',
             'category_id' => 'required',
             'product_seo_description' => 'required',
@@ -82,12 +82,13 @@ class ProductController extends Controller
             'product_price.required' => 'O campo "Preço do Produto" é obrigatório',
             'product_sale_price.required' => 'O campo "Preço de Venda do Produto" é obrigatório',
             'product_image.required' => 'O campo "Imagem do Produto" é obrigatório',
-            'product_category_id.required' => 'O campo "Subcategoria" é obrigatório',
+            /* 'product_category_id.required' => 'O campo "Subcategoria" é obrigatório', */
             'manufacturer_id.required' => 'O campo "Fabricante" é obrigatório',
             'category_id.required' => 'O campo "Categoria" é obrigatório',
             'product_seo_description.required' => 'O campo "Descrição para o SEO do Produto" é obrigatório',
             'product_keywords.required' => 'O campo "Palavras-Chave o SEO do Produto" é obrigatório',
             'stock_enabled.required' => 'O campo "Habilitar Gerencimento de Estoque" é obrigatório',
+            'stock_quantity.required' => 'O campo "Quantidade em estoque" é obrigatório',
             'allow_backorders.required' => 'O campo "Preço do Produto" é obrigatório'
         ]);
 

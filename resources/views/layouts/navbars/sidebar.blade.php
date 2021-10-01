@@ -29,11 +29,11 @@
                 Categorias
             </a>
         </li>
-        <li>
+        {{-- <li>
             <a href="{{ route('admin.subcategory.index') }}" class="nav-link text-white {{ request()->is('admin/subcategory*') ? 'active' : '' }}">
                 Subcategorias
             </a>
-        </li>
+        </li> --}}
     </ul>
     <hr>
     <a href="{{ route('logout') }}" class="text-center px-1"
