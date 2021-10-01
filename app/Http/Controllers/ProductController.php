@@ -44,6 +44,8 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
+        $stock_enabled = $request->stock_enabled == 'yes' ? 'required' : '';
+
         $request->validate([
             'product_title' => 'required',
             'product_url' => 'required',
@@ -55,8 +57,8 @@ class ProductController extends Controller
             'product_height' => 'required',
             'product_width' => 'required',
             'product_lenght' => 'required',
-            'product_price' => 'required',
-            'product_sale_price' => 'required',
+            'product_price' => 'required|regex:#^[0-9,]+$#',
+            'product_sale_price' => 'required|regex:#^[0-9,]+$#',
             'product_image' => 'required',
             'product_image.*' => 'image|mimes:jpg,png,jpeg,gif,svg|max:2048',
             'product_category_id' => 'required',
@@ -65,9 +67,28 @@ class ProductController extends Controller
             'product_seo_description' => 'required',
             'product_keywords' => 'required',
             'stock_enabled' => 'required',
-            /* 'stock_quantity	' => 'required', */
-            'stock_status' => 'required',
-            'allow_backorders' => 'required'
+            'stock_quantity' => $stock_enabled,
+        ], [
+            'product_title.required' => 'O campo "Título do Produto" é obrigatório',
+            'product_url.required' => 'O campo "Slug do Produto" é obrigatório',
+            'product_description.required' => 'O campo "Descrição do Produto" é obrigatório',
+            'product_features.required' => 'O campo "Características do Produto" é obrigatório',
+            'product_featured.required' => 'O campo "Produto em Destaque" é obrigatório',
+            'product_status.required' => 'O campo "Status do Produto" é obrigatório',
+            'product_weight.required' => 'O campo "Peso do Produto" é obrigatório',
+            'product_height.required' => 'O campo "Altura do Produto" é obrigatório',
+            'product_width.required' => 'O campo "Largura do Produto" é obrigatório',
+            'product_lenght.required' => 'O campo "Comprimento do Produto" é obrigatório',
+            'product_price.required' => 'O campo "Preço do Produto" é obrigatório',
+            'product_sale_price.required' => 'O campo "Preço de Venda do Produto" é obrigatório',
+            'product_image.required' => 'O campo "Imagem do Produto" é obrigatório',
+            'product_category_id.required' => 'O campo "Subcategoria" é obrigatório',
+            'manufacturer_id.required' => 'O campo "Fabricante" é obrigatório',
+            'category_id.required' => 'O campo "Categoria" é obrigatório',
+            'product_seo_description.required' => 'O campo "Descrição para o SEO do Produto" é obrigatório',
+            'product_keywords.required' => 'O campo "Palavras-Chave o SEO do Produto" é obrigatório',
+            'stock_enabled.required' => 'O campo "Habilitar Gerencimento de Estoque" é obrigatório',
+            'allow_backorders.required' => 'O campo "Preço do Produto" é obrigatório'
         ]);
 
         if ($request->hasFile('product_image')) {
@@ -75,7 +96,6 @@ class ProductController extends Controller
         }
 
         $product = new Product;
-        $product->customer_id = 1;
         $product->product_category_id = $request->product_category_id;
         $product->category_id = $request->category_id;
         $product->manufacturer_id = $request->manufacturer_id;
