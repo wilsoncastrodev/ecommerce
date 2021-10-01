@@ -40,6 +40,14 @@ if (!function_exists('formatCurrency')) {
         return number_format($value, 2, ',', '.');
     }
 }
+
+if (!function_exists('formatCurrencyInverse')) {
+    function formatCurrencyInverse($value)
+    {
+        return floatval(str_replace(',', '.', str_replace('.', '', $value)));
+    }
+}
+
 if (!function_exists('formatRating')) {
     function formatRating($value)
     {

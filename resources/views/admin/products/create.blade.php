@@ -73,14 +73,14 @@
                                     <div class="col-6 mb-3">
                                         <div class="mb-3">
                                             <label class="mb-2" for="product-weight">Peso do Produto</label>
-                                            <input type="number" id="product-weight" name="product_weight" class="form-control" value="{{ old('product_weight') }}" />
+                                            <input type="number" id="product-weight" name="product_weight" class="form-control" min="0.3" max="30" step="0.01" value="{{ old('product_weight') }}" />
                                             @error('product_weight')
                                             <span class="text-danger">{{ $message }}</span>
                                             @enderror
                                         </div>
                                         <div class="mb-3">
                                             <label class="mb-2" for="product-height">Altura do Produto</label>
-                                            <input type="number" id="product-height" name="product_height" class="form-control" value="{{ old('product_height') }}" />
+                                            <input type="number" id="product-height" name="product_height" min="1" max="100" class="form-control" value="{{ old('product_height') }}" />
                                             @error('product_height')
                                             <span class="text-danger">{{ $message }}</span>
                                             @enderror
@@ -89,14 +89,14 @@
                                     <div class="col-6">
                                         <div class="mb-3">
                                             <label class="mb-2" for="product-width">Largura do Produto</label>
-                                            <input type="number" id="product-width" name="product_width" class="form-control" value="{{ old('product_width') }}" />
+                                            <input type="number" id="product-width" name="product_width" min="10" max="100" class="form-control" value="{{ old('product_width') }}" />
                                             @error('product_width')
                                             <span class="text-danger">{{ $message }}</span>
                                             @enderror
                                         </div>
                                         <div class="mb-3">
                                             <label class="mb-2" for="product-lenght">Comprimento do Produto</label>
-                                            <input type="number" id="product-lenght" name="product_lenght" class="form-control" value="{{ old('product_lenght') }}" />
+                                            <input type="number" id="product-lenght" name="product_lenght" min="15" max="100" class="form-control" value="{{ old('product_lenght') }}" />
                                             @error('product_lenght')
                                             <span class="text-danger">{{ $message }}</span>
                                             @enderror
@@ -114,11 +114,11 @@
                                             <label class="form-check-label" for="stock-enabled">Habilitar gerenciamento de estoque no nível do produto?</label>
                                         </div>
                                         <div class="form-check form-check-inline">
-                                            <input id="stock-enabled-yes" name="stock_enabled" type="radio" class="form-check-input" value="yes" />
+                                            <input id="stock-enabled-yes" name="stock_enabled" type="radio" class="form-check-input" value="yes"/>
                                             <label class="form-check-label" for="stock-enabled-yes">Sim</label>
                                         </div>
                                         <div class="form-check form-check-inline ">
-                                            <input id="stock-enabled-no" name="stock_enabled" type="radio" class="form-check-input" value="no" />
+                                            <input id="stock-enabled-no" name="stock_enabled" type="radio" class="form-check-input" value="no"/>
                                             <label class="form-check-label" for="stock-enabled-no">Não</label>
                                         </div>
                                         <div>
@@ -204,9 +204,9 @@
                                             @enderror
                                         </div>
                                         <div class="select">
-                                            <label class="mb-2" for="product-featured">Status do Produto</label>
+                                            <label class="mb-2" for="product-status">Status do Produto</label>
                                             <div class="mb-3">
-                                                <select feature="product-status" name="product_status" class="form-control form-select" aria-label="Selecione uma Opção">
+                                                <select id="product-status" feature="product-status" name="product_status" class="form-control form-select" aria-label="Selecione uma Opção">
                                                     <option selected="true" disabled>Selecione uma Opção</option>
                                                     <option value="active">Ativado</option>
                                                     <option value="deactivate">Desativado</option>
