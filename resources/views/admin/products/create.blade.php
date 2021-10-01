@@ -24,42 +24,42 @@
                                             <label class="mb-2" for="product-title">Título do Produto</label>
                                             <input id="product-title" name="product_title" type="text" class="form-control" value="{{ old('product_title') }}" />
                                             @error('product_title')
-                                            <span class="text-danger">{{ $message }}</span>
+                                            <small class="text-danger">{{ $message }}</small>
                                             @enderror
                                         </div>
                                         <div class="mb-3">
                                             <label class="mb-2" for="product-url">Slug do Produto</label>
                                             <input type="text" id="product-url" name="product_url" class="form-control" value="{{ old('product_url') }}" />
                                             @error('product_url')
-                                            <span class="text-danger">{{ $message }}</span>
+                                            <small class="text-danger">{{ $message }}</small>
                                             @enderror
                                         </div>
                                         <div class="mb-3">
                                             <label class="mb-2" for="product-description" class="required">Descrição do Produto</label>
                                             <textarea id="product-description" name="product_description" rows="5" class="form-control">{{ old('product_description') }}</textarea>
                                             @error('product_description')
-                                            <span class="text-danger">{{ $message }}</span>
+                                            <small class="text-danger">{{ $message }}</small>
                                             @enderror
                                         </div>
                                         <div class="mb-3">
                                             <label class="mb-2" for="product-features" class="required">Características do Produto</label>
                                             <textarea id="product-features" name="product_features" rows="5" class="form-control" >{{ old('product_features') }}</textarea>
                                             @error('product_features')
-                                            <span class="text-danger">{{ $message }}</span>
+                                            <small class="text-danger">{{ $message }}</small>
                                             @enderror
                                         </div>
                                         <div class="mb-3">
                                             <label class="mb-2" for="product-price">Preço do Produto</label>
                                             <input type="currency" id="product-price" name="product_price" class="form-control" value="{{ old('product_price') }}" />
                                             @error('product_price')
-                                            <span class="text-danger">{{ $message }}</span>
+                                            <small class="text-danger">{{ $message }}</small>
                                             @enderror
                                         </div>
                                         <div class="mb-3">
                                             <label class="mb-2" for="product-sale-price">Preço de Venda do Produto</label>
                                             <input type="currency" id="product-sale-price" name="product_sale_price" class="form-control" value="{{ old('product_sale_price') }}" />
                                             @error('product_sale_price')
-                                            <span class="text-danger">{{ $message }}</span>
+                                            <small class="text-danger">{{ $message }}</small>
                                             @enderror
                                         </div>
                                     </div>
@@ -75,14 +75,14 @@
                                             <label class="mb-2" for="product-weight">Peso do Produto</label>
                                             <input type="number" id="product-weight" name="product_weight" class="form-control" min="0.3" max="30" step="0.01" value="{{ old('product_weight') }}" />
                                             @error('product_weight')
-                                            <span class="text-danger">{{ $message }}</span>
+                                            <small class="text-danger">{{ $message }}</small>
                                             @enderror
                                         </div>
                                         <div class="mb-3">
                                             <label class="mb-2" for="product-height">Altura do Produto</label>
                                             <input type="number" id="product-height" name="product_height" min="1" max="100" class="form-control" value="{{ old('product_height') }}" />
                                             @error('product_height')
-                                            <span class="text-danger">{{ $message }}</span>
+                                            <small class="text-danger">{{ $message }}</small>
                                             @enderror
                                         </div>
                                     </div>
@@ -91,14 +91,14 @@
                                             <label class="mb-2" for="product-width">Largura do Produto</label>
                                             <input type="number" id="product-width" name="product_width" min="10" max="100" class="form-control" value="{{ old('product_width') }}" />
                                             @error('product_width')
-                                            <span class="text-danger">{{ $message }}</span>
+                                            <small class="text-danger">{{ $message }}</small>
                                             @enderror
                                         </div>
                                         <div class="mb-3">
                                             <label class="mb-2" for="product-lenght">Comprimento do Produto</label>
                                             <input type="number" id="product-lenght" name="product_lenght" min="15" max="100" class="form-control" value="{{ old('product_lenght') }}" />
                                             @error('product_lenght')
-                                            <span class="text-danger">{{ $message }}</span>
+                                            <small class="text-danger">{{ $message }}</small>
                                             @enderror
                                         </div>
                                     </div>
@@ -123,7 +123,7 @@
                                         </div>
                                         <div>
                                             @error('stock_enabled')
-                                            <span class="text-danger">{{ $message }}</span>
+                                            <small class="text-danger">{{ $message }}</small>
                                             @enderror
                                         </div>
                                     </div>
@@ -140,7 +140,7 @@
                                                                 <option value="on_backorder">Em Espera</option>
                                                             </select>
                                                             @error('stock_status')
-                                                            <span class="text-danger">{{ $message }}</span>
+                                                            <small class="text-danger">{{ $message }}</small>
                                                             @enderror
                                                         </div>
                                                     </div>
@@ -154,7 +154,7 @@
                                                         <label class="mb-2" for="stock-quantity">Quantidade em estoque</label>
                                                         <input type="number" id="stock-quantity" name="stock_quantity" class="form-control" value="{{ old('stock_quantity') }}" />
                                                         @error('stock_quantity')
-                                                        <span class="text-danger">{{ $message }}</span>
+                                                        <small class="text-danger">{{ $message }}</small>
                                                         @enderror
                                                     </div>
                                                 </div>
@@ -168,7 +168,7 @@
                                                                 <option value="yes">Permitir</option>
                                                             </select>
                                                             @error('allow_backorders')
-                                                            <span class="text-danger">{{ $message }}</span>
+                                                            <small class="text-danger">{{ $message }}</small>
                                                             @enderror
                                                         </div>
                                                     </div>
@@ -193,14 +193,14 @@
                                             <label class="mb-2" for="product-seo-description" class="required">Descrição para o SEO do Produto</label>
                                             <textarea id="product-seo-description" name="product_seo_description" rows="5" class="form-control" >{{ old('product_seo_description') }}</textarea>
                                             @error('product_seo_description')
-                                            <span class="text-danger">{{ $message }}</span>
+                                            <small class="text-danger">{{ $message }}</small>
                                             @enderror
                                         </div>
                                         <div class="mb-3">
                                             <label class="mb-2" for="product-keywords">Palavras-Chave o SEO do Produto</label>
                                             <input type="text" id="product-keywords" name="product_keywords" class="form-control" value="{{ old('product_keywords') }}" />
                                             @error('product_keywords')
-                                            <span class="text-danger">{{ $message }}</span>
+                                            <small class="text-danger">{{ $message }}</small>
                                             @enderror
                                         </div>
                                         <div class="select">
@@ -212,7 +212,7 @@
                                                     <option value="deactivate">Desativado</option>
                                                 </select>
                                                 @error('product_status')
-                                                <span class="text-danger">{{ $message }}</span>
+                                                <small class="text-danger">{{ $message }}</small>
                                                 @enderror
                                             </div>
                                         </div>
@@ -225,7 +225,7 @@
                                                     <option value="no">Não</option>
                                                 </select>
                                                 @error('product_featured')
-                                                <span class="text-danger">{{ $message }}</span>
+                                                <small class="text-danger">{{ $message }}</small>
                                                 @enderror
                                             </div>
                                         </div>
@@ -240,7 +240,7 @@
                                                     @endforeach
                                                 </select>
                                                 @error('manufacturer_id')
-                                                <span class="text-danger">{{ $message }}</span>
+                                                <small class="text-danger">{{ $message }}</small>
                                                 @enderror
                                             </div>
                                         </div>
@@ -255,11 +255,11 @@
                                                     @endforeach
                                                 </select>
                                                 @error('category_id')
-                                                <span class="text-danger">{{ $message }}</span>
+                                                <small class="text-danger">{{ $message }}</small>
                                                 @enderror
                                             </div>
                                         </div>
-                                        <div class="select">
+                                        {{-- <div class="select">
                                             <label class="mb-2" for="product-category-id">Selecione uma Subcategoria</label>
                                             <div class="mb-3">
                                                 <select id="product-category-id" name="product_category_id" class="form-control form-select" aria-label="Selecione uma SubCategoria">
@@ -270,10 +270,10 @@
                                                     @endforeach
                                                 </select>
                                                 @error('product_category_id')
-                                                <span class="text-danger">{{ $message }}</span>
+                                                <small class="text-danger">{{ $message }}</small>
                                                 @enderror
                                             </div>
-                                        </div>
+                                        </div> --}}
                                     </div>
                                 </div>
                             </div>
@@ -289,7 +289,7 @@
                                                 <div class="mb-3">
                                                     <input id="product-image1" name="product_image[]" type="file" class="custom-file-input form-control form-control-lg d-block " aria-label="Imagem do Produto 1" />
                                                     @error('product_image')
-                                                    <div class="text-danger">{{ $message }}</div>
+                                                    <small class="text-danger">{{ $message }}</small>
                                                     @enderror
                                                 </div>
                                             </div>
@@ -300,7 +300,7 @@
                                                 <div class="mb-3">
                                                     <input id="product-image2" name="product_image[]" type="file" class="custom-file-input form-control form-control-lg" aria-label="Imagem do Produto 2" />
                                                     @error('product_image')
-                                                    <div class="text-danger">{{ $message }}</div>
+                                                    <small class="text-danger">{{ $message }}</small>
                                                     @enderror
                                                 </div>
                                             </div>
@@ -311,7 +311,7 @@
                                                 <div class="mb-3">
                                                     <input id="product-image3" name="product_image[]" type="file" class="custom-file-input form-control form-control-lg" aria-label="Imagem do Produto 3" />
                                                     @error('product_image')
-                                                    <span class="text-danger">{{ $message }}</span>
+                                                    <small class="text-danger">{{ $message }}</small>
                                                     @enderror
                                                 </div>
                                             </div>
