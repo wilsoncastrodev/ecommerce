@@ -10,7 +10,7 @@
                         <label class="mb-1" for="number">Número do Cartão</label>
                         <input id="number" name="number" type="text" class="form-control form-validated number" value="{{ old('number') }}" required />
                         <div class="invalid-feedback d-none invalid-card">
-                            Por favor, insira um número do cartão de crédito válido.
+                            Por favor, insira um número de cartão de crédito válido.
                         </div>
                         <div class="credit-cards">
                             @include('web.partials.credit-cards.amex')
@@ -36,7 +36,7 @@
                         <label class="mb-1" for="exp">Validade (Mês/Ano)</label>
                         <div class="col-6">
                             <div class="mb-3">
-                                <select id="exp-month" name="exp_month" class="form-control form-select" required>
+                                <select id="exp-month" name="exp_month" class="form-control form-select form-validated form-validated-select" required>
                                     <option selected="true" disabled value="">Mês</option>
                                     @foreach($credit_card->months as $month)
                                     <option value="{{ formatLeadingZero($month) }}" {{ old('exp_month') == $month ? "selected" : "" }}>
@@ -51,7 +51,7 @@
                         </div>
                         <div class="col-6">
                             <div class="mb-3">
-                                <select id="exp-year" name="exp_year" class="form-control form-select" required>
+                                <select id="exp-year" name="exp_year" class="form-control form-select form-validated form-validated-select" required>
                                     <option selected="true" disabled value="">Ano</option>
                                     @foreach($credit_card->years as $year)
                                     <option value="{{ $year }}" {{ old('exp_month') == $month ? "selected" : "" }}>
@@ -81,7 +81,7 @@
                 <div class="col-12">
                     <div class="mb-3">
                         <label class="mb-1" for="installments">Parcelas</label>
-                        <select id="installments" name="installments" class="form-control form-validated form-select" required>
+                        <select id="installments" name="installments" class="form-control form-validated form-validated-select form-select" required>
                             <option selected="true" disabled value="">Número de Parcelas</option>
                             <option value="01">1 vez</option>
                             <option value="02">2 vezes</option>
