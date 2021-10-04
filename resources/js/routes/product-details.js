@@ -32,6 +32,17 @@ const buttonsQuantity = () => {
     }
 }
 
+const addFieldsMask = () => {
+    const $shipping_product_form = document.getElementById('shippingProductForm');
+
+    if ($shipping_product_form) {
+        const $zip = document.getElementById('zipcode');
+
+        Inputmask({ 'mask': '99999-999', 'placeholder': ' ', 'showMaskOnHover': false }).mask($zip);
+    }
+}
+
+
 const checkShipping = () => {
     const $shipping_product_form = document.getElementById('shippingProductForm'),
           $zipcode = document.getElementById('zipcode'),
@@ -41,39 +52,43 @@ const checkShipping = () => {
         $zipcode.addEventListener("keyup", (e) => {
             e.preventDefault();
 
-            const $shippingForm = document.forms.shippingProductForm;
+            let zipcode_lenght = e.target.value.replace(/[^0-9]/g, '').length;
 
-            let route = $shippingForm.route.value,
-                cart = $shippingForm.cart ? $shippingForm.cart.value : null,
-                zipcode = $shippingForm.zipcode.value,
-                product = null;
+            if (zipcode_lenght > 7) {
+                const $shippingForm = document.forms.shippingProductForm;
 
-            if ($product_quantity) {
-                let product_id = $shippingForm.product_id.value,
-                    product_quantity = $product_quantity.value;
+                let route = $shippingForm.route.value,
+                    cart = $shippingForm.cart ? $shippingForm.cart.value : null,
+                    zipcode = $shippingForm.zipcode.value,
+                    product = null;
 
-                product = {
-                    'product_id': product_id,
-                    'product_quantity': product_quantity
+                if ($product_quantity) {
+                    let product_id = $shippingForm.product_id.value,
+                        product_quantity = $product_quantity.value;
+
+                    product = {
+                        'product_id': product_id,
+                        'product_quantity': product_quantity
+                    }
                 }
+
+                axios.post(route, {
+                    zipcode: zipcode,
+                    cart_id: cart,
+                    product: product
+                })
+                .then((response) => {
+                    const $shipping_message = document.getElementById('shipping-message'),
+                        $sedex_price = document.getElementById('sedex-price'),
+                        $sedex_deadline = document.getElementById('sedex-deadline');
+
+                    if (response.data[0].name == 'Sedex') {
+                        $shipping_message.classList.remove('d-none');
+                        $sedex_price.innerText = "R$ " + response.data[0].price.toLocaleString('pt-br', { minimumFractionDigits: 2 });
+                        $sedex_deadline.innerText = response.data[0].deadline;
+                    }
+                });
             }
-
-            axios.post(route, {
-                zipcode: zipcode,
-                cart_id: cart,
-                product: product
-            })
-            .then((response) => {
-                const $shipping_message = document.getElementById('shipping-message'),
-                      $sedex_price = document.getElementById('sedex-price'),
-                      $sedex_deadline = document.getElementById('sedex-deadline');
-
-                if (response.data[0].name == 'Sedex') {
-                    $shipping_message.classList.remove('d-none');
-                    $sedex_price.innerText = "R$ " + response.data[0].price.toLocaleString('pt-br', { minimumFractionDigits: 2 });
-                    $sedex_deadline.innerText = response.data[0].deadline;
-                }
-            });
         });
     }
 }
@@ -207,3 +222,4 @@ buttonsQuantity();
 shareLinks();
 checkShipping();
 showReviewForm();
+addFieldsMask();

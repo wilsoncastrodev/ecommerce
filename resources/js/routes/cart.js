@@ -48,9 +48,9 @@ const checkShipping = () => {
 }
 
 const addFieldsMask = () => {
-    const $register_form = document.getElementById('shippingCartForm');
+    const $shipping_cart_form = document.getElementById('shippingCartForm');
 
-    if ($register_form) {
+    if ($shipping_cart_form) {
         const $zip = document.getElementById('zipcode');
 
         Inputmask({ 'mask': '99999-999', 'placeholder': ' ', 'showMaskOnHover': false }).mask($zip);
