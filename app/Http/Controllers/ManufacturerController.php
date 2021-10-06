@@ -15,7 +15,7 @@ class ManufacturerController extends Controller
      */
     public function index()
     {
-        $manufacturers = Manufacturer::all()->toArray();
+        $manufacturers = Manufacturer::paginate(5);
         return view('admin.manufacturers.index', compact('manufacturers'));
     }
 
