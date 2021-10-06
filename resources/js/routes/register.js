@@ -2,6 +2,7 @@
 import cep from 'cep-promise';
 import Inputmask from 'inputmask';
 import CPF from 'cpf';
+import { generate } from 'gerador-validador-cpf'
 
 const validateFormRegister = () => {
     const generatorCPF = () => {

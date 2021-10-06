@@ -21,16 +21,18 @@ var hiddenStock = () => {
 var hiddenStockLoad = () => {
   $stock_enabled = document.querySelector('input[name="stock_enabled"]:checked');
   
-  let value = $stock_enabled.value;
+  if($stock_enabled) {
+    let value = $stock_enabled.value;
 
-  if(value == 'yes') {
-    document.getElementById('hidden-stock-yes').classList.add('d-none');
-    document.getElementById('hidden-stock-no').classList.remove('d-none');
-  }
-
-  if(value == 'no') {
-    document.getElementById('hidden-stock-no').classList.add('d-none');
-    document.getElementById('hidden-stock-yes').classList.remove('d-none');
+    if(value == 'yes') {
+      document.getElementById('hidden-stock-yes').classList.add('d-none');
+      document.getElementById('hidden-stock-no').classList.remove('d-none');
+    }
+  
+    if(value == 'no') {
+      document.getElementById('hidden-stock-no').classList.add('d-none');
+      document.getElementById('hidden-stock-yes').classList.remove('d-none');
+    }
   }
 }
 
