@@ -17,10 +17,9 @@
                 </thead>
                 <tbody>
                     @foreach($manufacturers as $manufacturer)
-                    @php(extract($manufacturer))
                     <tr>
-                        <td class="td-id" scope="row">{{ $id }}</td>
-                        <td scope="row">{{ $manufacturer_title }}</td>
+                        <td class="td-id" scope="row">{{ $manufacturer->id }}</td>
+                        <td scope="row">{{ $manufacturer->manufacturer_title }}</td>
                         <td class="td-actions">
                             <a href="" class="me-1"><i class="fas fa-edit"></i></a>
                             <a href=""><i class="fas fa-trash"></i></a>
@@ -29,6 +28,9 @@
                     @endforeach
                 </tbody>
             </table>
+            <div class="mt-4">
+                {!! $manufacturers->links() !!}
+            </div>
         </div>
     </div>
 </div>
