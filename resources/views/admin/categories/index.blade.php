@@ -17,10 +17,9 @@
                 </thead>
                 <tbody>
                     @foreach($categories as $category)
-                    @php(extract($category))
                     <tr>
-                        <td class="td-id" scope="row">{{ $id }}</td>
-                        <td scope="row">{{ $category_title }}</td>
+                        <td class="td-id" scope="row">{{ $category->id }}</td>
+                        <td scope="row">{{ $category->category_title }}</td>
                         <td class="td-actions">
                             <a href="" class="me-1"><i class="fas fa-edit"></i></a>
                             <a href=""><i class="fas fa-trash"></i></a>
@@ -29,6 +28,9 @@
                     @endforeach
                 </tbody>
             </table>
+            <div class="mt-4">
+                {!! $categories->links() !!}
+            </div>
         </div>
     </div>
 </div>
