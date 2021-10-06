@@ -1,0 +1,22 @@
+.pagination {
+    .page-item {
+        padding-right: 8px;
+        width: 42px;
+
+        .page-link {
+            border-radius: 8px;
+            box-shadow: 0px 1px 4px 0px rgb(29 70 102 / 25%);
+            text-align: center;
+            color: $blue-100;
+            font-weight: 600;
+        }
+
+        &.active {
+            .page-link {
+                background-color: $blue-100;
+                border-color: $blue-100;
+                color: $white;
+            }
+        }
+    }
+}

@@ -17,14 +17,13 @@
                 </thead>
                 <tbody>
                     @foreach($products as $product)
-                    @php(extract($product))
                     <tr>
-                        <td class="td-id" scope="row">{{ $id }}</td>
-                        <td scope="row">{{ limitText($product_title) }}</td>
-                        <td scope="row">R$ {{ formatCurrency($product_price) }}</td>
-                        <td scope="row">R$ {{ formatCurrency($product_sale_price) }}</td>
-                        <td scope="row">{{ limitText($product_description) }}</td>
-                        <td scope="row">{{ $product_status == "active" ? "Ativado" : "Desativado" }}</td>
+                        <td class="td-id" scope="row">{{ $product->id }}</td>
+                        <td scope="row">{{ limitText($product->product_title) }}</td>
+                        <td scope="row">R$ {{ formatCurrency($product->product_price) }}</td>
+                        <td scope="row">R$ {{ formatCurrency($product->product_sale_price) }}</td>
+                        <td scope="row">{{ limitText($product->product_description) }}</td>
+                        <td scope="row">{{ $product->product_status == "active" ? "Ativado" : "Desativado" }}</td>
                         <td class="td-actions">
                             <a href="" class="me-1"><i class="fas fa-edit"></i></a>
                             <a href=""><i class="fas fa-trash"></i></a>
@@ -33,6 +32,9 @@
                     @endforeach
                 </tbody>
             </table>
+            <div class="mt-4">
+                {!! $products->links() !!}
+            </div>
         </div>
     </div>
 </div>
