@@ -29,6 +29,11 @@
                 Categorias
             </a>
         </li>
+        <li>
+            <a href="{{ route('admin.usuarios.index') }}" class="nav-link text-white {{ request()->is('admin/usuarios*') ? 'active' : '' }}">
+                Usuários
+            </a>
+        </li>
         {{-- <li>
             <a href="{{ route('admin.subcategory.index') }}" class="nav-link text-white {{ request()->is('admin/subcategory*') ? 'active' : '' }}">
                 Subcategorias
