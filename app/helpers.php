@@ -162,3 +162,23 @@ if (!function_exists('formatDateDefault')) {
         return Carbon::parse($date)->format('d/m/Y');
     }
 }
+
+if (!function_exists('displayName')) {
+    function displayName($string)
+    {
+        $words = explode(' ', $string);
+        $name = '';
+
+        foreach ($words as $key => $word) {
+            if (strlen($word) > 3) {
+                if ($key < 2) {
+                    $name .= $word . " ";
+                } else {
+                    break;
+                }
+            }
+        }
+
+        return $name;
+    }
+}

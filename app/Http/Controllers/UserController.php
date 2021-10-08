@@ -7,6 +7,11 @@ use Illuminate\Http\Request;
 
 class UserController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('admin')->only(['create']);
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -25,7 +30,8 @@ class UserController extends Controller
      */
     public function create()
     {
-        //
+        
+        return view('admin.user.create');
     }
 
     /**
@@ -36,7 +42,28 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'name' => 'required|string|max:255',
+            'email' => 'required|string|email|max:255|unique:users',
+            "is_admin" => 'required',
+            'password' => 'required|string|min:8|max:255'
+        ], [
+            'name.required' => 'O campo "Nome do Usuário" é obrigatório',
+            'email.required' => 'O campo "E-mail" é obrigatório',
+            'is_admin.required' => 'O campo "É Administrador?" é obrigatório',
+            'password.required' => 'O campo "Senha" é obrigatório',
+        ]);
+
+        $user_type = $request->is_admin == 1 ? "Administrador" : "Usuário";
+
+        $user = new User;
+        $user->name = $request->name;
+        $user->email = $request->email;
+        $user->password = bcrypt($request->password);
+        $user->is_admin = $request->is_admin;
+        $user->save();
+        
+        return redirect()->back()->with('success', $user_type . ' cadastrado com sucesso!');
     }
 
     /**

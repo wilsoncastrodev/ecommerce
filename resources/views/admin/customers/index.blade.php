@@ -4,10 +4,10 @@
 <div class="container-fluid mt-5">
     <div class="row">
         <div class="col">
-            @include('partials.contents.page-title.title', ['title' => 'Clientes'])
+            @include('partials.contents.page-title.title', ['title' => 'Cliente'])
         </div>
     </div>
-    <div class="row">
+    <div class="row mt-5">
         <div class="col">
             <table class="table-admin">
                 <thead>
