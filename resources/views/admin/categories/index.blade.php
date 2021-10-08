@@ -12,7 +12,7 @@
             <table class="table-admin">
                 <thead>
                     @include('partials.tables.head',
-                    ['heads' => ['#', 'Título', 'Ações']]
+                    ['heads' => ['#', 'Nome da Categoria', 'Ações']]
                     )
                 </thead>
                 <tbody>

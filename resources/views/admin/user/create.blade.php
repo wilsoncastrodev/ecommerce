@@ -22,7 +22,7 @@
                                 <input type="text" class="form-control" name="name" id="name" placeholder="Entre com o Nome">
                                 <div class="mt-1">
                                     @error('name')
-                                        <span class="text-danger">{{ $message }}</span>
+                                        <small class="text-danger">{{ $message }}</small>
                                     @enderror
                                 </div>
                             </div>
@@ -31,7 +31,7 @@
                                 <input type="email" class="form-control" name="email" id="email" placeholder="Entre com o E-mail">
                                 <div class="mt-1">
                                     @error('email')
-                                    <span class="text-danger">{{ $message }}</span>
+                                    <small class="text-danger">{{ $message }}</small>
                                     @enderror
                                 </div>
                             </div>
@@ -49,7 +49,7 @@
                                 </div>
                                 <div class="mt-1">
                                     @error('is_admin')
-                                    <span class="text-danger">{{ $message }}</span>
+                                    <small class="text-danger">{{ $message }}</small>
                                     @enderror
                                 </div>
                             </div>
@@ -58,7 +58,7 @@
                                 <input type="password" class="form-control" name="password" id="password" placeholder="Entre com a Senha">
                                 <div class="mt-1">
                                     @error('password')
-                                    <span class="text-danger">{{ $message }}</span>
+                                    <small class="text-danger">{{ $message }}</small>
                                     @enderror
                                 </div>
                             </div>

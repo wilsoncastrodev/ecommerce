@@ -22,7 +22,7 @@
                                 <input type="text" class="form-control" name="manufacturer_title" id="manufacturer-title" placeholder="Entre com o Nome do Fabricante">
                                 <div class="mt-1">
                                     @error('manufacturer_title')
-                                    <span class="text-danger">{{ $message }}</span>
+                                    <small class="text-danger">{{ $message }}</small>
                                     @enderror
                                 </div>
                             </div>
@@ -33,7 +33,7 @@
                                 </div>
                                 <div class="mt-1">
                                     @error('manufacturer_image')
-                                    <span class="text-danger">{{ $message }}</span>
+                                    <small class="text-danger">{{ $message }}</small>
                                     @enderror
                                 </div>
                             </div>

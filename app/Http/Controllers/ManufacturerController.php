@@ -40,6 +40,9 @@ class ManufacturerController extends Controller
         $request->validate([
             'manufacturer_title' => 'required|unique:manufacturers|max:255',
             'manufacturer_image' => 'required|image|mimes:jpg,png,jpeg,gif,svg|max:2048'
+        ], [
+            'manufacturer_title.required' => 'O campo "Nome do Fabricante" é obrigatório',
+            'manufacturer_image.required' => 'O campo "Imagem do Fabricante" é obrigatório',
         ]);
 
         $image = $request->file('manufacturer_image');

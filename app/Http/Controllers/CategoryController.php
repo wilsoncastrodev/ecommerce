@@ -41,6 +41,10 @@ class CategoryController extends Controller
             'category_title' => 'required|unique:categories|max:255',
             'category_top' => 'required',
             'category_image' => 'required|image|mimes:jpg,png,jpeg,gif,svg|max:2048'
+        ], [
+            'category_title.required' => 'O campo "Nome da Categoria" é obrigatório',
+            'category_top.required' => 'O campo "Categoria no Topo" é obrigatório',
+            'category_image.required' => 'O campo "Imagem da Categoria" é obrigatório',
         ]);
 
         $image = $request->file('category_image');

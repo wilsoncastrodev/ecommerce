@@ -22,7 +22,7 @@
                                 <input type="text" class="form-control" name="category_title" id="category-title" placeholder="Entre com o Título da Categoria">
                                 <div class="mt-1">
                                     @error('category_title')
-                                    <span class="text-danger">{{ $message }}</span>
+                                    <small class="text-danger">{{ $message }}</small>
                                     @enderror
                                 </div>
                             </div>
@@ -40,18 +40,18 @@
                                 </div>
                                 <div class="mt-1">
                                     @error('category_top')
-                                    <span class="text-danger">{{ $message }}</span>
+                                    <small class="text-danger">{{ $message }}</small>
                                     @enderror
                                 </div>
                             </div>
                             <div class="form-group">
-                                <div class="mb-3">
+                                <div class="mb-1">
                                     <label for="category-image" class="form-label">Selecione a Imagem da Categoria</label>
                                     <input class="form-control form-control-lg" type="file" name="category_image" id="category-image">
                                 </div>
                                 <div class="mt-1">
                                     @error('category_image')
-                                    <span class="text-danger">{{ $message }}</span>
+                                    <small class="text-danger">{{ $message }}</small>
                                     @enderror
                                 </div>
                             </div>
