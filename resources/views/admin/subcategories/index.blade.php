@@ -4,7 +4,7 @@
 <div class="container-fluid mt-5">
     <div class="row">
         <div class="col">
-            @include('partials.contents.page-title.title-button', ['title' => 'Subcategoria', 'route' => 'admin.subcategory.create'])
+            @include('partials.contents.page-title.title-button', ['title' => 'Subcategoria', 'route' => 'admin.usuarios.create'])
         </div>
     </div>
     <div class="row mt-5">

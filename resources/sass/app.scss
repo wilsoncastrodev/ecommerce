@@ -15,13 +15,11 @@
 @import 'web/media';
 @import 'web/navbar';
 @import 'web/pages';
-@import 'web/pagination';
 @import 'web/panels';
 @import 'web/tables';
 @import 'web/type';
 @import 'web/typography';
 @import 'web/utilities';
-
 
 //Admin
 @import 'admin/alerts';
@@ -29,5 +27,7 @@
 @import 'admin/form';
 @import 'admin/global';
 @import 'admin/header';
+@import 'admin/icons';
+@import 'admin/pagination';
 @import 'admin/sidebar';
 @import 'admin/tables';

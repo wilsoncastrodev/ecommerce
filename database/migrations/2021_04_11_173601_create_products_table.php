@@ -26,8 +26,11 @@ class CreateProductsTable extends Migration
             $table->text('product_featured');
             $table->text('product_keywords');
             $table->decimal('product_weight', 10, 2);
-            $table->text('product_views')->nullable()->default(0);
-            $table->text('product_status')->default("active");;
+            $table->integer('product_width');
+            $table->integer('product_height');
+            $table->integer('product_lenght');
+            $table->integer('product_views')->default(0);
+            $table->string('product_status')->default("active");
             $table->timestamps();
         });
     }

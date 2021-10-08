@@ -5,11 +5,23 @@
     background-image: linear-gradient(to top, #1681a4, #0b88a7, #018eaa, #0095ac, #009bae);
     box-shadow: 2px 3px 10px 0 rgb(29 70 102 / 31%);
 
-    .navbar-brand {
+    .nav-brand {
         font-size: 2.9rem;
         font-family: "Rubik",sans-serif;
         font-weight: 400;
         margin-left: 38px;
+    }
+
+    .nav-profile-user {
+        .nav-profile-name {
+            font-size: 21px;
+            font-weight: 500;
+            line-height: 1;
+        }
+    }
+
+    .nav-profile-role {
+        font-weight: 300;
     }
 
     ul {

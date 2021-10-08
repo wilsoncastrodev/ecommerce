@@ -157,12 +157,8 @@
                                             @enderror
                                         </div>
                                     </div>
-
                                 </div>
-
-
                             </div>
-
                             <div class="col-6 ps-3">
                                 <div class="row">
                                     <div class="col-9">
