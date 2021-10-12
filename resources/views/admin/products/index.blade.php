@@ -19,7 +19,11 @@
                     @foreach($products as $product)
                     <tr>
                         <td class="td-id" scope="row">{{ $product->id }}</td>
-                        <td scope="row">{{ limitText($product->product_title) }}</td>
+                        <td scope="row">
+                            <a href="{{ url('/produto/' . $product->product_url) }}">
+                                {{ limitText($product->product_title) }}
+                            </a>
+                        </td>
                         <td scope="row">R$ {{ formatCurrency($product->product_price) }}</td>
                         <td scope="row">R$ {{ formatCurrency($product->product_sale_price) }}</td>
                         <td scope="row">{{ limitText($product->product_description) }}</td>

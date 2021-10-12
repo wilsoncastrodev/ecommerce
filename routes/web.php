@@ -6,6 +6,7 @@ use App\Http\Controllers\WebController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\ReviewController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\Auth\LoginController;
@@ -41,6 +42,7 @@ Route::name('admin.')->prefix('admin')->middleware('auth')->group(function () {
     Route::resource('subcategory', ProductCategoryController::class);
     Route::resource('fabricantes', ManufacturerController::class);
     Route::resource('clientes', CustomerController::class);
+    Route::resource('avaliacoes', ReviewController::class);
     Route::resource('usuarios', UserController::class);
 });
 

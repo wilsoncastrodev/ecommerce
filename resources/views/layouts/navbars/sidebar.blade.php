@@ -51,6 +51,11 @@
                 Usuários
             </a>
         </li>
+        <li>
+            <a href="{{ route('admin.avaliacoes.index') }}" class="nav-link text-white {{ request()->is('admin/avaliacoes*') ? 'active' : '' }}">
+                Avaliações dos Produtos
+            </a>
+        </li>
         {{-- <li>
             <a href="{{ route('admin.subcategory.index') }}" class="nav-link text-white {{ request()->is('admin/subcategory*') ? 'active' : '' }}">
                 Subcategorias
