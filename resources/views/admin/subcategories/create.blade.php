@@ -9,7 +9,7 @@
     </div>
     @include('partials.messages.success')
     @include('partials.messages.error')
-    <div class="row pt-3">
+    <div class="row pt-3 pb-5">
         <div class="col">
             <form method="POST" class="form-admin" action="{{ route('admin.subcategory.store') }}" enctype="multipart/form-data">
                 @csrf

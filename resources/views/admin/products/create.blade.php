@@ -9,7 +9,7 @@
     </div>
     @include('partials.messages.success')
     @include('partials.messages.error')
-    <div class="row pt-3 mb-5">
+    <div class="row pt-3 pb-5">
         <div class="col">
             <form method="POST" class="form-admin" action="{{ route('admin.produtos.store') }}" enctype="multipart/form-data">
                 @csrf
@@ -114,11 +114,11 @@
                                             <label class="form-check-label" for="stock-enabled">Habilitar gerenciamento de estoque no nível do produto?</label>
                                         </div>
                                         <div class="form-check form-check-inline">
-                                            <input id="stock-enabled-yes" name="stock_enabled" type="radio" class="form-check-input" value="yes"/>
+                                            <input id="stock-enabled-yes" name="stock_enabled" type="radio" class="form-check-input" value="yes" {{ old('stock_enabled') === "yes" ? 'checked' : '' }}/>
                                             <label class="form-check-label" for="stock-enabled-yes">Sim</label>
                                         </div>
                                         <div class="form-check form-check-inline ">
-                                            <input id="stock-enabled-no" name="stock_enabled" type="radio" class="form-check-input" value="no"/>
+                                            <input id="stock-enabled-no" name="stock_enabled" type="radio" class="form-check-input" value="no" {{ old('stock_enabled') === "no" ? 'checked' : '' }}/>
                                             <label class="form-check-label" for="stock-enabled-no">Não</label>
                                         </div>
                                         <div>
@@ -135,9 +135,9 @@
                                                         <label class="mb-2" for="stock-status">Status de Estoque</label>
                                                         <div class="mb-3">
                                                             <select id="stock-status" name="stock_status" class="form-control form-select" aria-label="Status de Estoque">
-                                                                <option value="in_stock">Em Estoque</option>
-                                                                <option value="out_stock">Sem Estoque</option>
-                                                                <option value="on_backorder">Em Espera</option>
+                                                                <option value="in_stock" {{ old('stock_status') === "in_stock" ? 'selected' : '' }}>Em Estoque</option>
+                                                                <option value="out_stock" {{ old('stock_status') === "out_stock" ? 'selected' : '' }}>Sem Estoque</option>
+                                                                <option value="on_backorder" {{ old('stock_status') === "on_backorder" ? 'selected' : '' }}>Em Espera</option>
                                                             </select>
                                                             @error('stock_status')
                                                             <small class="text-danger">{{ $message }}</small>
@@ -154,7 +154,7 @@
                                                         <label class="mb-2" for="stock-quantity">Quantidade em estoque</label>
                                                         <input type="number" id="stock-quantity" name="stock_quantity" class="form-control" value="{{ old('stock_quantity') }}" />
                                                         @error('stock_quantity')
-                                                        <small class="text-danger">{{ $message }}</small>
+                                                            <small class="text-danger">{{ $message }}</small>
                                                         @enderror
                                                     </div>
                                                 </div>
@@ -163,9 +163,9 @@
                                                         <label class="mb-2" for="allow-backorders">Permitir pedidos em espera?</label>
                                                         <div class="mb-3">
                                                             <select id="allow-backorders" name="allow_backorders" class="form-control form-select" aria-label="Permitir pedidos em espera?">
-                                                                <option value="no" selected>Não Permitir</option>
-                                                                <option value="notify">Permitir, mas notificar o cliente</option>
-                                                                <option value="yes">Permitir</option>
+                                                                <option value="no" {{ old('allow_backorders') === "no" ? 'selected' : '' }}>Não Permitir</option>
+                                                                <option value="notify" {{ old('allow_backorders') === "notify" ? 'selected' : '' }}>Permitir, mas notificar o cliente</option>
+                                                                <option value="yes" {{ old('allow_backorders') === "yes" ? 'selected' : '' }}>Permitir</option>
                                                             </select>
                                                             @error('allow_backorders')
                                                             <small class="text-danger">{{ $message }}</small>
@@ -208,8 +208,8 @@
                                             <div class="mb-3">
                                                 <select id="product-status" feature="product-status" name="product_status" class="form-control form-select" aria-label="Selecione uma Opção">
                                                     <option selected="true" disabled>Selecione uma Opção</option>
-                                                    <option value="active">Ativado</option>
-                                                    <option value="deactivate">Desativado</option>
+                                                    <option value="active" {{ old('product_status') === "active" ? 'selected' : '' }}>Ativado</option>
+                                                    <option value="deactivate" {{ old('product_status') === "deactivate" ? 'selected' : '' }}>Desativado</option>
                                                 </select>
                                                 @error('product_status')
                                                 <small class="text-danger">{{ $message }}</small>
@@ -221,8 +221,8 @@
                                             <div class="mb-3">
                                                 <select id="product-featured" name="product_featured" class="form-control form-select" aria-label="Selecione uma Opção">
                                                     <option selected="true" disabled>Selecione uma Opção</option>
-                                                    <option value="yes">Sim</option>
-                                                    <option value="no">Não</option>
+                                                    <option value="yes" {{ old('product_featured') === "yes" ? 'selected' : '' }}>Sim</option>
+                                                    <option value="no" {{ old('product_featured') === "no" ? 'selected' : '' }}>Não</option>
                                                 </select>
                                                 @error('product_featured')
                                                 <small class="text-danger">{{ $message }}</small>
@@ -236,7 +236,7 @@
                                                     <option selected="true" disabled>Selecione Fabricante</option>
                                                     @foreach($manufacturers as $manufacturer)
                                                     @php(extract($manufacturer))
-                                                    <option value="{{ $id }}">{{ $manufacturer_title }}</option>
+                                                    <option value="{{ $id }}" {{ old('manufacturer_id') == $id ? 'selected' : '' }}>{{ $manufacturer_title }}</option>
                                                     @endforeach
                                                 </select>
                                                 @error('manufacturer_id')
@@ -251,7 +251,7 @@
                                                     <option selected="true" disabled>Selecione Categoria</option>+
                                                     @foreach($categories as $category)
                                                     @php(extract($category))
-                                                    <option value="{{ $id }}">{{ $category_title }}</option>
+                                                    <option value="{{ $id }}" {{ old('category_id') == $id ? 'selected' : '' }}>{{ $category_title }}</option>
                                                     @endforeach
                                                 </select>
                                                 @error('category_id')
@@ -288,7 +288,7 @@
                                             <div class="custom-file">
                                                 <div class="mb-3">
                                                     <input id="product-image1" name="product_image[]" type="file" class="custom-file-input form-control form-control-lg d-block " aria-label="Imagem do Produto 1" />
-                                                    @error('product_image')
+                                                    @error('product_image.0')
                                                     <small class="text-danger">{{ $message }}</small>
                                                     @enderror
                                                 </div>
@@ -299,7 +299,7 @@
                                             <div class="custom-file">
                                                 <div class="mb-3">
                                                     <input id="product-image2" name="product_image[]" type="file" class="custom-file-input form-control form-control-lg" aria-label="Imagem do Produto 2" />
-                                                    @error('product_image')
+                                                    @error('product_image.1')
                                                     <small class="text-danger">{{ $message }}</small>
                                                     @enderror
                                                 </div>
@@ -310,7 +310,7 @@
                                             <div class="custom-file">
                                                 <div class="mb-3">
                                                     <input id="product-image3" name="product_image[]" type="file" class="custom-file-input form-control form-control-lg" aria-label="Imagem do Produto 3" />
-                                                    @error('product_image')
+                                                    @error('product_image.2')
                                                     <small class="text-danger">{{ $message }}</small>
                                                     @enderror
                                                 </div>

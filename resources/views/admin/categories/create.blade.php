@@ -9,7 +9,7 @@
     </div>
     @include('partials.messages.success')
     @include('partials.messages.error')
-    <div class="row pt-3">
+    <div class="row pt-3 pb-5">
         <div class="col">
             <form method="POST" class="form-admin" action="{{ route('admin.categorias.store') }}" enctype="multipart/form-data">
                 @csrf
@@ -19,7 +19,7 @@
                         <div class="col-12">
                             <div class="form-group mb-3">
                                 <label for="category-title" class="mb-2">Título da Categoria</label>
-                                <input type="text" class="form-control" name="category_title" id="category-title" placeholder="Entre com o Título da Categoria">
+                                <input type="text" class="form-control" name="category_title" id="category-title" placeholder="Entre com o Título da Categoria" value="{{ old('category_title') }}">
                                 <div class="mt-1">
                                     @error('category_title')
                                     <small class="text-danger">{{ $message }}</small>
@@ -31,11 +31,11 @@
                                     <label class="form-check-label">Exibir a Categoria no Topo</label>
                                 </div>
                                 <div class="form-check form-check-inline">
-                                    <input class="form-check-input" type="radio" name="category_top" id="category-top1" value="yes">
+                                    <input class="form-check-input" type="radio" name="category_top" id="category-top1" value="yes" {{ old('category_top') === "yes" ? 'checked' : '' }}>
                                     <label class="form-check-label" for="category-top1">Sim</label>
                                 </div>
                                 <div class="form-check form-check-inline">
-                                    <input class="form-check-input" type="radio" name="category_top" id="category-top2" value="no">
+                                    <input class="form-check-input" type="radio" name="category_top" id="category-top2" value="no" {{ old('category_top') === "no" ? 'checked' : '' }}>
                                     <label class="form-check-label" for="category-top2">Não</label>
                                 </div>
                                 <div class="mt-1">
