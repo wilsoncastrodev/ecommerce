@@ -9,7 +9,7 @@
     </div>
     @include('partials.messages.success')
     @include('partials.messages.error')
-    <div class="row pt-3">
+    <div class="row pt-3 pb-5">
         <div class="col">
             <form method="POST" class="form-admin" action="{{ route('admin.fabricantes.store') }}" enctype="multipart/form-data">
                 @csrf
@@ -19,7 +19,7 @@
                         <div class="col-12">
                             <div class="form-group mb-3">
                                 <label for="manufacturer-title" class="mb-2">Nome do Fabricante</label>
-                                <input type="text" class="form-control" name="manufacturer_title" id="manufacturer-title" placeholder="Entre com o Nome do Fabricante">
+                                <input type="text" class="form-control" name="manufacturer_title" id="manufacturer-title" placeholder="Entre com o Nome do Fabricante" value="{{ old('manufacturer_title') }}">
                                 <div class="mt-1">
                                     @error('manufacturer_title')
                                     <small class="text-danger">{{ $message }}</small>

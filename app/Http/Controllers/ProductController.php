@@ -59,8 +59,9 @@ class ProductController extends Controller
             'product_lenght' => 'required',
             'product_price' => 'required|regex:#^[0-9,]+$#',
             'product_sale_price' => 'required|regex:#^[0-9,]+$#',
-            'product_image' => 'required',
-            'product_image.*' => 'image|mimes:jpg,png,jpeg,gif,svg|max:2048',
+            'product_image.0' => 'required|image|mimes:jpg,png,jpeg,gif,svg|max:2048',
+            'product_image.1' => 'required|image|mimes:jpg,png,jpeg,gif,svg|max:2048',
+            'product_image.2' => 'required|image|mimes:jpg,png,jpeg,gif,svg|max:2048',
             /* 'product_category_id' => 'required', */
             'manufacturer_id' => 'required',
             'category_id' => 'required',
@@ -81,6 +82,8 @@ class ProductController extends Controller
             'product_lenght.required' => 'O campo "Comprimento do Produto" é obrigatório',
             'product_price.required' => 'O campo "Preço do Produto" é obrigatório',
             'product_sale_price.required' => 'O campo "Preço de Venda do Produto" é obrigatório',
+            'product_price.regex' => 'O campo "Preço do Produto" está com o formato inválido.',
+            'product_sale_price.regex' => 'O campo "Preço de Venda do Produto" está com o formato inválido.',
             'product_image.required' => 'O campo "Imagem do Produto" é obrigatório',
             /* 'product_category_id.required' => 'O campo "Subcategoria" é obrigatório', */
             'manufacturer_id.required' => 'O campo "Fabricante" é obrigatório',
@@ -89,7 +92,10 @@ class ProductController extends Controller
             'product_keywords.required' => 'O campo "Palavras-Chave o SEO do Produto" é obrigatório',
             'stock_enabled.required' => 'O campo "Habilitar Gerencimento de Estoque" é obrigatório',
             'stock_quantity.required' => 'O campo "Quantidade em estoque" é obrigatório',
-            'allow_backorders.required' => 'O campo "Preço do Produto" é obrigatório'
+            'allow_backorders.required' => 'O campo "Preço do Produto" é obrigatório',
+            'product_image.0.required' => 'O campo "Imagem do Produto 1" é obrigatório',
+            'product_image.1.required' => 'O campo "Imagem do Produto 2" é obrigatório',
+            'product_image.2.required' => 'O campo "Imagem do Produto 3" é obrigatório'
         ]);
 
         if ($request->hasFile('product_image')) {
